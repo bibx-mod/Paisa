@@ -1,0 +1,100 @@
+<!-- ===== NODIX UPGRADE v2 : paste this whole block right BEFORE </body> ===== -->
+<style>
+/* ---- performance: no blur, no endless animations (2GB phones) ---- */
+#top,nav{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.wh,.hero img,.sp img,.bn,.flag,.ptr{animation:none!important}
+.wh{box-shadow:0 0 26px #a855f7aa!important}
+#v{animation:none!important}
+/* ---- new look ---- */
+:root{--bg:#070a1a;--c:#0f1730;--p:#34e0ff;--q:#b45cff}
+body{background:#070a1a!important}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(520px 320px at 8% -4%,#4c1d9577,transparent),radial-gradient(420px 320px at 100% 22%,#0891b244,transparent),radial-gradient(500px 300px at 30% 110%,#db277733,transparent)}
+.c{background:linear-gradient(160deg,#16224a,#0d1531)!important;border:1px solid #ffffff1f!important;border-radius:20px!important;box-shadow:0 8px 22px #0007}
+.hero{background:linear-gradient(135deg,#2b1b77,#0b4a63)!important}
+.b{border-radius:16px!important;box-shadow:0 5px 16px #7c3aed55;letter-spacing:.2px}
+.b.g{box-shadow:none}.b.x{box-shadow:0 5px 16px #e11d4855}
+.big{font-size:40px!important}
+nav{background:#0a1028!important;border-top:1px solid #34e0ff33!important}
+nav a.on{color:#fff!important}nav a.on i{filter:drop-shadow(0 0 6px #34e0ff)}
+.chip.on{box-shadow:0 0 12px #b45cff88}
+.tile,.pad{box-shadow:0 4px 10px #0006}
+/* splash: Made in Nepal in the middle */
+.sp{padding-top:18vh!important}
+.mi{bottom:auto!important;top:62%!important}
+.mi b{font-size:15px!important;letter-spacing:3px!important}
+/* top bar */
+#top .b{margin-left:0!important}
+#top .sup{margin-left:auto;display:flex;align-items:center;gap:6px;background:#0c2a46;border:1px solid #2aabee99;color:#fff;border-radius:22px;padding:5px 11px 5px 6px;font:700 12px system-ui;min-height:40px;box-shadow:0 0 14px #2aabee99}
+#top .sup svg{width:26px;height:26px;filter:drop-shadow(0 0 5px #2aabee)}
+@media(max-width:400px){#tm{display:none!important}}
+/* games */
+.gc{padding:12px!important;gap:12px!important}
+.gi{width:84px;height:84px;border-radius:16px;object-fit:cover;flex:none;box-shadow:0 4px 14px #0008}
+.gimg{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;display:block;margin-bottom:10px}
+.pc{width:112px;height:152px;margin:14px auto;border-radius:16px;background:linear-gradient(160deg,#2a3558,#1b2750);display:flex;align-items:center;justify-content:center;font-size:46px;font-weight:800;border:2px solid #ffffff44}
+.pc.f{background:#fff;color:#111}.pc.f.red{color:#dc2626}
+</style>
+<script>
+(function(){
+const IMG={wait:"https://i.ibb.co/NgWsgZhm/1792667973235.jpg",spin:"https://i.ibb.co/7tTBz38Y/1792668027187.jpg",bomb:"https://i.ibb.co/BV82ykrD/1792668062128.jpg",mem:"https://i.ibb.co/mFyjZLbG/1792668173075.jpg",conv:"https://i.ibb.co/gLdgbP3k/1792668210260.jpg",hl:"https://i.ibb.co/Nd0rdxXL/1792668533521.jpg"};
+const GIFT_CHANNEL="-1004234724151",SUPPORT="https://t.me/NodixChatt";
+
+/* 1) New waiting picture on every 10-second ad countdown */
+pre=function(s){return new Promise(r=>{if(!s)return r();let n=s;ov('<img class="ban" src="'+IMG.wait+'" style="margin-bottom:14px"><div class="big" id="pc">'+n+'</div><div style="font-size:18px;margin-top:6px">Ad starting…</div><small>Please watch the full ad</small>');const iv=setInterval(()=>{n--;if(n<=0){clearInterval(iv);ov();r()}else $("#pc").textContent=n},1000)})};
+
+/* 2) Games menu with pictures (4 games) */
+const card=(g,img,t,s)=>'<div class="gc" onclick="gm=\''+g+'\';render(1)"><img class="gi" src="'+img+'" loading="lazy"><div><b>'+t+'</b><small>'+s+'</small></div></div>';
+P.games=()=>gm=="m"?GM():gm=="s"?GS():gm=="r"?GR():gm=="h"?GH():
+ card("s",IMG.spin,"🎡 Lucky Spin","Free daily spin &amp; prizes")+
+ card("m",IMG.bomb,"💣 Bomb &amp; Flower","Open every flower, avoid the bombs")+
+ card("r",IMG.mem,"🧠 Memory Master","Repeat the pattern · win "+cfg.mem.prize+" coins")+
+ card("h",IMG.hl,"🃏 High-Low Card","Guess High or Low · win 2× your bet")+CA();
+const _GS=GS;GS=function(){return _GS().replace("<h3>🎡 Lucky Spin</h3>",'<img class="gimg" src="'+IMG.spin+'"><h3>🎡 Lucky Spin</h3>').replace("🎁 Free Spin","▶ Play · Free Spin")};
+const _GM=GM;GM=function(){return _GM().replace("<h3>💣 Bomb &amp; Flower</h3>",'<img class="gimg" src="'+IMG.bomb+'"><h3>💣 Bomb &amp; Flower</h3>')};
+const _GR=GR;GR=function(){return _GR().replace("<h3>🧠 Memory Master</h3>",'<img class="gimg" src="'+IMG.mem+'"><h3>🧠 Memory Master</h3>')};
+
+/* 3) New game: High-Low Card (7 = lose, High = 8–K, Low = A–6, win chance 6/13) */
+let hl=null,hb=5;
+const RK=["","A","2","3","4","5","6","7","8","9","10","J","Q","K"],SU=["♠","♥","♦","♣"];
+function GH(){const bets=[5,10,20];
+ if(!hl)return back()+'<div class="c"><img class="gimg" src="'+IMG.hl+'"><h3>🃏 High-Low Card</h3><small>Place your bet, then guess if the hidden card is High (8–K) or Low (A–6). Correct = 2× your bet. A 7 always loses. Win chance: 46%.</small><div class="chips">'+bets.map(b=>'<button class="chip '+(hb==b?"on":"")+'" onclick="hb='+b+';render(1)">'+b+' coins</button>').join("")+'</div><button class="b w" style="margin-top:12px" onclick="hstart()">▶ Play (ad plays first)</button></div>';
+ const red=hl.su=="♥"||hl.su=="♦";
+ return (hl.over?back():"")+'<div class="c" style="text-align:center"><div class="r"><b>Bet '+hl.bet+'</b><span>Win '+hl.bet*2+'</span></div><div class="pc '+(hl.over?"f"+(red?" red":""):"")+'">'+(hl.over?RK[hl.card]+hl.su:"?")+'</div>'+
+ (hl.over?'<b style="font-size:20px">'+(hl.res=="win"?"🎉 You win!":"❌ You lost "+hl.bet+" coins")+'</b><br><button class="b w" style="margin-top:10px" onclick="hl=null;render(1)">Play again</button>'
+ :'<div class="g2"><button class="b" onclick="hpick(\'H\')">⬆ High (8–K)</button><button class="b g" onclick="hpick(\'L\')">⬇ Low (A–6)</button></div>')+'</div>'}
+window.GH=GH;
+window.hstart=W(async()=>{if((U.coins||0)<hb)return toast("Not enough coins");await ad();let k=false;
+ await db.ref("users/"+uid+"/coins").transaction(v=>{if((v||0)<hb)return;k=true;return v-hb});if(!k)return toast("Not enough coins");
+ db.ref("users/"+uid+"/log").push({a:-hb,t:now(),w:"highlow bet"});hl={bet:hb,over:0,res:"",card:0,su:""};render(1)});
+window.hpick=function(p){if(!hl||hl.over||busy)return;const c=1+Math.floor(Math.random()*13);hl.card=c;hl.su=SU[Math.floor(Math.random()*4)];hl.over=1;
+ const w=p=="H"?c>=8:c<=6;hl.res=w?"win":"lose";render(1);
+ if(w){ok();const x=hl.bet*2;setTimeout(()=>W(async()=>{await reward(x,async()=>add(uid,x,"highlow win"),"🃏")})(),600)}else bad()};
+Object.defineProperty(window,"hb",{get:()=>hb,set:v=>{hb=v},configurable:true});Object.defineProperty(window,"hl",{get:()=>hl,set:v=>{hl=v},configurable:true});
+
+/* 4) Wallet: convert picture + withdraw box always visible */
+const _PW=P.wallet;
+P.wallet=function(){let h=_PW();
+ h=h.replace("<h3>① Convert coins → money</h3>",'<img class="gimg" src="'+IMG.conv+'"><h3>① Convert coins → money</h3>');
+ const form='<select id="wm" onchange="wmc()">'+Object.keys(WM).map(k=>"<option>"+k+"</option>").join("")+'</select><input id="wa" placeholder="eSewa number (98XXXXXXXX)"><div class="r"><input id="wn" type="number" inputmode="decimal" placeholder="Amount" oninput="wp()"><b id="wc" style="min-width:44px">NPR</b></div><div class="chips" style="margin:4px 0"><button class="chip" onclick="wset(0)">Min</button><button class="chip" onclick="wset(1)">Half</button><button class="chip" onclick="wset(2)">Max</button></div><small id="wpv" style="margin:6px 0"></small><button class="b w" onclick="wsub()">💸 Request Withdrawal</button>';
+ return h.replace(/<div class="note">You have [^<]*<\/div>/,m=>m+form)};
+
+/* 5) Auto-post every new gift code to the gift channel (admin app only) */
+const gpost=(k,g)=>{const sec=(g.exp?"\n⏳ Valid until: <b>"+new Date(g.exp).toLocaleDateString()+"</b>":"");
+ tgSend(GIFT_CHANNEL,"✨🎁✨ <b>NEW GIFT CODE</b> ✨🎁✨\n━━━━━━━━━━━━━━\n"+(g.label?"🏷 <b>"+esc(g.label)+"</b>\n\n":"")+"🔑 Code: <code>"+esc(k)+"</code>\n💰 Reward: <b>"+g.coins+" coins</b>\n👥 First <b>"+g.max+"</b> users only"+sec+"\n━━━━━━━━━━━━━━\n👉 Tap <b>Copy Code</b>, open the Mini App, go to <b>Earn → Gift</b> and redeem it now!\n\n🇳🇵 Made in Nepal · 👨‍💻 Creator Developer: <b>Bibx</b>",
+ [[{text:"📋 Copy Code",copy_text:{text:k}}],[{text:"🚀 Open Mini App",url:"https://t.me/"+BOT+"/"+APP_SHORT}]])};
+if(isAdmin)(async()=>{try{const seen=new Set(Object.keys((await db.ref("gifts").get()).val()||{}));
+ db.ref("gifts").on("child_added",s=>{if(seen.has(s.key))return;seen.add(s.key);gpost(s.key,s.val())})}catch(e){console.error(e)}})();
+
+/* 6) Support button on top, Creator tab in bottom nav, remove old Creator buttons */
+const TG_SVG='<svg viewBox="0 0 240 240"><circle cx="120" cy="120" r="120" fill="#2AABEE"/><path d="M54 118l118-46c5-2 10 1 8 9l-20 94c-1 7-6 9-12 6l-33-24-16 15c-2 2-3 3-7 3l3-34 62-56c3-3-1-4-4-2l-77 48-33-10c-7-2-7-7 2-10z" fill="#fff"/></svg>';
+function fix(){try{
+ const top=$("#top");if(top&&!$("#sup")){const b=document.createElement("button");b.id="sup";b.className="sup";b.innerHTML=TG_SVG+"<span>Support Chat</span>";b.onclick=()=>tg.openTelegramLink(SUPPORT);top.insertBefore(b,top.querySelector(".b"))}
+ const nav=$("#nav");if(nav&&nav.children.length&&!$("#n_creator")){const a=document.createElement("a");a.id="n_creator";a.onclick=()=>go("creator");a.innerHTML="<i>🎬</i>Creator";nav.insertBefore(a,$("#n_wallet")||null)}
+ document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.id=="n_"+tab));
+ document.querySelectorAll("#v [onclick=\"go('creator')\"]").forEach(e=>{if(!e.closest(".sp"))e.remove()});
+ document.querySelectorAll('#v img[src*="v4nLRHsn"]').forEach(i=>i.src=IMG.wait);
+}catch(e){console.error(e)}}
+const _r=render;render=function(f){_r(f);fix()};
+})();
+</script>
+<!-- ===== END NODIX UPGRADE ===== -->
