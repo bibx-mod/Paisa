@@ -14,1550 +14,1525 @@
     <script async src="https://sad.adsgram.ai/js/sad.min.js"></script>
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
         :root {
-            --primary-gradient: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFD23F 100%);
-            --secondary-gradient: linear-gradient(135deg, #FF8C42 0%, #FFA94D 100%);
-            --card-bg: #FFFFFF;
-            --bg-gradient: linear-gradient(180deg, #FFF5EB 0%, #FFE8D6 50%, #FFD4B8 100%);
-            --text-primary: #2D3748;
-            --text-secondary: #718096;
-            --accent-orange: #FF6B35;
-            --accent-yellow: #FFD23F;
+            --primary: #FF6B35;
+            --secondary: #F7931E;
+            --accent: #FFD23F;
+            --bg: linear-gradient(180deg, #FFF5EB 0%, #FFE8D6 50%, #FFD4B8 100%);
+            --card: #FFFFFF;
+            --text: #2D3748;
+            --text-light: #718096;
             --success: #48BB78;
+            --danger: #F56565;
             --shadow: 0 4px 20px rgba(255, 107, 53, 0.15);
-            --shadow-lg: 0 8px 30px rgba(255, 107, 53, 0.2);
         }
-        
-        body {
-            background: var(--bg-gradient);
-            min-height: 100vh;
-            color: var(--text-primary);
-            overflow-x: hidden;
-            padding-bottom: 100px;
-        }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 100px; }
         
         /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--primary-gradient);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: opacity 0.5s ease;
-        }
-        
-        .loading-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        .loading-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: white;
-            padding: 8px;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        .loading-logo img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        .loading-text {
-            color: white;
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .loading-subtext {
-            color: rgba(255,255,255,0.9);
-            font-size: 14px;
-            margin-bottom: 32px;
-        }
-        
-        .loading-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        
-        .loading-bar-fill {
-            height: 100%;
-            background: white;
-            border-radius: 2px;
-            animation: loading 1.5s ease-in-out infinite;
-            width: 40%;
-        }
-        
-        @keyframes loading {
-            0% { margin-left: -40%; }
-            100% { margin-left: 100%; }
-        }
-        
-        .made-in-nepal {
-            position: fixed;
-            bottom: 80px;
-            left: 0;
-            right: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            color: rgba(255,255,255,0.9);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-        
-        .nepal-flag {
-            width: 32px;
-            height: 32px;
-            animation: wave 2s ease-in-out infinite;
-        }
-        
-        @keyframes wave {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
+        .loading { position: fixed; inset: 0; background: linear-gradient(135deg, #FF6B35, #F7931E, #FFD23F); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10000; transition: opacity 0.5s; }
+        .loading.hidden { opacity: 0; pointer-events: none; }
+        .loading-logo { width: 120px; height: 120px; border-radius: 50%; background: white; padding: 8px; margin-bottom: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); animation: pulse 2s infinite; }
+        .loading-logo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .loading-text { color: white; font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+        .loading-sub { color: rgba(255,255,255,0.9); font-size: 14px; margin-bottom: 32px; }
+        .loading-bar { width: 200px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 2px; overflow: hidden; }
+        .loading-bar-fill { height: 100%; background: white; width: 40%; animation: load 1.5s infinite; }
+        @keyframes load { from { margin-left: -40%; } to { margin-left: 100%; } }
+        .made-nepal { position: fixed; bottom: 80px; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 12px; color: rgba(255,255,255,0.9); font-size: 13px; font-weight: 600; }
+        .flag { width: 32px; height: 32px; animation: wave 2s infinite; }
+        @keyframes wave { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
         
         /* Header */
-        .app-header {
-            background: var(--primary-gradient);
-            padding: calc(16px + env(safe-area-inset-top)) 20px 24px;
-            border-radius: 0 0 32px 0;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .app-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 200px;
-            height: 200px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-        
-        .header-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: white;
-        }
-        
-        .user-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 3px solid rgba(255,255,255,0.5);
-            object-fit: cover;
-        }
-        
-        .user-name {
-            font-size: 18px;
-            font-weight: 700;
-        }
-        
-        .user-greeting {
-            font-size: 12px;
-            opacity: 0.9;
-        }
-        
-        .notification-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        
-        .notification-btn:active {
-            transform: scale(0.95);
-        }
-        
-        .balance-section {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 24px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .balance-label {
-            color: rgba(255,255,255,0.9);
-            font-size: 14px;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .balance-amount {
-            color: white;
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 4px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .balance-currency {
-            color: rgba(255,255,255,0.9);
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .wallet-btn {
-            margin-top: 16px;
-            background: white;
-            color: var(--accent-orange);
-            border: none;
-            padding: 14px 32px;
-            border-radius: 16px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .wallet-btn:active {
-            transform: scale(0.96);
-        }
+        .header { background: linear-gradient(135deg, #FF6B35, #F7931E, #FFD23F); padding: calc(16px + env(safe-area-inset-top)) 20px 24px; border-radius: 0 0 32px 0; box-shadow: 0 8px 30px rgba(255, 107, 53, 0.2); position: relative; overflow: hidden; }
+        .header::before { content: ''; position: absolute; top: -50%; right: -20%; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%; }
+        .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; position: relative; z-index: 1; }
+        .user-info { display: flex; align-items: center; gap: 12px; color: white; }
+        .user-avatar { width: 48px; height: 48px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.5); object-fit: cover; }
+        .user-name { font-size: 18px; font-weight: 700; }
+        .user-greet { font-size: 12px; opacity: 0.9; }
+        .notif-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 20px; cursor: pointer; backdrop-filter: blur(10px); }
+        .balance-box { background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border-radius: 24px; padding: 24px; text-align: center; position: relative; z-index: 1; border: 1px solid rgba(255,255,255,0.2); }
+        .balance-label { color: rgba(255,255,255,0.9); font-size: 14px; margin-bottom: 8px; }
+        .balance-amount { color: white; font-size: 42px; font-weight: 800; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .balance-currency { color: rgba(255,255,255,0.9); font-size: 16px; margin-top: 4px; }
+        .wallet-btn { margin-top: 16px; background: white; color: var(--primary); border: none; padding: 14px 32px; border-radius: 16px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         
         /* Quick Actions */
-        .quick-actions {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            padding: 20px;
-            margin-top: -16px;
-        }
+        .quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 20px; margin-top: -16px; }
+        .action-card { background: var(--card); border-radius: 20px; padding: 20px 12px; text-align: center; box-shadow: var(--shadow); cursor: pointer; border: none; transition: transform 0.2s; }
+        .action-card:active { transform: translateY(-2px); }
+        .action-icon { width: 56px; height: 56px; margin: 0 auto 12px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; background: var(--bg); }
+        .action-label { font-size: 13px; font-weight: 600; }
         
-        .action-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 20px 12px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-        }
+        /* Sections */
+        .section-title { padding: 24px 20px 12px; font-size: 20px; font-weight: 700; }
+        .card { background: var(--card); border-radius: 20px; padding: 16px; margin: 0 20px 12px; box-shadow: var(--shadow); }
+        .card-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .btn { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; border: none; padding: 13px 20px; border-radius: 14px; font-weight: 700; cursor: pointer; min-height: 50px; }
+        .btn:active { transform: scale(0.96); }
+        .btn-secondary { background: #2a3558; color: #cdd8f5; }
+        .btn-danger { background: #e11d48; }
+        .btn:disabled { opacity: 0.5; }
+        .btn-full { width: 100%; }
         
-        .action-card:active {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .action-icon {
-            width: 56px;
-            height: 56px;
-            margin: 0 auto 12px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            background: var(--bg-gradient);
-        }
-        
-        .action-label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        /* Section Title */
-        .section-title {
-            padding: 24px 20px 12px;
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-        
-        /* Task Cards */
-        .task-list {
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .task-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 16px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .task-card:active {
-            transform: scale(0.98);
-        }
-        
-        .task-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            flex-shrink: 0;
-        }
-        
+        /* Tasks */
+        .task-item { display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--card); border-radius: 16px; margin-bottom: 12px; box-shadow: var(--shadow); }
+        .task-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
         .task-icon.telegram { background: #E3F2FD; }
         .task-icon.facebook { background: #E3F2FD; }
         .task-icon.youtube { background: #FFEBEE; }
-        .task-icon.tiktok { background: #FCE4EC; }
-        .task-icon.instagram { background: #FFF3E0; }
-        
-        .task-info {
-            flex: 1;
-        }
-        
-        .task-title {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 4px;
-            color: var(--text-primary);
-        }
-        
-        .task-reward {
-            font-size: 14px;
-            color: var(--accent-orange);
-            font-weight: 700;
-        }
-        
-        .task-btn {
-            background: var(--primary-gradient);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .task-btn:active {
-            transform: scale(0.95);
-        }
-        
-        .task-btn.completed {
-            background: var(--success);
-        }
+        .task-info { flex: 1; }
+        .task-title { font-weight: 700; margin-bottom: 4px; }
+        .task-reward { color: var(--primary); font-weight: 700; font-size: 14px; }
         
         /* Spin Wheel */
-        .spin-container {
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .wheel-wrapper {
-            position: relative;
-            width: 280px;
-            height: 280px;
-            margin: 0 auto;
-        }
-        
-        .wheel {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: conic-gradient(
-                #FF6B35 0deg 60deg,
-                #F7931E 60deg 120deg,
-                #FFD23F 120deg 180deg,
-                #FF8C42 180deg 240deg,
-                #FFA94D 240deg 300deg,
-                #FF6B35 300deg 360deg
-            );
-            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.3);
-            position: relative;
-            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
-        }
-        
-        .wheel-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 64px;
-            height: 64px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 2;
-        }
-        
-        .wheel-center img {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        .wheel-pointer {
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 32px;
-            height: 40px;
-            background: white;
-            clip-path: polygon(50% 100%, 0 0, 100% 0);
-            z-index: 3;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
-        }
-        
-        .wheel-values {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        
-        .wheel-value {
-            position: absolute;
-            color: white;
-            font-weight: 800;
-            font-size: 16px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .spin-btn {
-            margin-top: 24px;
-            background: var(--primary-gradient);
-            color: white;
-            border: none;
-            padding: 16px 48px;
-            border-radius: 20px;
-            font-size: 18px;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: var(--shadow-lg);
-            transition: all 0.3s ease;
-        }
-        
-        .spin-btn:active {
-            transform: scale(0.96);
-        }
-        
-        .spin-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+        .wheel-container { padding: 20px; text-align: center; }
+        .wheel-wrap { position: relative; width: 280px; height: 280px; margin: 0 auto; }
+        .wheel { width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(#FF6B35 0deg 60deg, #F7931E 60deg 120deg, #FFD23F 120deg 180deg, #FF8C42 180deg 240deg, #FFA94D 240deg 300deg, #FF6B35 300deg 360deg); box-shadow: 0 10px 40px rgba(255, 107, 53, 0.3); transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99); }
+        .wheel-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 2; }
+        .wheel-center img { width: 56px; height: 56px; border-radius: 50%; }
+        .wheel-pointer { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 32px; height: 40px; background: white; clip-path: polygon(50% 100%, 0 0, 100% 0); z-index: 3; }
         
         /* Leaderboard */
-        .leaderboard-list {
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        .leader-item { display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--card); border-radius: 16px; margin-bottom: 12px; box-shadow: var(--shadow); }
+        .leader-rank { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+        .rank-1 { background: linear-gradient(135deg, #FFD700, #FFA500); color: white; }
+        .rank-2 { background: linear-gradient(135deg, #C0C0C0, #A8A8A8); color: white; }
+        .rank-3 { background: linear-gradient(135deg, #CD7F32, #B87333); color: white; }
+        .rank-other { background: #F7FAFC; color: var(--text-light); }
+        .leader-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+        .leader-info { flex: 1; }
+        .leader-name { font-weight: 700; }
+        .leader-coins { color: var(--primary); font-weight: 700; font-size: 13px; }
         
-        .leader-item {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            box-shadow: var(--shadow);
-        }
+        /* Bottom Nav */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 12px 20px calc(12px + env(safe-area-inset-bottom)); display: flex; justify-content: space-around; box-shadow: 0 -4px 20px rgba(0,0,0,0.08); border-radius: 24px 24px 0 0; z-index: 100; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 16px; border-radius: 16px; cursor: pointer; border: none; background: none; color: var(--text-light); transition: all 0.3s; }
+        .nav-item.active { color: var(--primary); background: rgba(255, 107, 53, 0.1); }
+        .nav-icon { font-size: 24px; }
+        .nav-label { font-size: 12px; font-weight: 600; }
         
-        .leader-rank {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 16px;
-            flex-shrink: 0;
-        }
+        /* Support Button */
+        .support-btn { position: fixed; bottom: 100px; right: 20px; width: 60px; height: 60px; border-radius: 50%; background: #0088CC; color: white; border: none; font-size: 28px; cursor: pointer; box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4); z-index: 99; animation: float 3s infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         
-        .rank-1 {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: white;
-            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
-        }
+        /* Toast */
+        .toast { position: fixed; top: 100px; left: 50%; transform: translateX(-50%) translateY(-20px); background: rgba(45, 55, 72, 0.95); color: white; padding: 14px 28px; border-radius: 16px; font-weight: 600; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; }
+        .toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
         
-        .rank-2 {
-            background: linear-gradient(135deg, #C0C0C0, #A8A8A8);
-            color: white;
-            box-shadow: 0 4px 12px rgba(192, 192, 192, 0.4);
-        }
+        /* Pages */
+        .page { display: none; animation: fadeIn 0.3s; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .rank-3 {
-            background: linear-gradient(135deg, #CD7F32, #B87333);
-            color: white;
-            box-shadow: 0 4px 12px rgba(205, 127, 50, 0.4);
-        }
+        /* Games Grid */
+        .games-grid { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+        .game-card { display: flex; align-items: center; gap: 14px; padding: 16px; background: var(--card); border-radius: 18px; box-shadow: var(--shadow); cursor: pointer; }
+        .game-icon { font-size: 40px; }
         
-        .rank-other {
-            background: #F7FAFC;
-            color: var(--text-secondary);
-        }
+        /* Input Fields */
+        input, select, textarea { width: 100%; background: #F7FAFC; border: 2px solid #E2E8F0; border-radius: 12px; padding: 13px; margin: 8px 0; font-size: 16px; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); }
         
-        .leader-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
+        /* Admin Panel */
+        .admin-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 20px; }
+        .admin-tab { padding: 8px 16px; border-radius: 12px; border: none; background: #2a3558; color: #cdd8f5; font-weight: 600; cursor: pointer; }
+        .admin-tab.active { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; }
         
-        .leader-info {
-            flex: 1;
-        }
+        /* Daily Streak */
+        .streak-days { display: flex; gap: 4px; margin-top: 12px; }
+        .streak-day { flex: 1; text-align: center; padding: 12px 4px; border-radius: 10px; background: #F7FAFC; font-size: 12px; }
+        .streak-day.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; font-weight: 800; }
         
-        .leader-name {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
+        /* Offline */
+        .offline { position: fixed; top: 0; left: 0; right: 0; background: #E53E3E; color: white; padding: 12px; text-align: center; font-weight: 600; display: none; z-index: 1000; }
+        .offline.show { display: block; }
         
-        .leader-coins {
-            font-size: 13px;
-            color: var(--accent-orange);
-            font-weight: 700;
-        }
+        /* Grid */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 20px; }
+        .stat-card { background: var(--card); border-radius: 16px; padding: 14px; text-align: center; box-shadow: var(--shadow); }
+        .stat-value { font-size: 24px; font-weight: 800; color: var(--primary); }
+        .stat-label { font-size: 12px; color: var(--text-light); margin-top: 4px; }
         
-        /* Bottom Navigation */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-            border-radius: 24px 24px 0 0;
-            z-index: 100;
-        }
+        /* Chips */
+        .chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 20px; margin-top: 12px; }
+        .chip { background: #F7FAFC; border: 1px solid #E2E8F0; border-radius: 20px; padding: 8px 16px; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .chip.active { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; border: none; }
         
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            padding: 8px 16px;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            background: none;
-            color: var(--text-secondary);
-        }
+        /* Creator Hub */
+        .creator-card { background: linear-gradient(135deg, #667EEA, #764BA2); border-radius: 24px; padding: 24px; color: white; margin: 20px; box-shadow: var(--shadow); }
+        .creator-title { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+        .creator-desc { font-size: 14px; opacity: 0.9; margin-bottom: 16px; }
+        .creator-btn { background: white; color: #667EEA; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 700; cursor: pointer; }
         
-        .nav-item.active {
-            color: var(--accent-orange);
-            background: rgba(255, 107, 53, 0.1);
-        }
+        /* Segmented Control */
+        .seg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 0 20px; margin: 12px 0; }
+        .seg-btn { padding: 10px; border-radius: 12px; border: none; background: #2a3558; color: #cdd8f5; font-size: 13px; font-weight: 600; cursor: pointer; min-height: 46px; }
+        .seg-btn.active { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; }
         
-        .nav-icon {
-            font-size: 24px;
-        }
+        /* Bar Progress */
+        .bar { height: 10px; background: #E2E8F0; border-radius: 6px; overflow: hidden; margin: 8px 0; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); }
         
-        .nav-label {
-            font-size: 12px;
-            font-weight: 600;
-        }
+        /* Gift Section */
+        .gift-section { padding: 40px 20px; text-align: center; }
+        .gift-icon { font-size: 80px; margin-bottom: 16px; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .gift-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+        .gift-desc { color: var(--text-light); margin-bottom: 24px; }
+        .gift-input { text-align: center; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
         
-        /* Floating Support Button */
-        .support-btn {
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #0088CC;
-            color: white;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
-            z-index: 99;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: float 3s ease-in-out infinite;
-        }
+        /* ETA Box */
+        .eta { background: #052e2b; border: 1px solid #14b8a655; color: #5eead4; border-radius: 12px; padding: 12px; font-size: 14px; margin: 12px 20px; }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
+        /* Note */
+        .note { background: #2a1f05; border: 1px solid #f59e0b55; color: #fcd34d; border-radius: 12px; padding: 12px; font-size: 14px; margin: 12px 20px; }
         
-        .support-btn:active {
-            transform: scale(0.95);
-            animation: none;
-        }
+        /* Banner */
+        .banner { background: linear-gradient(90deg, #f59e0b, #ef4444, #a855f7, #f59e0b); background-size: 300%; animation: banner 4s linear infinite; padding: 12px; border-radius: 14px; text-align: center; font-weight: 700; margin: 12px 20px; }
+        @keyframes banner { to { background-position: 300%; } }
         
-        /* Creator Hub Section */
-        .creator-section {
-            padding: 20px;
-            margin-top: 16px;
-        }
+        /* Hero */
+        .hero { text-align: center; background: linear-gradient(135deg, #1e1b4b, #0e3a4f); border-radius: 24px; padding: 24px; margin: 20px; color: white; }
+        .hero img { width: 80px; height: 80px; border-radius: 50%; animation: float 3s infinite; box-shadow: 0 0 30px rgba(34, 211, 238, 0.5); }
+        .hero-big { font-size: 36px; font-weight: 800; background: linear-gradient(90deg, #22d3ee, #a855f7); -webkit-background-clip: text; color: transparent; margin: 8px 0; }
         
-        .creator-card {
-            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
-            border-radius: 24px;
-            padding: 24px;
-            color: white;
-            box-shadow: var(--shadow-lg);
-        }
+        /* Slider */
+        .slider { -webkit-appearance: none; width: 100%; height: 56px; border-radius: 28px; background: linear-gradient(90deg, #22d3ee33, #a855f733); padding: 0; border: 1px solid #ffffff30; margin: 12px 0; }
+        .slider::-webkit-slider-thumb { -webkit-appearance: none; width: 52px; height: 52px; border-radius: 50%; background: url(https://i.ibb.co/1Jfnktc7/1792211153103.jpg) center/cover; box-shadow: 0 0 14px #22d3ee; }
         
-        .creator-title {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
+        /* Memory Game */
+        .pads { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px; }
+        .pad { aspect-ratio: 1.3; border-radius: 20px; border: none; opacity: 0.5; transition: all 0.2s; }
+        .pad.lit { opacity: 1; filter: brightness(1.7); transform: scale(0.96); }
         
-        .creator-desc {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-bottom: 16px;
-        }
+        /* Mines Grid */
+        .mines-grid { display: grid; gap: 8px; margin: 20px 0; }
+        .tile { aspect-ratio: 1; border: none; border-radius: 14px; background: #1b2750; color: white; font-size: 30px; cursor: pointer; }
+        .tile.revealed { background: #14532d; }
+        .tile.bomb { background: #7f1d1d; }
+        .tile.disabled { opacity: 0.4; }
         
-        .creator-btn {
-            background: white;
-            color: #667EEA;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+        /* Dots */
+        .dots { display: flex; gap: 6px; justify-content: center; margin-top: 8px; }
+        .dot { width: 14px; height: 14px; border-radius: 50%; background: #2a3558; }
+        .dot.active { background: var(--primary); box-shadow: 0 0 8px var(--primary); }
         
-        .creator-btn:active {
-            transform: scale(0.96);
-        }
+        /* Credit */
+        .credit { display: flex; justify-content: center; align-items: center; gap: 10px; margin: 24px 0 12px; font-size: 12px; color: var(--text-light); }
+        .credit b { letter-spacing: 1.5px; }
         
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-20px);
-            background: rgba(45, 55, 72, 0.95);
-            color: white;
-            padding: 14px 28px;
-            border-radius: 16px;
-            font-size: 15px;
-            font-weight: 600;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
+        /* Code */
+        code { word-break: break-all; color: var(--primary); font-size: 14px; background: #F7FAFC; padding: 2px 8px; border-radius: 6px; }
         
-        .toast.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
-        
-        /* Page Sections */
-        .page {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Gift Code Section */
-        .gift-section {
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .gift-icon {
-            font-size: 80px;
-            margin-bottom: 16px;
-            animation: bounce 2s ease-in-out infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .gift-title {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-        
-        .gift-desc {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-bottom: 24px;
-        }
-        
-        .gift-input {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #E2E8F0;
-            border-radius: 16px;
-            font-size: 16px;
-            font-weight: 700;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .gift-input:focus {
-            outline: none;
-            border-color: var(--accent-orange);
-        }
-        
-        .gift-redeem-btn {
-            width: 100%;
-            background: var(--primary-gradient);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 16px;
-            font-size: 16px;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-        
-        .gift-redeem-btn:active {
-            transform: scale(0.98);
-        }
-        
-        /* Offline Indicator */
-        .offline-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #E53E3E;
-            color: white;
-            padding: 12px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-            z-index: 1000;
-            display: none;
-        }
-        
-        .offline-indicator.show {
-            display: block;
+        /* Responsive */
+        @media (max-width: 380px) {
+            .seg { grid-template-columns: repeat(2, 1fr); }
+            .quick-actions { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-logo">
-            <img src="https://i.ibb.co/1Jfnktc7/1792211153103.jpg" alt="Nodix Earn">
-        </div>
+    <div class="loading" id="loading">
+        <div class="loading-logo"><img src="https://i.ibb.co/1Jfnktc7/1792211153103.jpg" alt="Nodix"></div>
         <div class="loading-text">Nodix Earn</div>
-        <div class="loading-subtext">Loading your rewards...</div>
-        <div class="loading-bar">
-            <div class="loading-bar-fill"></div>
-        </div>
-        <div class="made-in-nepal">
-            <svg class="nepal-flag" viewBox="0 0 34 42">
-                <path d="M2 1 L32 19 H14 L32 41 H2 Z" fill="#dc143c" stroke="#003893" stroke-width="2.5" stroke-linejoin="round"/>
-                <circle cx="9" cy="12" r="3" fill="#fff"/>
-                <circle cx="9" cy="31" r="3.4" fill="#fff"/>
-            </svg>
+        <div class="loading-sub">Loading your rewards...</div>
+        <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+        <div class="made-nepal">
+            <svg class="flag" viewBox="0 0 34 42"><path d="M2 1 L32 19 H14 L32 41 H2 Z" fill="#dc143c" stroke="#003893" stroke-width="2.5"/><circle cx="9" cy="12" r="3" fill="#fff"/><circle cx="9" cy="31" r="3.4" fill="#fff"/></svg>
             <span>MADE IN NEPAL · Developer: Bibx</span>
         </div>
     </div>
 
     <!-- Offline Indicator -->
-    <div class="offline-indicator" id="offlineIndicator">
-        ⚠️ No internet connection. Please check your network.
-    </div>
+    <div class="offline" id="offline">️ No internet connection</div>
 
-    <!-- Toast Notification -->
+    <!-- Toast -->
     <div class="toast" id="toast"></div>
 
-    <!-- Home Page -->
-    <div class="page active" id="homePage">
-        <!-- Header -->
-        <div class="app-header">
+    <!-- HOME PAGE -->
+    <div class="page active" id="page-home">
+        <div class="header">
             <div class="header-top">
                 <div class="user-info">
-                    <img class="user-avatar" id="userAvatar" src="https://i.ibb.co/1Jfnktc7/1792211153103.jpg" alt="User">
-                    <div>
-                        <div class="user-greeting">Welcome Back 👋</div>
-                        <div class="user-name" id="userName">User</div>
-                    </div>
+                    <img class="user-avatar" id="userAvatar" src="https://i.ibb.co/1Jfnktc7/1792211153103.jpg">
+                    <div><div class="user-greet" id="userGreet">Welcome Back 👋</div><div class="user-name" id="userName">User</div></div>
                 </div>
-                <button class="notification-btn" onclick="showNotifications()">🔔</button>
+                <button class="notif-btn" onclick="showNotif()">🔔</button>
             </div>
-            
-            <div class="balance-section">
+            <div class="balance-box">
                 <div class="balance-label">Current Balance</div>
-                <div class="balance-amount" id="balanceAmount">0</div>
-                <div class="balance-currency">≈ NPR 0.00</div>
-                <button class="wallet-btn" onclick="navigateTo('wallet')">💸 My Wallet</button>
+                <div class="balance-amount" id="balance">0</div>
+                <div class="balance-currency" id="balanceNPR">≈ NPR 0.00</div>
+                <button class="wallet-btn" onclick="go('wallet')">💸 My Wallet</button>
             </div>
         </div>
 
-        <!-- Quick Actions -->
         <div class="quick-actions">
-            <button class="action-card" onclick="navigateTo('hourly')">
+            <button class="action-card" onclick="claimHourly()">
                 <div class="action-icon">🎁</div>
                 <div class="action-label">Hourly<br>Check-in</div>
             </button>
-            <button class="action-card" onclick="navigateTo('spin')">
-                <div class="action-icon"></div>
+            <button class="action-card" onclick="go('spin')">
+                <div class="action-icon">🎡</div>
                 <div class="action-label">Spin &<br>Win</div>
             </button>
-            <button class="action-card" onclick="navigateTo('refer')">
-                <div class="action-icon"></div>
+            <button class="action-card" onclick="go('refer')">
+                <div class="action-icon">👥</div>
                 <div class="action-label">Invite &<br>Earn</div>
             </button>
         </div>
 
-        <!-- Tasks Section -->
-        <div class="section-title">More Tasks</div>
-        <div class="task-list" id="taskList">
-            <!-- Tasks will be loaded here -->
+        <div class="section-title">📊 Statistics</div>
+        <div class="grid-2">
+            <div class="stat-card"><div class="stat-value" id="statToday">0</div><div class="stat-label">Today</div></div>
+            <div class="stat-card"><div class="stat-value" id="statWeek">0</div><div class="stat-label">Last 7 Days</div></div>
+            <div class="stat-card"><div class="stat-value" id="statMonth">0</div><div class="stat-label">Last 30 Days</div></div>
+            <div class="stat-card"><div class="stat-value" id="statTotal">0</div><div class="stat-label">Lifetime</div></div>
         </div>
 
-        <!-- Creator Hub -->
-        <div class="creator-section">
-            <div class="creator-card">
-                <div class="creator-title">🎬 Creator Hub</div>
-                <div class="creator-desc">Make a video about Nodix Earn and get paid in coins</div>
-                <button class="creator-btn" onclick="navigateTo('creator')">Open Creator Hub →</button>
+        <div class="section-title"> Daily Streak</div>
+        <div class="card">
+            <div class="card-row">
+                <div><b>Daily Rewards</b><br><small>Claim every day for bonuses</small></div>
+                <button class="btn" id="claimDaily" onclick="claimDaily()">Claim</button>
             </div>
+            <div class="streak-days" id="streakDays"></div>
         </div>
+
+        <div class="creator-card">
+            <div class="creator-title">🎬 Creator Hub</div>
+            <div class="creator-desc">Make videos about Nodix Earn and get paid</div>
+            <button class="creator-btn" onclick="go('creator')">Open Creator Hub →</button>
+        </div>
+
+        <div class="eta">⏱ Money arrives within 1-2 business days after admin approval</div>
     </div>
 
-    <!-- Spin Page -->
-    <div class="page" id="spinPage">
+    <!-- EARN PAGE -->
+    <div class="page" id="page-earn">
+        <div class="section-title" style="padding-top: calc(24px + env(safe-area-inset-top))">💰 Earn Coins</div>
+        
+        <div class="seg">
+            <button class="seg-btn active" onclick="setSub('tasks')">✅ Tasks</button>
+            <button class="seg-btn" onclick="setSub('bonus')">⭐ Bonus</button>
+            <button class="seg-btn" onclick="setSub('ads')">▶ Ads</button>
+            <button class="seg-btn" onclick="setSub('gift')">🎁 Gift</button>
+        </div>
+
+        <div id="sub-tasks"></div>
+        <div id="sub-bonus"></div>
+        <div id="sub-ads"></div>
+        <div id="sub-gift"></div>
+    </div>
+
+    <!-- GAMES PAGE -->
+    <div class="page" id="page-games">
+        <div class="section-title" style="padding-top: calc(24px + env(safe-area-inset-top))">🎮 Games</div>
+        <div class="games-grid">
+            <div class="game-card" onclick="playGame('mines')">
+                <div class="game-icon">💣</div>
+                <div><b>Bomb & Flower</b><br><small>Find flowers, avoid bombs</small></div>
+            </div>
+            <div class="game-card" onclick="playGame('spin')">
+                <div class="game-icon"></div>
+                <div><b>Lucky Spin</b><br><small>Free daily spin & prizes</small></div>
+            </div>
+            <div class="game-card" onclick="playGame('memory')">
+                <div class="game-icon">🧠</div>
+                <div><b>Memory Master</b><br><small>Repeat the pattern</small></div>
+            </div>
+        </div>
+        <div id="game-area"></div>
+    </div>
+
+    <!-- SPIN PAGE -->
+    <div class="page" id="page-spin">
         <div class="section-title" style="padding-top: calc(24px + env(safe-area-inset-top))">🎡 Lucky Spin</div>
-        <div class="spin-container">
-            <div class="wheel-wrapper">
+        <div class="wheel-container">
+            <div class="wheel-wrap">
                 <div class="wheel-pointer"></div>
-                <div class="wheel" id="spinWheel">
-                    <div class="wheel-center">
-                        <img src="https://i.ibb.co/1Jfnktc7/1792211153103.jpg" alt="Coin">
-                    </div>
-                </div>
+                <div class="wheel" id="wheel"></div>
+                <div class="wheel-center"><img src="https://i.ibb.co/1Jfnktc7/1792211153103.jpg"></div>
             </div>
-            <button class="spin-btn" id="spinBtn" onclick="spinWheel()"> SPIN NOW</button>
+            <button class="btn btn-full" id="spinBtn" onclick="spin()" style="margin-top: 24px; padding: 16px; font-size: 18px;">SPIN NOW</button>
+            <div class="dots" id="adDots"></div>
         </div>
     </div>
 
-    <!-- Leaderboard Page -->
-    <div class="page" id="leaderboardPage">
-        <div class="section-title" style="padding-top: calc(24px + env(safe-area-inset-top))"> Top Earners</div>
-        <div class="leaderboard-list" id="leaderboardList">
-            <!-- Leaderboard will be loaded here -->
+    <!-- LEADERBOARD PAGE -->
+    <div class="page" id="page-leaderboard">
+        <div class="section-title" style="padding-top: calc(24px + env(safe-area-inset-top))">🏆 Top Earners</div>
+        <div id="leaderboard"></div>
+    </div>
+
+    <!-- REFER PAGE -->
+    <div class="page" id="page-refer">
+        <div class="section-title" style="padding-top: calc(24px + env(safe-area-inset-top))">👥 Refer & Earn</div>
+        <div class="card">
+            <b>Earn 10% for life!</b>
+            <small style="color: var(--text-light); margin-top: 8px; display: block;">
+                1. Share your link<br>
+                2. Friend watches 5 ads<br>
+                3. You get 10% of their earnings forever
+            </small>
+            <code id="refLink" style="display: block; margin: 12px 0; padding: 12px; text-align: center;"></code>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <button class="btn" onclick="copyRef()">📋 Copy</button>
+                <button class="btn btn-secondary" onclick="shareRef()"> Share</button>
+            </div>
+        </div>
+        <div id="refStats"></div>
+        <div id="refList"></div>
+    </div>
+
+    <!-- WALLET PAGE -->
+    <div class="page" id="page-wallet">
+        <div class="section-title" style="padding-top: calc(24px + env(safe-area-inset-top))">👛 Wallet</div>
+        
+        <div class="hero">
+            <img src="https://i.ibb.co/1Jfnktc7/1792211153103.jpg">
+            <div style="margin-top: 12px">Coins</div>
+            <div class="hero-big" id="walletCoins">0</div>
+            <div>= <span id="walletNPR">NPR 0.00</span></div>
+        </div>
+
+        <div class="card">
+            <b>① Convert Coins → Money</b>
+            <small style="color: var(--text-light); display: block; margin: 8px 0;">Swipe to convert (minimum 100 coins)</small>
+            <input type="range" class="slider" id="convertSlider" min="0" max="100" value="0" oninput="updateConvert()">
+            <small style="text-align: center; display: block;">Swipe right →</small>
+        </div>
+
+        <div class="card">
+            <b>② Withdraw Money</b>
+            <small style="color: var(--text-light); display: block; margin: 8px 0;">Minimum: NPR 100</small>
+            <select id="withdrawMethod" onchange="updateWithdraw()">
+                <option>eSewa</option>
+                <option>Khalti</option>
+                <option>PayPal</option>
+                <option>Binance USDT</option>
+            </select>
+            <input id="withdrawAccount" placeholder="Account number/email">
+            <div class="card-row">
+                <input type="number" id="withdrawAmount" placeholder="Amount" style="flex: 1;" oninput="calcWithdraw()">
+                <button class="btn" onclick="setWithdraw(0)">Min</button>
+                <button class="btn" onclick="setWithdraw(1)">Half</button>
+                <button class="btn" onclick="setWithdraw(2)">Max</button>
+            </div>
+            <button class="btn btn-full" onclick="withdraw()">💸 Request Withdrawal</button>
+        </div>
+
+        <div class="section-title">History</div>
+        <div id="withdrawHistory"></div>
+
+        <div class="card card-row">
+            <b>🌗 Theme</b>
+            <button class="btn btn-secondary" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button>
+        </div>
+        <div class="card card-row">
+            <b>🔊 Sound</b>
+            <button class="btn btn-secondary" onclick="toggleSound()" id="soundBtn">ON</button>
+        </div>
+
+        <div class="credit">
+            <svg class="flag" viewBox="0 0 34 42" style="width: 24px; height: 24px;"><path d="M2 1 L32 19 H14 L32 41 H2 Z" fill="#dc143c" stroke="#003893" stroke-width="2.5"/><circle cx="9" cy="12" r="3" fill="#fff"/><circle cx="9" cy="31" r="3.4" fill="#fff"/></svg>
+            <div><b>MADE IN NEPAL</b><div>Developer: Bibx</div></div>
         </div>
     </div>
 
-    <!-- Gift Page -->
-    <div class="page" id="giftPage">
-        <div class="gift-section" style="padding-top: calc(40px + env(safe-area-inset-top))">
-            <div class="gift-icon">🎁</div>
-            <div class="gift-title">Gift Code</div>
-            <div class="gift-desc">Enter your gift code to claim rewards</div>
-            <input type="text" class="gift-input" id="giftCodeInput" placeholder="ENTER CODE" maxlength="20">
-            <button class="gift-redeem-btn" onclick="redeemGiftCode()">Redeem Gift</button>
+    <!-- CREATOR PAGE -->
+    <div class="page" id="page-creator">
+        <div class="section-title" style="padding-top: calc(24px + env(safe-area-inset-top))">🎬 Creator Hub</div>
+        <div class="card">
+            <b>How it works:</b>
+            <ol style="padding-left: 20px; margin-top: 8px; color: var(--text-light); line-height: 1.6;">
+                <li>Post video about Nodix Earn</li>
+                <li>Submit the link</li>
+                <li>Get paid based on views (1000 views = 500 coins)</li>
+                <li>Admin reviews & approves</li>
+            </ol>
         </div>
+        <div class="card">
+            <b>Submit Video</b>
+            <select id="creatorPlatform">
+                <option value="tiktok">TikTok</option>
+                <option value="youtube">YouTube</option>
+                <option value="facebook">Facebook</option>
+                <option value="instagram">Instagram</option>
+            </select>
+            <input id="creatorLink" placeholder="Paste video link">
+            <button class="btn btn-full" onclick="submitVideo()">📤 Submit</button>
+        </div>
+        <div id="creatorVideos"></div>
+    </div>
+
+    <!-- ADMIN PAGE -->
+    <div class="page" id="page-admin">
+        <div class="section-title" style="padding-top: calc(24px + env(safe-area-inset-top))"> Admin Panel</div>
+        <div class="admin-tabs" id="adminTabs"></div>
+        <div id="adminContent"></div>
     </div>
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <button class="nav-item active" onclick="navigateTo('home')" data-page="home">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label">Home</span>
-        </button>
-        <button class="nav-item" onclick="navigateTo('tasks')" data-page="tasks">
-            <span class="nav-icon">✅</span>
-            <span class="nav-label">Tasks</span>
-        </button>
-        <button class="nav-item" onclick="navigateTo('spin')" data-page="spin">
-            <span class="nav-icon">🎡</span>
-            <span class="nav-label">Spin</span>
-        </button>
-        <button class="nav-item" onclick="navigateTo('leaderboard')" data-page="leaderboard">
-            <span class="nav-icon">🏆</span>
-            <span class="nav-label">Top</span>
-        </button>
-        <button class="nav-item" onclick="navigateTo('wallet')" data-page="wallet">
-            <span class="nav-icon">👛</span>
-            <span class="nav-label">Wallet</span>
-        </button>
+        <button class="nav-item active" onclick="go('home')"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></button>
+        <button class="nav-item" onclick="go('earn')"><span class="nav-icon">💰</span><span class="nav-label">Earn</span></button>
+        <button class="nav-item" onclick="go('games')"><span class="nav-icon">🎮</span><span class="nav-label">Games</span></button>
+        <button class="nav-item" onclick="go('leaderboard')"><span class="nav-icon">🏆</span><span class="nav-label">Top</span></button>
+        <button class="nav-item" onclick="go('wallet')"><span class="nav-icon">👛</span><span class="nav-label">Wallet</span></button>
     </nav>
 
-    <!-- Floating Support Button -->
-    <button class="support-btn" onclick="openSupportChat()" title="Support Chat">
-        💬
-    </button>
+    <!-- Support Button -->
+    <button class="support-btn" onclick="openSupport()">💬</button>
 
     <script>
         // Configuration
+        const ADMIN = 8970065762;
+        const BOT = "NodixEarnBot";
+        const BOT_TOKEN = "8254405543:AAE6S6v5klfIww_oPUQecp7KDkPNg5tMUBc";
+        const GIFT_CHANNEL = "-1004234724151";
+        const COIN_IMG = "https://i.ibb.co/1Jfnktc7/1792211153103.jpg";
+        
         const CONFIG = {
-            ADMIN_ID: 8970065762,
-            BOT_TOKEN: "8254405543:AAE6S6v5klfIww_oPUQecp7KDkPNg5tMUBc",
-            BOT_USERNAME: "NodixEarnBot",
-            APP_SHORT_NAME: "app",
-            GIFT_CHANNEL: "-1004234724151",
-            SUPPORT_CHAT: "https://t.me/NodixChatt",
-            COIN_IMAGE: "https://i.ibb.co/1Jfnktc7/1792211153103.jpg",
-            DEVELOPER: "Bibx",
-            DEVELOPER_PHOTO: "https://i.ibb.co/q3svpDDR/IMG-20260902-131729-642.jpg",
-            RATE: 100, // 100 coins = 1 NPR
-            RATES: { NPR: 1, INR: 0.625, MYR: 0.032, USD: 0.0075 },
-            DAILY_REWARDS: [10, 15, 20, 25, 30, 35, 50],
-            GIFT_REWARD: 5,
-            LINK_REWARD: 2,
-            AD_REWARD: 6,
-            ADS_PER_DAY: 5,
-            AD_COOLDOWN: 8,
-            LINK_WAIT_MIN: 30,
-            LINK_WAIT_MAX: 35,
-            MIN_WITHDRAW: 100,
-            REF_COMMISSION: 10,
-            REF_ADS_REQUIRED: 5,
-            SPIN_COST: 10,
-            SPIN_PRIZES: [0, 1, 2, 3, 5, 10],
-            SPIN_WEIGHTS: [72, 14, 9, 4, 1, 0],
-            TASKS: {
-                t1: { title: "Join Nodixno", link: "https://t.me/Nodixno", chat: "@Nodixno", reward: 10 },
-                t2: { title: "Join Nodixnp", link: "https://t.me/Nodixnp", chat: "@Nodixnp", reward: 10 },
-                t3: { title: "Join hellolado", link: "https://t.me/hellolado", chat: "@hellolado", reward: 10 },
-                t4: { title: "Join Nodix Earn Official", link: "https://t.me/NodixEarn", chat: "@NodixEarn", reward: 10 },
-                t5: { title: "Join Payment Proof", link: "https://t.me/NodixEarnpayment", chat: "@NodixEarnpayment", reward: 10 }
-            }
+            rate: 100,
+            rates: { NPR: 1, INR: 0.625, MYR: 0.032, USD: 0.0075 },
+            daily: [10, 15, 20, 25, 30, 35, 50],
+            gift: 5,
+            link: 2,
+            ad: 6,
+            adsPerDay: 5,
+            adGap: 8,
+            linkWait: 30,
+            linkWaitMax: 35,
+            minConvert: 100,
+            minNPR: 100,
+            refCom: 10,
+            refAds: 5,
+            refDays: 7,
+            creator: { rate: 500, per: 1000, daily: 3 },
+            preAd: 10,
+            spin: { cost: 10, prizes: [0,1,2,3,5,10], w: [72,14,9,4,1,0] },
+            game: { min: 15, step: 5, mines: {
+                Easy: { r:3, c:3, b:6, p:0.025, m:1.5 },
+                Hard: { r:4, c:4, b:11, p:0.01, m:3 },
+                Ultra: { r:4, c:5, b:16, p:0.002, m:6 }
+            }},
+            mem: { cost: 10, target: 9, prize: 40 },
+            tasks: {
+                t1: { t: "Join Nodixno", link: "https://t.me/Nodixno", chat: "@Nodixno", r: 10 },
+                t2: { t: "Join Nodixnp", link: "https://t.me/Nodixnp", chat: "@Nodixnp", r: 10 },
+                t3: { t: "Join hellolado", link: "https://t.me/hellolado", chat: "@hellolado", r: 10 },
+                t4: { t: "Join Nodix Earn", link: "https://t.me/NodixEarn", chat: "@NodixEarn", r: 10 },
+                t5: { t: "Payment Proof", link: "https://t.me/NodixEarnpayment", chat: "@NodixEarnpayment", r: 10 }
+            },
+            links: ["https://uplcm.com/4/12059626", "https://uplcm.com/4/12059624", "https://uplcm.com/4/10478128"]
         };
 
-        // Firebase Configuration
+        // Firebase
         firebase.initializeApp({
             apiKey: "AIzaSyCPKDFVw5i3Da8JPUU8GhEZssdY79qLKNA",
             authDomain: "app-glaxy.firebaseapp.com",
             databaseURL: "https://app-glaxy-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "app-glaxy",
-            storageBucket: "app-glaxy.firebasestorage.app",
-            messagingSenderId: "484036615126",
-            appId: "1:484036615126:web:YOUR_WEB_APP_ID"
+            projectId: "app-glaxy"
         });
-
         const db = firebase.database();
+
+        // Telegram
         const tg = Telegram.WebApp;
-        
-        // Initialize Telegram WebApp
-        try {
-            tg.ready();
-            tg.expand();
-            tg.setHeaderColor("#FF6B35");
-            tg.setBackgroundColor("#FFF5EB");
-        } catch(e) { console.error(e); }
-
+        tg.ready(); tg.expand();
         const user = (tg.initDataUnsafe || {}).user;
-        if (!user) {
-            document.body.innerHTML = '<div style="padding:60px 20px;text-align:center;color:#2D3748;font:18px sans-serif">Please open this app inside Telegram.<br><br>@' + CONFIG.BOT_USERNAME + '</div>';
-            throw new Error("Not in Telegram");
-        }
-
+        if (!user) { document.body.innerHTML = '<div style="padding:60px;text-align:center">Open in Telegram</div>'; throw 0; }
         const uid = String(user.id);
-        const isAdmin = user.id === CONFIG.ADMIN_ID;
-        let userData = {};
-        let currentBalance = 0;
-        let spinAngle = 0;
-        let lastAdTime = 0;
+        const isAdmin = user.id === ADMIN;
 
-        // Utility Functions
+        // State
+        let U = {}, LOG = {}, AU = {}, AW = {}, AG = {}, AC = {};
+        let sub = 'tasks', lock = 0, busy = 0, snd = localStorage.snd !== "0";
+        let gd = 'Easy', gb = 15, gm = null, mg = null, ms = null;
+        let ang = 0, sa = 0, pend = {}, bp = {}, curL = -1, awayT = 0;
+        let lastAd = Date.now(), CPL = 'tiktok';
+
+        // Utils
         const $ = id => document.getElementById(id);
         const now = () => Date.now();
+        const day = () => new Date().toDateString();
         const sleep = ms => new Promise(r => setTimeout(r, ms));
-        const esc = s => String(s || "").replace(/[&<>"']/g, c => "&#" + c.charCodeAt(0) + ";");
+        const esc = s => String(s||'').replace(/[&<>"']/g, c => '&#'+c.charCodeAt(0)+';');
         
-        function showToast(message) {
-            const toast = $('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
+        function toast(m) {
+            const t = $('toast');
+            t.textContent = m;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
         }
 
-        function playSound(type = 'success') {
+        function beep(f=600, d=0.1) {
+            if (!snd) return;
             try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                if (type === 'success') {
-                    oscillator.frequency.value = 700;
-                    gainNode.gain.value = 0.1;
-                    oscillator.start();
-                    oscillator.stop(audioContext.currentTime + 0.1);
-                    
-                    setTimeout(() => {
-                        const osc2 = audioContext.createOscillator();
-                        const gain2 = audioContext.createGain();
-                        osc2.connect(gain2);
-                        gain2.connect(audioContext.destination);
-                        osc2.frequency.value = 950;
-                        gain2.gain.value = 0.1;
-                        osc2.start();
-                        osc2.stop(audioContext.currentTime + 0.15);
-                    }, 100);
-                } else if (type === 'error') {
-                    oscillator.frequency.value = 180;
-                    oscillator.type = 'sawtooth';
-                    gainNode.gain.value = 0.1;
-                    oscillator.start();
-                    oscillator.stop(audioContext.currentTime + 0.3);
-                }
+                const ac = new AudioContext();
+                const o = ac.createOscillator();
+                const g = ac.createGain();
+                o.connect(g); g.connect(ac.destination);
+                o.frequency.value = f;
+                g.gain.value = 0.08;
+                o.start(); o.stop(ac.currentTime + d);
             } catch(e) {}
         }
 
-        function coinsToNPR(coins) {
-            return (coins / CONFIG.RATE).toFixed(2);
-        }
+        const ok = () => { beep(700,0.1); setTimeout(()=>beep(950,0.15),110); };
+        const bad = () => { beep(180,0.3,'sawtooth'); };
 
-        function formatNumber(num) {
-            return num.toLocaleString();
+        function money(c) {
+            const cur = U.cur || 'NPR';
+            const rate = CONFIG.rates[cur];
+            const sym = cur === 'NPR' ? 'रु' : cur === 'INR' ? '₹' : cur === 'MYR' ? 'RM' : '$';
+            return sym + ((c/CONFIG.rate) * rate).toFixed(cur==='USD'?3:2);
         }
 
         // Navigation
-        function navigateTo(page) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            
-            // Show target page
-            if (page === 'home') $('homePage').classList.add('active');
-            else if (page === 'tasks') {
-                $('homePage').classList.add('active');
-                document.querySelector('.task-list').scrollIntoView({ behavior: 'smooth' });
-            }
-            else if (page === 'spin') $('spinPage').classList.add('active');
-            else if (page === 'leaderboard') $('leaderboardPage').classList.add('active');
-            else if (page === 'wallet') {
-                showToast('Wallet feature coming soon!');
-                return;
-            }
-            else if (page === 'hourly') {
-                claimHourlyReward();
-                return;
-            }
-            else if (page === 'refer') {
-                showToast('Refer feature coming soon!');
-                return;
-            }
-            else if (page === 'creator') {
-                showToast('Creator Hub coming soon!');
-                return;
-            }
-            
-            // Update nav
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.toggle('active', item.dataset.page === page);
+        function go(p) {
+            document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
+            $('page-' + p).classList.add('active');
+            document.querySelectorAll('.nav-item').forEach((x,i) => {
+                x.classList.toggle('active', ['home','earn','games','leaderboard','wallet'][i] === p);
             });
-            
-            playSound('success');
-            window.scrollTo(0, 0);
+            if (p === 'home') renderHome();
+            if (p === 'earn') renderEarn();
+            if (p === 'leaderboard') loadLeaderboard();
+            if (p === 'wallet') renderWallet();
+            if (p === 'refer') renderRefer();
+            if (p === 'creator') renderCreator();
+            if (p === 'admin' && isAdmin) renderAdmin();
+            playSound('click');
+            window.scrollTo(0,0);
         }
 
-        // Load User Data
-        async function loadUserData() {
-            try {
-                const snapshot = await db.ref('users/' + uid).once('value');
-                if (snapshot.exists()) {
-                    userData = snapshot.val();
-                } else {
-                    // Create new user
-                    userData = {
-                        name: user.first_name || 'User',
-                        username: user.username || '',
-                        coins: 0,
-                        cash: 0,
-                        joined: now(),
-                        tasks: {},
-                        ads: {},
-                        refs: {}
-                    };
-                    await db.ref('users/' + uid).set(userData);
-                }
-                
-                updateUserUI();
-                
-                // Listen for changes
-                db.ref('users/' + uid).on('value', snapshot => {
-                    userData = snapshot.val() || userData;
-                    updateUserUI();
+        function setSub(s) {
+            sub = s;
+            document.querySelectorAll('.seg-btn').forEach((b,i) => {
+                b.classList.toggle('active', ['tasks','bonus','ads','gift'][i] === s);
+            });
+            renderEarn();
+        }
+
+        // Load Data
+        async function init() {
+            db.ref('.info/connected').on('value', s => {
+                $('offline').classList.toggle('show', s.val() === false);
+            });
+
+            const r = db.ref('users/' + uid);
+            let s = await r.once('value');
+            if (!s.exists()) {
+                await r.set({
+                    name: user.first_name || 'User',
+                    uname: user.username || '',
+                    coins: 0, cash: 0, joined: now(),
+                    tasks: {}, ads: {}, refs: {}, crs: {}, wds: {}
                 });
-                
-            } catch (error) {
-                console.error('Error loading user data:', error);
-                showToast('Error loading data. Please try again.');
+                s = await r.once('value');
+            } else {
+                r.update({ name: user.first_name || 'User', uname: user.username || '' });
             }
+
+            U = s.val();
+            $('userName').textContent = U.name;
+            $('userGreet').textContent = 'Welcome Back 👋';
+            
+            // Referral handling
+            const startParam = (tg.initDataUnsafe || {}).start_param;
+            if (startParam && !U.ref) {
+                const m = startParam.match(/ref_(\d+)/);
+                if (m && m[1] !== uid) {
+                    await r.update({ ref: m[1] });
+                    await db.ref('users/' + m[1] + '/refs/' + uid).set({
+                        n: user.first_name || 'User',
+                        ts: now(), ads: 0
+                    });
+                }
+            }
+
+            r.on('value', x => { U = x.val() || {}; updateUI(); });
+            r.child('log').limitToLast(300).on('value', x => { LOG = x.val() || {}; });
+            
+            if (isAdmin) {
+                db.ref('users').on('value', x => AU = x.val() || {});
+                db.ref('wd').limitToLast(100).on('value', x => AW = x.val() || {});
+                db.ref('gifts').on('value', x => AG = x.val() || {});
+                db.ref('cr').limitToLast(100).on('value', x => AC = x.val() || {});
+            }
+
+            setTimeout(() => {
+                $('loading').classList.add('hidden');
+                renderHome();
+            }, 2000);
         }
 
-        function updateUserUI() {
-            $('userName').textContent = userData.name || 'User';
-            currentBalance = userData.coins || 0;
-            $('balanceAmount').textContent = formatNumber(currentBalance);
-            document.querySelector('.balance-currency').textContent = '≈ NPR ' + coinsToNPR(currentBalance);
-            
-            loadTasks();
-            loadLeaderboard();
+        function updateUI() {
+            $('balance').textContent = (U.coins || 0).toLocaleString();
+            $('balanceNPR').textContent = '≈ ' + money(U.coins || 0);
         }
 
-        // Load Tasks
-        function loadTasks() {
-            const taskList = $('taskList');
-            taskList.innerHTML = '';
-            
-            Object.entries(CONFIG.TASKS).forEach(([id, task]) => {
-                const isCompleted = userData.tasks && userData.tasks[id];
-                const taskCard = document.createElement('div');
-                taskCard.className = 'task-card';
-                
-                const iconClass = task.link.includes('telegram') ? 'telegram' : 
-                                 task.link.includes('facebook') ? 'facebook' :
-                                 task.link.includes('youtube') ? 'youtube' :
-                                 task.link.includes('tiktok') ? 'tiktok' : 'instagram';
-                
-                taskCard.innerHTML = `
-                    <div class="task-icon ${iconClass}">${getTaskIcon(task.link)}</div>
+        function renderHome() {
+            const earned = Object.values(LOG).filter(x => x.a > 0);
+            const since = t => earned.filter(x => x.t >= t).reduce((a,x) => a + x.a, 0);
+            const today = since(new Date().setHours(0,0,0,0));
+            const week = since(now() - 6048e5);
+            const month = since(now() - 2592e6);
+            const total = U.earned || 0;
+
+            $('statToday').textContent = today.toLocaleString();
+            $('statWeek').textContent = week.toLocaleString();
+            $('statMonth').textContent = month.toLocaleString();
+            $('statTotal').textContent = total.toLocaleString();
+
+            // Daily streak
+            const S = U.st || { d: 0, l: '' };
+            const claimed = S.l === day();
+            $('claimDaily').textContent = claimed ? 'Claimed ✓' : 'Claim';
+            $('claimDaily').disabled = claimed;
+
+            const days = [1,2,3,4,5,6,7].map(i => {
+                const active = i <= (S.l === day() || S.l === new Date(now()-864e5).toDateString() ? S.d : 0);
+                return `<div class="streak-day ${active?'active':''}">D${i}<br>${i<7?'+'+CONFIG.daily[i-1]:'🎁'}</div>`;
+            }).join('');
+            $('streakDays').innerHTML = days;
+        }
+
+        function renderEarn() {
+            if (sub === 'tasks') renderTasks();
+            else if (sub === 'bonus') renderBonus();
+            else if (sub === 'ads') renderAds();
+            else if (sub === 'gift') renderGift();
+        }
+
+        function renderTasks() {
+            const html = Object.entries(CONFIG.tasks).map(([id, t]) => {
+                const done = U.tasks && U.tasks[id];
+                const pending = pend[id];
+                let btn;
+                if (done) btn = '<span style="color:var(--success);font-weight:700">✓ Done</span>';
+                else if (!pending) btn = `<button class="btn" onclick="joinTask('${id}')">Join</button>`;
+                else {
+                    const wait = Math.max(0, 8 - Math.floor((now() - pending)/1000));
+                    btn = wait ? `<button class="btn btn-secondary" disabled>Wait ${wait}s</button>` : 
+                              `<button class="btn" onclick="verifyTask('${id}')">Verify</button>`;
+                }
+                return `<div class="task-item">
+                    <div class="task-icon ${t.link.includes('telegram')?'telegram':'facebook'}">${getIcon(t.link)}</div>
                     <div class="task-info">
-                        <div class="task-title">${esc(task.title)}</div>
-                        <div class="task-reward">+${task.reward} coins</div>
+                        <div class="task-title">${esc(t.t)}</div>
+                        <div class="task-reward">+${t.r} coins</div>
                     </div>
-                    <button class="task-btn ${isCompleted ? 'completed' : ''}" 
-                            onclick="${isCompleted ? '' : 'completeTask(\'' + id + '\')'}"
-                            ${isCompleted ? 'disabled' : ''}>
-                        ${isCompleted ? '✓ Done' : 'Join'}
-                    </button>
-                `;
-                
-                taskList.appendChild(taskCard);
-            });
+                    ${btn}
+                </div>`;
+            }).join('');
+            $('sub-tasks').innerHTML = html;
         }
 
-        function getTaskIcon(link) {
-            if (link.includes('telegram')) return '✈️';
-            if (link.includes('facebook')) return '👍';
-            if (link.includes('youtube')) return '▶️';
-            if (link.includes('tiktok')) return '';
+        function getIcon(l) {
+            if (l.includes('telegram')) return '✈️';
+            if (l.includes('youtube')) return '▶️';
+            if (l.includes('tiktok')) return '🎵';
+            if (l.includes('facebook')) return '👍';
             return '📸';
         }
 
-        async function completeTask(taskId) {
-            const task = CONFIG.TASKS[taskId];
-            
-            // Open link
-            if (task.link.includes('t.me/')) {
-                tg.openTelegramLink(task.link);
-            } else {
-                tg.openLink(task.link);
-            }
-            
-            showToast('Task opened! Come back to verify.');
-            
-            // Simulate verification (in real app, check membership)
-            setTimeout(async () => {
-                if (!userData.tasks || !userData.tasks[taskId]) {
-                    await db.ref('users/' + uid + '/tasks/' + taskId).set(1);
-                    await addCoins(task.reward, 'task');
-                    showToast('✓ Task completed! +' + task.reward + ' coins');
-                    playSound('success');
-                    loadTasks();
-                }
-            }, 5000);
+        function joinTask(id) {
+            const t = CONFIG.tasks[id];
+            tg.openLink(t.link);
+            pend[id] = now();
+            renderTasks();
         }
 
-        // Add Coins
-        async function addCoins(amount, source) {
+        async function verifyTask(id) {
+            const t = CONFIG.tasks[id];
+            if (!t.chat || !t.chat.startsWith('@')) {
+                await addCoins(t.r, 'task');
+                await db.ref('users/' + uid + '/tasks/' + id).set(1);
+                toast('✓ Task completed! +' + t.r + ' coins');
+                ok();
+                delete pend[id];
+                renderTasks();
+                return;
+            }
             try {
-                await db.ref('users/' + uid + '/coins').transaction(current => (current || 0) + amount);
-                await db.ref('users/' + uid + '/log').push({
-                    amount: amount,
-                    source: source,
-                    timestamp: now()
-                });
+                const r = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChatMember?chat_id=${encodeURIComponent(t.chat)}&user_id=${uid}`).then(x => x.json());
+                if (r.ok && ['member','administrator','creator'].includes(r.result.status)) {
+                    await addCoins(t.r, 'task');
+                    await db.ref('users/' + uid + '/tasks/' + id).set(1);
+                    toast('✓ Task completed! +' + t.r + ' coins');
+                    ok();
+                } else {
+                    toast('Please join the channel first');
+                    bad();
+                }
+            } catch(e) { toast('Verification failed'); }
+            delete pend[id];
+            renderTasks();
+        }
+
+        function renderBonus() {
+            const html = CONFIG.links.map((l, i) => {
+                const ts = U.links && U.links[i];
+                const left = ts ? ts + 864e5 - now() : 0;
+                const p = bp[i];
+                let btn;
+                if (left > 0) {
+                    const h = Math.floor(left/36e5), m = Math.floor(left%36e5/6e4);
+                    btn = `<button class="btn btn-secondary" disabled>${h}h ${m}m</button>`;
+                } else if (!p) {
+                    btn = `<button class="btn" onclick="openLink(${i})">Open</button>`;
+                } else if (p.ok) {
+                    btn = `<button class="btn" onclick="verifyLink(${i})">✓ Verify</button>`;
+                } else {
+                    const w = Math.max(0, p.need - Math.floor((now()-p.t)/1000));
+                    btn = w ? `<button class="btn btn-secondary" disabled>Wait ${w}s</button>` : 
+                              `<button class="btn" onclick="verifyLink(${i})">Verify</button>`;
+                }
+                return `<div class="task-item">
+                    <div class="task-info"><div class="task-title">Bonus Link #${i+1}</div><div class="task-reward">+${CONFIG.link} coins</div></div>
+                    ${btn}
+                </div>`;
+            }).join('');
+            $('sub-bonus').innerHTML = html || '<div class="card">No bonus links available</div>';
+        }
+
+        function openLink(i) {
+            awayT = 0; curL = i;
+            const need = Math.round(CONFIG.linkWait + Math.random() * (CONFIG.linkWaitMax - CONFIG.linkWait));
+            bp[i] = { t: now(), away: 0, ok: 0, need };
+            tg.openLink(CONFIG.links[i]);
+            renderBonus();
+        }
+
+        function handleVisibility() {
+            if (curL < 0 || !bp[curL] || bp[curL].ok) return;
+            if (document.hidden) { awayT = now(); }
+            else {
+                if (!awayT) return;
+                const d = now() - awayT; awayT = 0;
+                const p = bp[curL];
+                p.away = (p.away || 0) + d;
+                if (p.away >= p.need * 1000 - 400) {
+                    p.ok = 1; ok(); toast('✓ Done! Now press Verify');
+                } else {
+                    delete bp[curL]; curL = -1; bad();
+                    toast('Stay on page for ' + p.need + ' seconds');
+                }
+                renderBonus();
+            }
+        }
+        document.addEventListener('visibilitychange', handleVisibility);
+
+        async function verifyLink(i) {
+            const p = bp[i];
+            if (!p || now() - p.t < p.need * 1000) {
+                delete bp[i]; curL = -1; bad();
+                toast('Please wait ' + p.need + ' seconds');
+                renderBonus();
+                return;
+            }
+            await addCoins(CONFIG.link, 'bonus');
+            await db.ref('users/' + uid + '/links/' + i).set(now());
+            delete bp[i]; curL = -1;
+            toast('✓ +' + CONFIG.link + ' coins');
+            ok();
+            renderBonus();
+        }
+
+        function renderAds() {
+            const servers = ['Monetag', 'AdsGalaxy', 'AdsGram'];
+            const html = servers.map((name, i) => {
+                const key = ['m','g','a'][i];
+                const ad = U.ads && U.ads[key] || {};
+                let n = ad.n || 0, s = ad.s || 0;
+                if (s && now() - s > 864e5) { n = 0; s = 0; }
+                const wait = Math.ceil((CONFIG.adGap * 1000 - (now() - (window.la || 0))) / 1000);
+                const disabled = n >= CONFIG.adsPerDay || wait > 0;
+                const text = n >= CONFIG.adsPerDay ? 'Daily limit' : wait > 0 ? `Wait ${wait}s` : '▶ Watch Ad';
+                return `<div class="card">
+                    <div class="card-row"><b>${name}</b><span>${n}/${CONFIG.adsPerDay}</span></div>
+                    <div class="bar"><div class="bar-fill" style="width:${n/CONFIG.adsPerDay*100}%"></div></div>
+                    <button class="btn btn-full" ${disabled?'disabled':''} onclick="watchAd('${key}')">${text}</button>
+                </div>`;
+            }).join('');
+            $('sub-ads').innerHTML = html;
+        }
+
+        async function watchAd(k) {
+            const ad = U.ads && U.ads[k] || {};
+            let n = ad.n || 0;
+            if (n >= CONFIG.adsPerDay) { toast('Daily limit reached'); return; }
+            const wait = CONFIG.adGap * 1000 - (now() - (window.la || 0));
+            if (wait > 0) { toast(`Wait ${Math.ceil(wait/1000)}s`); return; }
+
+            // Show ad
+            toast('Ad starting...');
+            await sleep(10000); // 10 second ad simulation
+            
+            window.la = now();
+            await db.ref('users/' + uid + '/ads/' + k).set({ n: n + 1, s: now() });
+            await addCoins(CONFIG.ad, 'ad');
+            
+            // Update referral
+            if (U.ref) {
+                const mine = (U.adc || 0) + 1;
+                await db.ref('users/' + uid + '/adc').set(mine);
+                await db.ref('users/' + U.ref + '/refs/' + uid + '/ads').set(mine);
+                if (mine === CONFIG.refAds) {
+                    tgSend(U.ref, '🎉 Your friend is now active! You earn 10% commission.');
+                }
+            }
+            
+            toast('✓ +' + CONFIG.ad + ' coins');
+            ok();
+            renderAds();
+        }
+
+        function renderGift() {
+            $('sub-gift').innerHTML = `<div class="gift-section">
+                <div class="gift-icon">🎁</div>
+                <div class="gift-title">Gift Code</div>
+                <div class="gift-desc">Enter code to claim rewards</div>
+                <input class="gift-input" id="giftCode" placeholder="ENTER CODE">
+                <button class="btn btn-full" onclick="redeemGift()">Redeem</button>
+                <button class="btn btn-secondary btn-full" style="margin-top:12px" onclick="tg.openLink('https://t.me/+MO_aC9V0JG1iNTRl')">📣 Get Codes</button>
+            </div>`;
+        }
+
+        async function redeemGift() {
+            const code = $('giftCode').value.trim().toUpperCase();
+            if (!code) { toast('Enter a code'); return; }
+            
+            const r = await db.ref('gifts/' + code).once('value');
+            if (!r.exists()) { toast('Invalid code'); bad(); return; }
+            const g = r.val();
+            if (g.users && g.users[uid]) { toast('Already used'); bad(); return; }
+            if (g.used >= g.max) { toast('Fully used'); bad(); return; }
+            if (g.exp && now() > g.exp) { toast('Expired'); bad(); return; }
+            
+            await addCoins(g.coins, 'gift');
+            await db.ref('gifts/' + code + '/used').transaction(x => x + 1);
+            await db.ref('gifts/' + code + '/users/' + uid).set(now());
+            toast('🎉 +' + g.coins + ' coins');
+            ok();
+            $('giftCode').value = '';
+        }
+
+        async function addCoins(a, w) {
+            await db.ref('users/' + uid + '/coins').transaction(c => (c||0) + a);
+            await db.ref('users/' + uid + '/log').push({ a, t: now(), w });
+            if (a > 0) await db.ref('users/' + uid + '/earned').transaction(c => (c||0) + a);
+            
+            // Referral commission
+            if (uid !== ADMIN && a > 0 && U.ref && w !== 'referral') {
+                const earned = await db.ref('users/' + U.ref + '/refs/' + uid + '/earn').once('value');
+                await db.ref('users/' + U.ref + '/refs/' + uid + '/earn').transaction(x => (x||0) + a);
                 
-                // Update referral commission
-                if (userData.ref && source !== 'referral') {
-                    const commission = Math.floor(amount * CONFIG.REF_COMMISSION / 100);
-                    if (commission > 0) {
-                        await db.ref('users/' + userData.ref + '/coins').transaction(current => (current || 0) + commission);
-                        await db.ref('users/' + userData.ref + '/refs/' + uid + '/commission').transaction(current => (current || 0) + commission);
+                const ads = await db.ref('users/' + U.ref + '/refs/' + uid + '/ads').once('value');
+                if ((ads.val() || 0) >= CONFIG.refAds) {
+                    const com = Math.floor(a * CONFIG.refCom / 100);
+                    if (com > 0) {
+                        await db.ref('users/' + U.ref + '/refs/' + uid + '/com').transaction(x => (x||0) + com);
+                        await addCoinsTo(U.ref, com, 'referral');
                     }
                 }
-            } catch (error) {
-                console.error('Error adding coins:', error);
             }
         }
 
-        // Spin Wheel
-        async function spinWheel() {
-            const btn = $('spinBtn');
-            if (btn.disabled) return;
-            
-            btn.disabled = true;
-            
-            // Check if user has enough coins or can use free spin
-            const today = new Date().toDateString();
-            const lastSpin = userData.lastSpin || '';
-            
-            if (lastSpin !== today) {
-                // Free spin available
-            } else if ((userData.coins || 0) < CONFIG.SPIN_COST) {
-                showToast('Not enough coins! Need ' + CONFIG.SPIN_COST + ' coins');
-                btn.disabled = false;
-                playSound('error');
-                return;
-            } else {
-                // Deduct coins
-                await db.ref('users/' + uid + '/coins').transaction(current => (current || 0) - CONFIG.SPIN_COST);
-            }
-            
-            // Calculate result
-            const random = Math.random() * 100;
-            let cumulative = 0;
-            let prizeIndex = 0;
-            
-            for (let i = 0; i < CONFIG.SPIN_WEIGHTS.length; i++) {
-                cumulative += CONFIG.SPIN_WEIGHTS[i];
-                if (random < cumulative) {
-                    prizeIndex = i;
-                    break;
-                }
-            }
-            
-            const prize = CONFIG.SPIN_PRIZES[prizeIndex];
-            const spins = 5 + Math.random() * 3;
-            const finalAngle = spins * 360 + (prizeIndex * 60);
-            
-            // Animate wheel
-            const wheel = $('spinWheel');
-            wheel.style.transform = `rotate(${finalAngle}deg)`;
-            
-            setTimeout(async () => {
-                if (prize > 0) {
-                    await addCoins(prize, 'spin');
-                    showToast(' You won ' + prize + ' coins!');
-                    playSound('success');
-                } else {
-                    showToast('Try again!');
-                    playSound('error');
-                }
-                
-                await db.ref('users/' + uid + '/lastSpin').set(today);
-                btn.disabled = false;
-            }, 4000);
+        async function addCoinsTo(id, a, w) {
+            await db.ref('users/' + id + '/coins').transaction(c => (c||0) + a);
+            await db.ref('users/' + id + '/log').push({ a, t: now(), w });
         }
 
-        // Load Leaderboard
-        async function loadLeaderboard() {
-            try {
-                const snapshot = await db.ref('users').once('value');
-                const users = [];
-                
-                snapshot.forEach(child => {
-                    const data = child.val();
-                    const earned = data.earned || data.coins || 0;
-                    users.push({
-                        id: child.key,
-                        name: data.name || 'User',
-                        coins: earned
-                    });
-                });
-                
-                // Sort by coins
-                users.sort((a, b) => b.coins - a.coins);
-                
-                // Get top 10
-                const top10 = users.slice(0, 10);
-                
-                const list = $('leaderboardList');
-                list.innerHTML = '';
-                
-                top10.forEach((user, index) => {
-                    const rank = index + 1;
-                    const item = document.createElement('div');
-                    item.className = 'leader-item';
-                    
-                    let rankClass = 'rank-other';
-                    let medal = '';
-                    if (rank === 1) { rankClass = 'rank-1'; medal = '🥇'; }
-                    else if (rank === 2) { rankClass = 'rank-2'; medal = '🥈'; }
-                    else if (rank === 3) { rankClass = 'rank-3'; medal = '🥉'; }
-                    
-                    item.innerHTML = `
-                        <div class="leader-rank ${rankClass}">${medal || rank}</div>
-                        <img class="leader-avatar" src="${CONFIG.COIN_IMAGE}" alt="User">
-                        <div class="leader-info">
-                            <div class="leader-name">${esc(user.name)}</div>
-                            <div class="leader-coins">${formatNumber(user.coins)} coins</div>
-                        </div>
-                    `;
-                    
-                    list.appendChild(item);
-                });
-                
-            } catch (error) {
-                console.error('Error loading leaderboard:', error);
-            }
+        // Daily claim
+        async function claimDaily() {
+            const S = U.st || { d: 0, l: '' };
+            if (S.l === day()) { toast('Already claimed'); return; }
+            const y = new Date(now() - 864e5).toDateString();
+            let d = S.l === y ? S.d + 1 : 1;
+            if (d > 7) d = 7;
+            const reward = d < 7 ? CONFIG.daily[d-1] : CONFIG.gift;
+            
+            await addCoins(reward, 'daily');
+            await db.ref('users/' + uid + '/st').set({ d, l: day() });
+            toast(' +' + reward + ' coins');
+            ok();
+            renderHome();
         }
 
-        // Hourly Reward
-        async function claimHourlyReward() {
-            const lastClaim = userData.lastHourly || 0;
-            const hoursPassed = (now() - lastClaim) / (1000 * 60 * 60);
-            
-            if (hoursPassed < 1) {
-                const minutesLeft = Math.ceil(60 - (hoursPassed * 60));
-                showToast(`Come back in ${minutesLeft} minutes`);
-                playSound('error');
-                return;
+        // Hourly
+        async function claimHourly() {
+            const last = U.lastHourly || 0;
+            const hours = (now() - last) / 36e5;
+            if (hours < 1) {
+                toast('Come back in ' + Math.ceil(60 - hours*60) + ' minutes');
+                bad(); return;
             }
-            
-            const reward = CONFIG.DAILY_REWARDS[Math.min(Math.floor(hoursPassed) - 1, CONFIG.DAILY_REWARDS.length - 1)];
+            const reward = CONFIG.daily[Math.min(Math.floor(hours)-1, 6)] || 10;
             await addCoins(reward, 'hourly');
             await db.ref('users/' + uid + '/lastHourly').set(now());
-            
-            showToast('🎁 Hourly reward: +' + reward + ' coins!');
-            playSound('success');
+            toast('🎁 +' + reward + ' coins');
+            ok();
         }
 
-        // Gift Code
-        async function redeemGiftCode() {
-            const input = $('giftCodeInput');
-            const code = input.value.trim().toUpperCase();
-            
-            if (!code) {
-                showToast('Please enter a gift code');
+        // Games
+        function playGame(g) {
+            gm = g;
+            if (g === 'mines') renderMines();
+            else if (g === 'spin') { go('spin'); return; }
+            else if (g === 'memory') renderMemory();
+        }
+
+        function renderMines() {
+            if (!mg) {
+                const m = CONFIG.game.mines[gd];
+                $('game-area').innerHTML = `<div class="card">
+                    <b>💣 Bomb & Flower</b>
+                    <small style="color:var(--text-light);display:block;margin:8px 0">Find all flowers, avoid bombs</small>
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 0">
+                        ${['Easy','Hard','Ultra'].map(d => `<button class="btn" onclick="gd='${d}';renderMines()" style="${gd===d?'':'background:#2a3558'}">${d}</button>`).join('')}
+                    </div>
+                    <small>${m.r}×${m.c} · ${m.b} bombs · Win chance: ${(m.p*100).toFixed(1)}%</small>
+                    <div class="card-row" style="margin:12px 0">
+                        <button class="btn" onclick="gb=Math.max(${CONFIG.game.min},gb-${CONFIG.game.step});renderMines()">−</button>
+                        <div style="text-align:center"><b>Bet ${gb}</b><br><small>Win ${Math.round(gb*m.m)}</small></div>
+                        <button class="btn" onclick="gb+=${CONFIG.game.step};renderMines()">+</button>
+                    </div>
+                    <button class="btn btn-full" onclick="startMines()">▶ Play</button>
+                </div>`;
                 return;
             }
             
-            try {
-                const snapshot = await db.ref('gifts/' + code).once('value');
-                
-                if (!snapshot.exists()) {
-                    showToast('Invalid gift code');
-                    playSound('error');
-                    return;
+            const m = CONFIG.game.mines[mg.d];
+            const n = m.r * m.c;
+            let html = `<button class="btn btn-secondary" style="margin-bottom:12px" onclick="gm=null;mg=null;$('game-area').innerHTML=''">← Back</button>
+            <div class="card"><div class="card-row"><b>${mg.d}</b><span>🌸 ${mg.n}/${mg.ns}</span><span>Win ${mg.pay}</span></div>
+            <div class="mines-grid" style="grid-template-columns:repeat(${m.c},1fr)">`;
+            
+            for (let i = 0; i < n; i++) {
+                let t = '❔', c = '';
+                if (mg.op[i]) { t = ''; c = 'revealed'; }
+                else if (mg.over) {
+                    if (mg.res === 'lose' && i === mg.bomb) { t = '💣'; c = 'bomb'; }
+                    else if (mg.res === 'win') { t = '💣'; c = 'bomb'; }
+                    else c = 'disabled';
                 }
-                
-                const gift = snapshot.val();
-                
-                if (gift.users && gift.users[uid]) {
-                    showToast('You already used this code');
-                    playSound('error');
-                    return;
-                }
-                
-                if (gift.used >= gift.max) {
-                    showToast('This code has been fully used');
-                    playSound('error');
-                    return;
-                }
-                
-                if (gift.exp && now() > gift.exp) {
-                    showToast('This code has expired');
-                    playSound('error');
-                    return;
-                }
-                
-                // Redeem
-                await addCoins(gift.coins, 'gift');
-                await db.ref('gifts/' + code + '/used').transaction(v => v + 1);
-                await db.ref('gifts/' + code + '/users/' + uid).set(now());
-                
-                showToast('🎉 Gift redeemed! +' + gift.coins + ' coins');
-                playSound('success');
-                input.value = '';
-                
-            } catch (error) {
-                console.error('Error redeeming gift:', error);
-                showToast('Error redeeming code');
+                html += `<button class="tile ${c}" onclick="clickMine(${i})">${t}</button>`;
             }
-        }
-
-        // Support Chat
-        function openSupportChat() {
-            tg.openTelegramLink(CONFIG.SUPPORT_CHAT);
-        }
-
-        // Notifications
-        function showNotifications() {
-            showToast('No new notifications');
-        }
-
-        // Broadcast Gift Code to Channel and Users
-        async function broadcastGiftCode(giftData) {
-            const message = `✨🎁✨ NEW GIFT CODE ✨🎁✨
-━━━━━━━━━━━━━━
-🏷 ${esc(giftData.label || 'Special Offer')}
-
-🔑 Code: ${esc(giftData.code)}
- Reward: ${giftData.coins} coins
-👥 First ${giftData.max} users only
-${giftData.exp ? '⏳ Valid until: ' + new Date(giftData.exp).toLocaleDateString() : ''}
-━━━━━━━━━━━━━━
-👉 Tap Copy Code, open the Mini App, go to Earn → Gift and redeem it now!
-
-🇳 Made in Nepal · 👨‍ Creator: Bibx`;
-
-            // Send to all users
-            try {
-                const usersSnapshot = await db.ref('users').once('value');
-                let count = 0;
-                
-                usersSnapshot.forEach(child => {
-                    const userId = child.key;
-                    if (userId !== uid) {
-                        // In real implementation, send via bot API
-                        count++;
-                    }
-                });
-                
-                showToast('Broadcast sent to ' + count + ' users');
-                
-            } catch (error) {
-                console.error('Broadcast error:', error);
+            html += '</div>';
+            
+            if (mg.over) {
+                html += `<div style="text-align:center;margin-top:12px"><b>${mg.res==='win'?'🎉 You won!':'💥 You lost'}</b><br>
+                <button class="btn" style="margin-top:12px" onclick="gm=null;mg=null;$('game-area').innerHTML=''">Play Again</button></div>`;
             }
+            html += '</div>';
+            $('game-area').innerHTML = html;
         }
 
-        // Initialize App
-        async function initApp() {
-            // Check connection
-            db.ref('.info/connected').on('value', snapshot => {
-                const indicator = $('offlineIndicator');
-                if (snapshot.val() === false) {
-                    indicator.classList.add('show');
+        async function startMines() {
+            if ((U.coins || 0) < gb) { toast('Not enough coins'); bad(); return; }
+            await db.ref('users/' + uid + '/coins').transaction(c => c - gb);
+            await db.ref('users/' + uid + '/log').push({ a: -gb, t: now(), w: 'game' });
+            
+            const m = CONFIG.game.mines[gd];
+            const ns = m.r * m.c - m.b;
+            const win = Math.random() < m.p;
+            mg = { d: gd, bet: gb, ns, loseAt: win ? -1 : Math.floor(Math.random() * ns), n: 0, op: {}, over: 0, res: '', pay: Math.round(gb * m.m) };
+            renderMines();
+        }
+
+        function clickMine(i) {
+            if (!mg || mg.over || mg.op[i]) return;
+            if (mg.n === mg.loseAt) {
+                mg.over = 1; mg.res = 'lose'; mg.bomb = i; bad();
+                renderMines(); return;
+            }
+            mg.op[i] = 1; mg.n++; beep(450 + mg.n * 40, 0.08);
+            if (mg.n >= mg.ns) {
+                mg.over = 1; mg.res = 'win'; renderMines(); ok();
+                setTimeout(async () => {
+                    await addCoins(mg.pay, 'game');
+                    toast(' +' + mg.pay + ' coins');
+                }, 600);
+            } else renderMines();
+        }
+
+        // Spin
+        function renderMemory() {
+            if (!ms) {
+                $('game-area').innerHTML = `<div class="card" style="margin:20px">
+                    <b>🧠 Memory Master</b>
+                    <small style="color:var(--text-light);display:block;margin:8px 0">Watch pattern, repeat it. Reach round ${CONFIG.mem.target} to win ${CONFIG.mem.prize} coins. Entry: ${CONFIG.mem.cost} coins.</small>
+                    <button class="btn btn-full" style="margin-top:12px" onclick="startMemory()">▶ Play</button>
+                </div>`;
+                return;
+            }
+            
+            const colors = ['#ef4444', '#22c55e', '#3b82f6', '#eab308'];
+            let html = `<button class="btn btn-secondary" style="margin:20px" onclick="gm=null;ms=null;$('game-area').innerHTML=''">← Back</button>
+            <div class="card" style="margin:20px"><div class="card-row"><b>Round ${ms.seq.length}/${CONFIG.mem.target}</b>
+            <span>${ms.over ? (ms.res==='win'?'🎉 Win!':'❌ Wrong') : ms.show ? ' Watch...' : '👆 Your turn'}</span></div>
+            <div class="pads">`;
+            colors.forEach((c,i) => {
+                html += `<button class="pad" style="background:${c}" onmousedown="clickPad(${i})"></button>`;
+            });
+            html += '</div>';
+            if (ms.over) html += `<button class="btn btn-full" onclick="gm=null;ms=null;$('game-area').innerHTML=''">Play Again</button>`;
+            html += '</div>';
+            $('game-area').innerHTML = html;
+        }
+
+        async function startMemory() {
+            if ((U.coins || 0) < CONFIG.mem.cost) { toast('Not enough coins'); bad(); return; }
+            await db.ref('users/' + uid + '/coins').transaction(c => c - CONFIG.mem.cost);
+            ms = { seq: [], i: 0, show: 1, over: 0, res: '' };
+            await nextMemory();
+        }
+
+        async function nextMemory() {
+            ms.seq.push(Math.floor(Math.random() * 4));
+            ms.i = 0; ms.show = 1;
+            renderMemory(); lock = 1;
+            await sleep(700);
+            for (const p of ms.seq) {
+                litPad(p, 1); beep(260 + p * 120, 0.25);
+                await sleep(550);
+                litPad(p, 0); await sleep(250);
+            }
+            lock = 0; ms.show = 0; renderMemory();
+        }
+
+        function litPad(i, on) {
+            const pads = document.querySelectorAll('.pad');
+            if (pads[i]) pads[i].classList.toggle('lit', on);
+        }
+
+        function clickPad(i) {
+            if (!ms || ms.show || ms.over || lock) return;
+            litPad(i, 1); beep(260 + i * 120, 0.15);
+            setTimeout(() => litPad(i, 0), 180);
+            if (i !== ms.seq[ms.i]) {
+                ms.over = 1; ms.res = 'lose'; bad();
+                setTimeout(renderMemory, 250); return;
+            }
+            ms.i++;
+            if (ms.i === ms.seq.length) {
+                if (ms.seq.length >= CONFIG.mem.target) {
+                    ms.over = 1; ms.res = 'win'; ok();
+                    setTimeout(async () => {
+                        renderMemory();
+                        await addCoins(CONFIG.mem.prize, 'memory');
+                        toast(' +' + CONFIG.mem.prize + ' coins');
+                    }, 400);
                 } else {
-                    indicator.classList.remove('show');
+                    ms.show = 1; setTimeout(nextMemory, 700);
                 }
+            }
+        }
+
+        async function spin() {
+            if (lock) return;
+            const free = U.spinDay !== day();
+            if (!free && (U.coins || 0) < CONFIG.spin.cost) { toast('Need ' + CONFIG.spin.cost + ' coins'); bad(); return; }
+            
+            lock = 1;
+            if (free) await db.ref('users/' + uid + '/spinDay').set(day());
+            else await addCoins(-CONFIG.spin.cost, 'spin');
+            
+            const w = CONFIG.spin.w;
+            const tot = w.reduce((a,b) => a+b, 0);
+            let r = Math.random() * tot, i = 0;
+            for (; i < w.length; i++) if ((r -= w[i]) < 0) break;
+            i = Math.min(i, w.length - 1);
+            
+            ang = ang - ang % 360 + 1800 + (360 - (i * 60 + 30));
+            $('wheel').style.transform = `rotate(${ang}deg)`;
+            
+            let k = 0;
+            const iv = setInterval(() => { beep(300 + k*8, 0.03); if (++k > 40) clearInterval(iv); }, 100);
+            
+            setTimeout(async () => {
+                lock = 0;
+                const prize = CONFIG.spin.prizes[i];
+                if (prize) {
+                    await addCoins(prize, 'spin');
+                    toast('🎡 +' + prize + ' coins');
+                    ok();
+                } else {
+                    toast('Try again!');
+                    bad();
+                }
+            }, 4300);
+        }
+
+        // Leaderboard
+        async function loadLeaderboard() {
+            const s = await db.ref('users').once('value');
+            const users = [];
+            s.forEach(x => {
+                const d = x.val();
+                users.push({ id: x.key, name: d.name, coins: d.earned || d.coins || 0 });
+            });
+            users.sort((a,b) => b.coins - a.coins);
+            
+            const top = users.slice(0, 10);
+            let html = '';
+            top.forEach((u, i) => {
+                const rank = i + 1;
+                let cls = 'rank-other', medal = rank;
+                if (rank === 1) { cls = 'rank-1'; medal = '🥇'; }
+                else if (rank === 2) { cls = 'rank-2'; medal = '🥈'; }
+                else if (rank === 3) { cls = 'rank-3'; medal = ''; }
+                html += `<div class="leader-item">
+                    <div class="leader-rank ${cls}">${medal}</div>
+                    <img class="leader-avatar" src="${COIN_IMG}">
+                    <div class="leader-info">
+                        <div class="leader-name">${esc(u.name)}</div>
+                        <div class="leader-coins">${u.coins.toLocaleString()} coins</div>
+                    </div>
+                </div>`;
+            });
+            $('leaderboard').innerHTML = html || '<div class="card">No data yet</div>';
+        }
+
+        // Refer
+        function renderRefer() {
+            const link = `https://t.me/${BOT}/app?startapp=ref_${uid}`;
+            $('refLink').textContent = link;
+            
+            const refs = Object.entries(U.refs || {}).sort((a,b) => (b[1].ts||0) - (a[1].ts||0));
+            const active = refs.filter(([,x]) => (x.ads||0) >= CONFIG.refAds);
+            const com = refs.reduce((a,[,x]) => a + (x.com||0), 0);
+            const earned = refs.reduce((a,[,x]) => a + (x.earn||0), 0);
+            
+            $('refStats').innerHTML = `<div class="grid-2" style="margin:20px">
+                <div class="stat-card"><div class="stat-value">${refs.length}</div><div class="stat-label">Friends</div></div>
+                <div class="stat-card"><div class="stat-value" style="color:var(--success)">${active.length}</div><div class="stat-label">Active</div></div>
+                <div class="stat-card"><div class="stat-value">${com}</div><div class="stat-label">Commission</div></div>
+                <div class="stat-card"><div class="stat-value">${earned}</div><div class="stat-label">Friends Earned</div></div>
+            </div>`;
+            
+            let list = '';
+            refs.forEach(([id, x]) => {
+                const n = Math.min(x.ads || 0, CONFIG.refAds);
+                const active = n >= CONFIG.refAds;
+                list += `<div class="card">
+                    <div class="card-row"><b>${esc(x.n)}</b><span class="${active?'dn':''}" style="color:var(--success)">${active?'✓ Active':'⏳ Pending'}</span></div>
+                    ${active ? '' : `<div class="bar"><div class="bar-fill" style="width:${n/CONFIG.refAds*100}%"></div></div><small>${n}/${CONFIG.refAds} ads watched</small>`}
+                    <div class="card-row" style="margin-top:8px"><small>Friend earned: <b>${(x.earn||0).toLocaleString()}</b></small><small style="color:var(--success)">You got: <b>${(x.com||0).toLocaleString()}</b></small></div>
+                </div>`;
+            });
+            $('refList').innerHTML = list || '<div class="card" style="margin:20px;text-align:center">No friends yet</div>';
+        }
+
+        function copyRef() {
+            const link = `https://t.me/${BOT}/app?startapp=ref_${uid}`;
+            navigator.clipboard.writeText(link);
+            toast('Copied!');
+        }
+
+        function shareRef() {
+            const link = `https://t.me/${BOT}/app?startapp=ref_${uid}`;
+            tg.openLink(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=Earn%20coins%20with%20Nodix!`);
+        }
+
+        // Wallet
+        function renderWallet() {
+            $('walletCoins').textContent = (U.coins || 0).toLocaleString();
+            $('walletNPR').textContent = money(U.coins || 0);
+            
+            const history = Object.values(U.wds || {}).sort((a,b) => b.ts - a.ts);
+            let html = '';
+            history.forEach(w => {
+                const status = w.st === 'approved' ? 'Paid ✓' : w.st === 'rejected' ? 'Rejected' : 'Pending';
+                const color = w.st === 'approved' ? 'var(--success)' : w.st === 'rejected' ? 'var(--danger)' : '#fbbf24';
+                html += `<div class="card card-row">
+                    <div>${w.m}<br><small>${w.amt} · ${new Date(w.ts).toLocaleDateString()}</small></div>
+                    <b style="color:${color}">${status}</b>
+                </div>`;
+            });
+            $('withdrawHistory').innerHTML = html || '<div class="card" style="margin:20px;text-align:center">No withdrawals</div>';
+            
+            $('themeBtn').textContent = document.documentElement.dataset.th === 'light' ? '☀️ Light' : '🌙 Dark';
+            $('soundBtn').textContent = snd ? 'ON' : 'OFF';
+        }
+
+        function updateConvert() {
+            const v = $('convertSlider').value;
+            if (v < 98) { $('convertSlider').value = 0; return; }
+        }
+
+        $('convertSlider').addEventListener('change', async function() {
+            if (this.value < 98) { this.value = 0; return; }
+            const coins = U.coins || 0;
+            if (coins < CONFIG.minConvert) { toast('Need ' + CONFIG.minConvert + ' coins'); bad(); this.value = 0; return; }
+            
+            toast('Converting...');
+            await sleep(1000);
+            await db.ref('users/' + uid + '/coins').transaction(() => 0);
+            await db.ref('users/' + uid + '/cash').transaction(c => (c||0) + coins/CONFIG.rate);
+            await db.ref('users/' + uid + '/log').push({ a: -coins, t: now(), w: 'convert' });
+            toast('✓ Converted ' + coins + ' coins');
+            ok();
+            this.value = 0;
+            updateUI();
+        });
+
+        function updateWithdraw() {
+            const m = $('withdrawMethod').value;
+            const ph = m === 'eSewa' || m === 'Khalti' ? '98XXXXXXXX' : m === 'PayPal' ? 'email@example.com' : '0x...';
+            $('withdrawAccount').placeholder = ph;
+        }
+
+        function setWithdraw(t) {
+            const cash = U.cash || 0;
+            const min = CONFIG.minNPR;
+            const v = t === 0 ? min : t === 1 ? Math.max(min, cash/2) : cash;
+            $('withdrawAmount').value = v.toFixed(2);
+            calcWithdraw();
+        }
+
+        function calcWithdraw() {
+            const amt = parseFloat($('withdrawAmount').value) || 0;
+            $('wpv').textContent = amt ? 'You receive NPR ' + amt.toFixed(2) : '';
+        }
+
+        async function withdraw() {
+            const m = $('withdrawMethod').value;
+            const a = $('withdrawAccount').value.trim();
+            const n = parseFloat($('withdrawAmount').value);
+            if (!a || !n) { toast('Fill all fields'); return; }
+            if (n < CONFIG.minNPR) { toast('Minimum NPR ' + CONFIG.minNPR); bad(); return; }
+            if ((U.cash || 0) < n) { toast('Insufficient balance'); bad(); return; }
+            
+            await db.ref('users/' + uid + '/cash').transaction(c => Math.max(0, (c||0) - n));
+            const id = db.ref('wd').push().key;
+            await db.ref('wd/' + id).set({
+                uid, name: U.name, uname: U.uname, method: m, account: a, amount: n,
+                npr: n, status: 'pending', ts: now()
+            });
+            await db.ref('users/' + uid + '/wds/' + id).set({ m, amt: n, st: 'pending', ts: now() });
+            
+            tgSend(ADMIN, `🔔 Withdrawal: ${U.name} wants NPR ${n} via ${m}\nAccount: ${a}`);
+            toast('Withdrawal requested ✓');
+            ok();
+            renderWallet();
+        }
+
+        // Creator
+        function renderCreator() {
+            const videos = Object.entries(U.crs || {}).sort((a,b) => b[1].ts - a[1].ts);
+            let html = '<div class="section-title">My Videos</div>';
+            videos.forEach(([id, v]) => {
+                const st = v.st === 'approved' ? '✅ Approved' : v.st === 'claimed' ? '✓ Claimed' : v.st === 'rejected' ? '❌ Rejected' : '⏳ Pending';
+                const color = v.st === 'approved' ? 'var(--success)' : v.st === 'rejected' ? 'var(--danger)' : '#fbbf24';
+                html += `<div class="card">
+                    <div class="card-row"><b>${v.plat}</b><b style="color:${color}">${st}</b></div>
+                    <small>${new Date(v.ts).toLocaleDateString()}</small>
+                    ${v.st === 'approved' ? `<div class="card-row" style="margin-top:8px"><b>+${v.coins} coins</b><button class="btn" onclick="claimCreator('${id}')">Claim</button></div>` : ''}
+                </div>`;
+            });
+            $('creatorVideos').innerHTML = html;
+        }
+
+        async function submitVideo() {
+            const plat = $('creatorPlatform').value;
+            const url = $('creatorLink').value.trim();
+            if (!url) { toast('Enter link'); return; }
+            
+            const today = Object.values(U.crs || {}).filter(x => x.ts >= new Date().setHours(0,0,0,0)).length;
+            if (today >= CONFIG.creator.daily) { toast('Daily limit reached'); bad(); return; }
+            
+            const id = db.ref('cr').push().key;
+            await db.ref('cr/' + id).set({ uid, name: U.name, uname: U.uname, plat, url, ts: now(), st: 'pending', coins: 0 });
+            await db.ref('users/' + uid + '/crs/' + id).set({ plat, url, ts: now(), st: 'pending', coins: 0 });
+            
+            tgSend(ADMIN, `🎬 New video: ${U.name}\nPlatform: ${plat}\nURL: ${url}`);
+            toast('Submitted ✓');
+            ok();
+            $('creatorLink').value = '';
+            renderCreator();
+        }
+
+        async function claimCreator(id) {
+            const v = U.crs[id];
+            if (!v || v.st !== 'approved') return;
+            await addCoins(v.coins, 'creator');
+            await db.ref('users/' + uid + '/crs/' + id + '/st').set('claimed');
+            await db.ref('cr/' + id + '/st').set('claimed');
+            toast('✓ +' + v.coins + ' coins');
+            ok();
+            renderCreator();
+        }
+
+        // Admin
+        function renderAdmin() {
+            const tabs = [
+                ['w', 'Withdrawals'], ['u', 'Users'], ['t', 'Tasks'],
+                ['g', 'Gifts'], ['a', 'Ads'], ['b', 'Broadcast'], ['c', 'Config']
+            ];
+            $('adminTabs').innerHTML = tabs.map(([k, l]) => 
+                `<button class="admin-tab ${as===k?'active':''}" onclick="setAdminTab('${k}')">${l}</button>`
+            ).join('');
+            
+            if (!as) as = 'w';
+            renderAdminTab(as);
+        }
+
+        function setAdminTab(t) {
+            as = t;
+            renderAdmin();
+        }
+
+        function renderAdminTab(t) {
+            if (t === 'w') {
+                const wds = Object.values(AW).sort((a,b) => b.ts - a.ts);
+                let html = wds.map(w => `<div class="card">
+                    <b>${esc(w.name)}</b> @${esc(w.uname||'-')}<br>
+                    <code>${w.uid}</code><br>
+                    ${w.method}: <code>${esc(w.account)}</code><br>
+                    NPR ${w.amount} · <i>${w.status}</i>
+                    ${w.status === 'pending' ? `<div class="card-row" style="margin-top:8px">
+                        <button class="btn" onclick="approveWd('${w.id}',1)">Approve</button>
+                        <button class="btn btn-danger" onclick="approveWd('${w.id}',0)">Reject</button>
+                    </div>` : ''}
+                </div>`).join('');
+                $('adminContent').innerHTML = html || 'No pending withdrawals';
+            }
+            else if (t === 'g') {
+                let html = '<div class="card"><b>Create Gift Code</b>';
+                html += '<input id="gLabel" placeholder="Label"><input id="gCode" placeholder="CODE (blank=random)">';
+                html += '<select id="gType"><option value="c">Coins</option><option value="m">NPR</option></select>';
+                html += '<input type="number" id="gAmount" placeholder="Amount"><input type="number" id="gMax" placeholder="Max users">';
+                html += '<input type="number" id="gDays" placeholder="Days (0=never)"><button class="btn btn-full" onclick="createGift()">Create</button></div>';
+                
+                const gifts = Object.entries(AG).sort((a,b) => b[1].created - a[1].created);
+                gifts.forEach(([code, g]) => {
+                    html += `<div class="card card-row"><code>${code}</code><small>${g.label} · ${g.coins} coins · ${g.used||0}/${g.max}</small>
+                    <button class="btn btn-danger" onclick="db.ref('gifts/${code}').remove()">✕</button></div>`;
+                });
+                $('adminContent').innerHTML = html;
+            }
+            else if (t === 'b') {
+                $('adminContent').innerHTML = '<div class="card"><b>Broadcast</b><textarea id="bcMsg" rows="3" placeholder="Message"></textarea><button class="btn btn-full" onclick="broadcast()">Send to All</button></div>';
+            }
+            else if (t === 'u') {
+                const users = Object.entries(AU).sort((a,b) => (b[1].coins||0) - (a[1].coins||0)).slice(0, 50);
+                let html = users.map(([id, u]) => `<div class="card">
+                    <b>${esc(u.name)}</b> · ${id}<br>
+                    ${u.coins||0} coins · NPR ${((u.cash||0)).toFixed(2)}
+                    <div class="card-row" style="margin-top:8px">
+                        <input type="number" id="add${id}" placeholder="coins" style="flex:1">
+                        <button class="btn" onclick="addAdminCoins('${id}')">Add</button>
+                        <button class="btn btn-danger" onclick="db.ref('users/${id}').remove()">Delete</button>
+                    </div>
+                </div>`).join('');
+                $('adminContent').innerHTML = html;
+            }
+        }
+
+        async function approveWd(id, ok) {
+            const w = AW[id];
+            await db.ref('wd/' + id + '/status').set(ok ? 'approved' : 'rejected');
+            if (!ok) {
+                await db.ref('users/' + w.uid + '/cash').transaction(c => (c||0) + w.amount);
+                tgSend(w.uid, '❌ Withdrawal rejected. Amount refunded.');
+            } else {
+                tgSend(w.uid, '✅ Withdrawal approved! NPR ' + w.amount + ' sent via ' + w.method);
+                tgSend(GIFT_CHANNEL, `✅ Payment: ${esc(w.name)} - NPR ${w.amount} via ${w.method}`);
+            }
+            toast(ok ? 'Approved' : 'Rejected');
+            renderAdminTab('w');
+        }
+
+        async function createGift() {
+            const label = $('gLabel').value;
+            let code = $('gCode').value.trim().toUpperCase();
+            const type = $('gType').value;
+            const amount = parseInt($('gAmount').value);
+            const max = parseInt($('gMax').value);
+            const days = parseInt($('gDays').value) || 0;
+            
+            if (!amount || !max) { toast('Amount and max required'); return; }
+            if (!code) code = Math.random().toString(36).slice(2, 8).toUpperCase();
+            
+            const coins = type === 'm' ? Math.round(amount * CONFIG.rate) : amount;
+            await db.ref('gifts/' + code).set({
+                label, coins, max, used: 0, exp: days > 0 ? now() + days * 864e5 : 0, created: now()
             });
             
-            // Hide loading screen
-            await sleep(2000);
-            $('loadingScreen').classList.add('hidden');
+            // Broadcast
+            const msg = `✨🎁✨ NEW GIFT CODE ✨🎁✨\n━━━━━━━━━━━━━━\n🏷 ${label}\n\n Code: ${code}\n💰 Reward: ${coins} coins\n👥 First ${max} users only\n${days>0?' Valid for '+days+' days':''}\n━━━━━━━━━━━━━━\n👉 Open Mini App → Earn → Gift\n\n🇳🇵 Made in Nepal · Developer: Bibx`;
             
-            // Load user data
-            await loadUserData();
+            await broadcastToAll(msg);
+            tgSend(GIFT_CHANNEL, msg);
             
-            // Handle referral
-            const startParam = (tg.initDataUnsafe || {}).start_param;
-            if (startParam && !userData.ref) {
-                const refMatch = startParam.match(/ref_(\d+)/);
-                if (refMatch) {
-                    const refId = refMatch[1];
-                    if (refId !== uid) {
-                        await db.ref('users/' + uid + '/ref').set(refId);
-                        await db.ref('users/' + refId + '/refs/' + uid).set({
-                            name: user.first_name || 'User',
-                            joined: now(),
-                            ads: 0
-                        });
-                        showToast('Referral linked!');
-                    }
-                }
-            }
+            toast('Created: ' + code);
+            $('gLabel').value = ''; $('gCode').value = ''; $('gAmount').value = ''; $('gMax').value = '';
+            renderAdminTab('g');
         }
 
-        // Start app
-        initApp();
-
-        // Handle visibility change
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) {
-                loadUserData();
+        async function broadcastToAll(msg) {
+            const users = Object.keys(AU);
+            for (let i = 0; i < users.length; i++) {
+                tgSend(users[i], msg);
+                if ((i+1) % 20 === 0) await sleep(1000);
             }
-        });
+            toast('Sent to ' + users.length + ' users');
+        }
 
-        // Online/Offline handling
-        window.addEventListener('online', () => loadUserData());
-        window.addEventListener('offline', () => {
-            showToast('You are offline');
-        });
+        function broadcast() {
+            const msg = $('bcMsg').value;
+            if (!msg) { toast('Enter message'); return; }
+            broadcastToAll(msg);
+        }
+
+        function addAdminCoins(id) {
+            const v = parseInt($('add' + id).value);
+            if (!v) return;
+            addCoinsTo(id, v, 'admin');
+            toast('Added ' + v + ' coins');
+            $('add' + id).value = '';
+        }
+
+        // Utils
+        async function tgSend(chat, text) {
+            try {
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: chat, text, parse_mode: 'HTML' })
+                });
+            } catch(e) {}
+        }
+
+        function showNotif() { toast('No new notifications'); }
+        function openSupport() { tg.openLink('https://t.me/NodixChatt'); }
+        function toggleTheme() {
+            const th = document.documentElement.dataset.th === 'light' ? 'dark' : 'light';
+            document.documentElement.dataset.th = th;
+            localStorage.th = th;
+            renderWallet();
+        }
+        function toggleSound() {
+            snd = !snd;
+            localStorage.snd = snd ? '1' : '0';
+            $('soundBtn').textContent = snd ? 'ON' : 'OFF';
+        }
+        function playSound(t) {
+            if (t === 'click') beep(500, 0.05);
+        }
+
+        // Start
+        let as = 'w';
+        init();
     </script>
 </body>
 </html>
