@@ -38,8 +38,8 @@ small{display:block;color:var(--m);font-size:13px}b{font-weight:700}h3{font-size
 .qa3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 12px}.qa4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 6px}
 .qa{background:var(--c);border-radius:20px;padding:14px 4px 12px;text-align:center;box-shadow:var(--sh);font-weight:600;font-size:14px;line-height:1.2;transition:.15s}.qa:active{transform:scale(.95)}
 .qa i{display:block;font-style:normal;font-size:42px;line-height:1.15;margin-bottom:6px;filter:drop-shadow(0 4px 4px #c4561d44)}.qa4 .qa{font-size:12px;padding:10px 2px}.qa4 .qa i{font-size:30px}
-.tg{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tk{background:var(--c);border:2px solid var(--pe);border-radius:22px;padding:8px 8px 12px;text-align:center;box-shadow:var(--sh)}
-.tk .ic{background:var(--pe);border-radius:16px;height:92px;display:flex;align-items:center;justify-content:center}.tk b{display:block;margin:8px 0 2px;font-size:15px}
+.tg{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tk{display:flex;flex-direction:column;background:var(--c);border:2px solid var(--pe);border-radius:22px;padding:8px 8px 12px;text-align:center;box-shadow:var(--sh)}
+.tk .ic{background:var(--pe);border-radius:16px;height:92px;display:flex;align-items:center;justify-content:center}.tk b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:8px 0 2px;font-size:15px;line-height:1.25;min-height:38px}.tk>.b{margin-top:auto}
 .ci{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:900}
 .cn{display:flex;gap:6px;align-items:center;justify-content:center;color:#e8622b;font-weight:800;font-size:18px;margin-bottom:8px}
 .coin{display:inline-flex;width:32px;height:32px;border-radius:50%;background:radial-gradient(circle at 32% 30%,#fff1a6,#f6b51c 55%,#d98a06);border:2.5px solid #ffd54d;color:#a35a00;font-weight:900;font-size:16px;align-items:center;justify-content:center;box-shadow:0 2px 6px #0004;flex:none}.coin.s{width:22px;height:22px;font-size:12px;border-width:2px}
@@ -87,6 +87,7 @@ input,select,textarea{width:100%;background:var(--in);color:var(--t);border:1.5p
 #spl .ld{width:170px;height:6px;margin:22px auto 0;border-radius:6px;background:#ffffff40;overflow:hidden}#spl .ld i{display:block;width:40%;height:100%;background:#fff;animation:ls 1.1s infinite}@keyframes ls{from{margin-left:-40%}to{margin-left:100%}}
 #spl .dev{margin-top:34px;background:#00000026;border:1px solid #ffffff40;border-radius:26px;padding:18px 26px;backdrop-filter:blur(6px)}#spl .dev img.dv{width:84px;height:84px;border-radius:50%;object-fit:cover;border:4px solid #ffd54d;box-shadow:0 0 26px #ffd54d99;display:block;margin:0 auto 10px}
 #spl .dev b{letter-spacing:3px;font-size:14px;display:flex;gap:8px;align-items:center;justify-content:center}#spl .dev .nm{font-size:26px;font-weight:800;letter-spacing:1px;margin-top:4px}
+.pcard{width:120px;height:170px;margin:12px auto;perspective:600px}.pcard .in{width:100%;height:100%;position:relative;transform-style:preserve-3d}.pcard.flip .in{animation:fpf .8s forwards}@keyframes fpf{from{transform:rotateY(0)}to{transform:rotateY(180deg)}}.pcard .f,.pcard .k{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center;font-weight:800}.pcard .k{background:linear-gradient(135deg,#f7852c,#d9361b);font-size:56px;color:#fff;border:4px solid #ffd9a0}.pcard .f{background:#fff;color:#d9361b;font-size:54px;transform:rotateY(180deg);border:3px solid #f0d3c3}.balls{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.ball{aspect-ratio:1;border-radius:50%;border:4px solid #ffffff88;color:#fff;font:800 15px Urbanist,sans-serif;box-shadow:0 6px 14px #0003}.ball:disabled{opacity:.5}.rball{width:110px;height:110px;border-radius:50%;margin:10px auto;display:flex;align-items:center;justify-content:center;color:#fff;font:800 18px Urbanist,sans-serif;animation:pop .6s;box-shadow:0 0 30px #0004;border:5px solid #ffffff99}
 </style></head><body>
 <div id="off">⚠️ No connection. Reconnecting…</div>
 <div id="spl"><img class="lg" src="https://i.ibb.co/1Jfnktc7/1792211153103.jpg"><h2 style="margin-top:14px;font-size:30px;font-weight:800">Nodix Earn</h2><small style="color:#ffe9dc">Loading your rewards</small><div class="ld"><i></i></div>
@@ -101,16 +102,17 @@ const ADMIN=8970065762, CH="-1004441628740", BOT="NodixEarnBot", ADMIN_BOT="Nodi
 const GIFTCHAT="-1004234724151"; // channel where new gift codes are auto-posted (bot must be admin there)
 const APP_SHORT="app"; // short name of your Mini App in BotFather (/newapp). Needed for referral links + direct-open links: t.me/NodixEarnBot/app
 const BOT_TOKEN="8254405543:AAE6S6v5klfIww_oPUQecp7KDkPNg5tMUBc"; // TEST token – replace with the real one later
+const APP_URL="https://bibx-mod.github.io/Paisa/",APPLINK="https://t.me/"+BOT+"/"+APP_SHORT; // APP_URL = Mini App itself (DM buttons). APPLINK = direct Mini App link for channels (needs APP_SHORT from BotFather /newapp)
 const COIN="https://i.ibb.co/1Jfnktc7/1792211153103.jpg", WATCH="https://i.ibb.co/v4nLRHsn/1792221816212.jpg";
 const BIBX="https://i.ibb.co/q3svpDDR/IMG-20260902-131729-642.jpg",FLAG='<svg class="flag" width="30" height="38" viewBox="0 0 34 42"><path d="M2 1 L32 19 H14 L32 41 H2 Z" fill="#dc143c" stroke="#003893" stroke-width="2.5" stroke-linejoin="round"/><circle cx="9" cy="12" r="3" fill="#fff"/><circle cx="9" cy="31" r="3.4" fill="#fff"/></svg>';
 const ETA="Money arrives within 1–2 business days after admin approval.";
 const LINKS=["https://uplcm.com/4/12059626","https://uplcm.com/4/12059624","https://uplcm.com/4/10478128","https://uplcm.com/4/9895763","https://uplcm.com/4/11765116","https://uplcm.com/4/12052061","https://asiafilm.org/4/00c12b4fab0d77031585e997c84281cc","https://auctionr.org/4/967fdca8eb16de195ecb2e3be1fe378b","https://auctionr.org/4/56bdc9a7244057cf83bf8285150d32fd","https://auctionr.org/4/bf5fca2f3ea31045b9e7ac44fd542b4e","https://auctionr.org/4/eb5197b075f3fad613f8610359a87c40","https://asiafilm.org/4/590e92d2a208a663099ad1cded7c227f","https://asiafilm.org/4/666592c63c0c8157f36f8cf4ff347c49","https://asiafilm.org/4/c009fbf40ead304b549de434330da22f","https://asiafilm.org/4/84082f53fb116c1bccb9df4851b92c7b","https://asiafilm.org/4/3fe0c75b5430643686d0b0de598eb3ab","https://asiafilm.org/4/c4522ba121643f366bb326fa0c100098","https://auctionr.org/4/199a324b5d3de7038a7d117b089d2d9e"];
 firebase.initializeApp({apiKey:"AIzaSyCPKDFVw5i3Da8JPUU8GhEZssdY79qLKNA",authDomain:"app-glaxy.firebaseapp.com",databaseURL:"https://app-glaxy-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"app-glaxy",storageBucket:"app-glaxy.firebasestorage.app",messagingSenderId:"484036615126",appId:"1:484036615126:web:YOUR_WEB_APP_ID"});
 /* Editable live from Admin > Config */
-const DEF={rate:100,rates:{NPR:1,INR:.625,MYR:.032,USD:.0075},daily:[10,15,20,25,30,35],gift:5,link:2,ad:6,adsPerDay:5,adGap:8,linkWait:30,linkWaitMax:35,linkStrict:1,verifyWait:8,preAd:10,minNPR:100,minConvert:100,refCom:10,refAds:5,refDays:7,creator:{rate:500,per:1000,daily:3},autoAd:120,nets:{m:1,g:1},
+const DEF={rate:100,rates:{NPR:1,INR:.625,MYR:.032,USD:.0075},daily:[10,15,20,25,30,35],gift:5,link:2,ad:6,adsPerDay:5,adGap:8,linkWait:30,linkWaitMax:35,linkStrict:1,verifyWait:8,preAd:10,minNPR:100,minConvert:100,refCom:10,refAds:5,refDays:7,creator:{rate:500,per:1000,daily:3},autoAd:90,spinAds:3,freeAds:3,dbl:1,nets:{m:1,g:1},
 spin:{cost:10,prizes:[0,1,0,2,0,3,0,5,0,2,10,1],w:[14.4,7,14.4,4.5,14.4,4,14.4,1,14.4,4.5,0,7]},
 game:{min:15,step:5,mines:{Easy:{r:3,c:3,b:6,p:.025,m:1.5},Hard:{r:4,c:4,b:11,p:.01,m:3},Ultra:{r:4,c:5,b:16,p:.002,m:6}}},
-mem:{cost:10,target:9,prize:40},
+mem:{cost:10,target:12,prize:40},pred:{hl:{p:.07,m:2},col:{rg:.05,rm:2,v:.015,vm:4.5}},
 tasks:{t1:{t:"Join Nodixno",link:"https://t.me/Nodixno",chat:"@Nodixno",r:10},t2:{t:"Join Nodixnp",link:"https://t.me/Nodixnp",chat:"@Nodixnp",r:10},t3:{t:"Join hellolado",link:"https://t.me/hellolado",chat:"@hellolado",r:10},t4:{t:"Join Nodix Earn Official",link:"https://t.me/NodixEarn",chat:"@NodixEarn",r:10},t5:{t:"Join Payment Proof Channel",link:"https://t.me/NodixEarnpayment",chat:"@NodixEarnpayment",r:10}},links:LINKS,banner:""};
 /* ===== core ===== */
 const $=s=>document.querySelector(s),now=()=>Date.now(),day=()=>new Date().toDateString(),sleep=ms=>new Promise(r=>setTimeout(r,ms)),esc=s=>String(s??"").replace(/[&<>"']/g,c=>"&#"+c.charCodeAt(0)+";"),fmt=n=>(+n||0).toLocaleString(undefined,{maximumFractionDigits:2});
@@ -119,20 +121,22 @@ const TU=(tg.initDataUnsafe||{}).user;
 if(!TU){document.body.innerHTML='<div style="padding:60px 20px;text-align:center;color:#3b2720;font:18px sans-serif">Please open this app inside Telegram.<br><br>@'+BOT+'</div>';throw new Error("Not in Telegram")}
 const uid=String(TU.id),isAdmin=TU.id===ADMIN,db=firebase.database();
 let RDY=0,CPL="tiktok",cfg=JSON.parse(JSON.stringify(DEF)),U={},LOG={},LB=[],AW={},AU={},AG={},AC={},tab="home",sub="tasks",lock=0,busy=0,snd=localStorage.snd!=="0",pend={},bp={},gd="Easy",gb=15,gm=null,mg=null,ms=null,ang=0,sa=0,as="w",uq="",tl="en",lastAd=now(),rot=Math.floor(Math.random()*2);
-const setCfg=v=>{cfg={...DEF,...v};if(!cfg.game||!cfg.game.mines)cfg.game=DEF.game;if(!cfg.mem)cfg.mem=DEF.mem;if(!cfg.nets)cfg.nets=DEF.nets;if(!cfg.spin||!cfg.spin.prizes)cfg.spin=DEF.spin};
+const setCfg=v=>{cfg={...DEF,...v};if(!cfg.game||!cfg.game.mines)cfg.game=DEF.game;if(!cfg.mem)cfg.mem=DEF.mem;if(!cfg.nets)cfg.nets=DEF.nets;if(!cfg.spin||!cfg.spin.prizes)cfg.spin=DEF.spin;if(!cfg.pred||!cfg.pred.hl)cfg.pred=DEF.pred};
 window.addEventListener("unhandledrejection",e=>console.error("unhandled",e.reason));
 /* sounds */
 let ac;function beep(f=600,d=.1,t="sine",v=.09){if(!snd)return;try{ac=ac||new AudioContext();const o=ac.createOscillator(),g=ac.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(v,ac.currentTime);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+d);o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+d)}catch(e){}}
 const ok=()=>{[660,880,1175,1568].forEach((f,i)=>setTimeout(()=>beep(f,.16,"triangle"),i*85));try{tg.HapticFeedback.notificationOccurred("success")}catch(e){}},bad=()=>{beep(240,.2,"sawtooth",.07);setTimeout(()=>beep(150,.32,"sawtooth",.07),170);try{tg.HapticFeedback.notificationOccurred("error")}catch(e){}};
-document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("button,.gc,.qa,nav a"))beep(620,.04,"triangle",.05)},true);
+let adGap=60000;const ovOpen=()=>$("#ov").style.display=="flex";
+function maybeAd(){if(!RDY||!U.tos||now()-lastAd<adGap)return;adGap=cfg.autoAd*1e3*(.75+Math.random()*.6);setTimeout(()=>{if(busy||lock||ovOpen()||document.hidden)return;adRun()},700)}
+document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest("button,.gc,.qa,nav a");if(t){beep(620,.04,"triangle",.05);if(cfg.autoAd&&!e.target.closest("#ov"))maybeAd()}},true);
 let tt;function toast(m){const e=$("#ts");e.textContent=m;e.style.display="block";clearTimeout(tt);tt=setTimeout(()=>e.style.display="none",2800)}
 function cp(t){try{navigator.clipboard.writeText(t)}catch(e){const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove()}toast("Copied ✓")}
 const ca=()=>tg.openTelegramLink("https://t.me/"+ADMIN_BOT),CA=()=>`<button class="b g w" style="margin:10px 0" onclick="ca()">📢 Advertise your task / ads here – Contact Admin</button>`;
 function ov(h){const o=$("#ov");if(h){o.firstElementChild.innerHTML=h;o.style.display="flex"}else o.style.display="none"}
 const W=f=>async(...a)=>{if(busy)return;busy=1;try{await f(...a)}catch(e){console.error(e);toast(navigator.onLine?"Something went wrong. Please try again":"No internet connection. Check your network and try again")}busy=0;ov()};
-const KB_BOT=[{text:"🤖 Open Bot",url:"https://t.me/"+BOT}],KB_CH=[{text:"📢 Open Official Telegram Channel",url:"https://t.me/NodixEarn"}],KB_PAY=[{text:"💸 Payment Proof Channel",url:"https://t.me/NodixEarnpayment"}];
+const KB_BOT=[{text:"🚀 Open Mini App",web_app:{url:APP_URL}}],KB_BOTC=[{text:"🚀 Open Mini App",url:APPLINK}],KB_CH=[{text:"📢 Open Official Telegram Channel",url:"https://t.me/NodixEarn"}],KB_PAY=[{text:"💸 Payment Proof Channel",url:"https://t.me/NodixEarnpayment"}];
 const tgSend=(c,t,kb)=>fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:c,text:t,parse_mode:"HTML",...(kb?{reply_markup:{inline_keyboard:kb}}:{})})}).catch(()=>{});
-const GIFTCH="https://t.me/+MO_aC9V0JG1iNTRl",APP_BTN=[{text:"🚀 Open Mini App",web_app:{url:"https://no.mywebsitee.online"}}];
+const GIFTCH="https://t.me/+MO_aC9V0JG1iNTRl",APP_BTN=[{text:"🚀 Open Mini App",web_app:{url:APP_URL}}];
 const ticon=l=>/youtu/i.test(l)?"🎬":/whatsapp|wa\.me/i.test(l)?"💬":/tiktok/i.test(l)?"🎵":/instagram/i.test(l)?"📸":/facebook|fb\./i.test(l)?"👍":"📢";
 const tic=l=>/youtu/i.test(l)?'<span class="ci" style="background:#f00">▶</span>':/whatsapp|wa\.me/i.test(l)?'<span class="ci" style="background:#25d366">✆</span>':/tiktok/i.test(l)?'<span class="ci" style="background:#111">♪</span>':/instagram/i.test(l)?'<span class="ci" style="background:linear-gradient(45deg,#f9a03c,#dd2a7b,#8134af)">◎</span>':/facebook|fb\./i.test(l)?'<span class="ci" style="background:#1877f2;font-size:34px">f</span>':/t\.me|telegram/i.test(l)?'<span class="ci" style="background:#2aa3e6"><svg width="30" height="30" viewBox="0 0 24 24"><path fill="#fff" d="M21.9 3.5 2.6 10.9c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 1.9 5.8c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.8-.8l3.2-15.2c.3-1.3-.5-1.9-1.3-1.5z"/></svg></span>':'<span class="ci" style="background:#f0502f">📢</span>';
 const taskLine=t=>ticon(t.link)+" <b>"+esc(t.t)+"</b>  ·  💰 +"+t.r+" coins";
@@ -140,7 +144,7 @@ const taskMsg=a=>"🆕 <b>"+(a.length>1?a.length+" New Tasks Added!":"New Task A
 async function notifyAll(text,kb){const ids=Object.keys(AU);if(!ids.length)return toast("User list not loaded yet");toast("Notifying "+ids.length+" users…");let n=0;for(const id of ids){tgSend(id,text,kb||[APP_BTN]);if(++n%20==0)await sleep(1000)}toast("Notification sent to "+n+" users ✓")}
 function savecfg(){let n;try{n=JSON.parse($("#cj").value)}catch(e){return toast("Invalid JSON")}
  const old=cfg.tasks||{},nw=Object.entries(n.tasks||{}).filter(([k])=>!old[k]).map(([,t])=>t);
- db.ref("config").set(n).then(()=>{toast("Saved ✓");if(nw.length)notifyAll(taskMsg(nw))}).catch(()=>toast("Save failed, check connection"))}
+ db.ref("configBackup").set(JSON.parse(JSON.stringify(cfg)));db.ref("config").set(n).then(()=>{toast("Saved ✓");if(nw.length)notifyAll(taskMsg(nw))}).catch(()=>toast("Save failed, check connection"))}
 const mask=s=>{s=String(s);return s.length>6?s.slice(0,3)+"*".repeat(s.length-5)+s.slice(-2):s[0]+"***"};
 /* ===== ads: Monetag + AdsGalaxy, alternating, auto-fallback ===== */
 const NETS={
@@ -154,8 +158,9 @@ async function adRun(pref){const ks=live();if(!ks.length)return"";
 function pre(s){return new Promise(r=>{if(!s)return r();let n=s;ov(`<img class="ban" src="${WATCH}" style="margin-bottom:14px"><div class="big" id="pc">${n}</div><div style="font-size:18px;margin-top:6px;font-weight:700">Ad starting…</div><small>Please watch the full ad</small>`);const iv=setInterval(()=>{n--;if(n<=0){clearInterval(iv);ov();r()}else{$("#pc").textContent=n;beep(500,.05,"triangle",.04)}},1000)})}
 function cnt(){db.ref(`users/${uid}/adc`).transaction(c=>(c||0)+1,(e,done,sn)=>{if(e||!done)return;const n=sn.val();if(U.ref){db.ref(`users/${U.ref}/refs/${uid}/ads`).set(n);if(n==cfg.refAds)tgSend(U.ref,"🎉 Your friend <b>"+esc(U.name)+"</b> is now an ACTIVE referral! You earn "+cfg.refCom+"% of everything they earn, for life.",[KB_BOT])}})}
 const ad=async pref=>{await pre(cfg.preAd);const k=await adRun(pref);if(k)cnt();return k};
+const ad2=async pref=>{await pre(cfg.preAd);const k=await adRun(pref);if(k){cnt();if(cfg.dbl){await sleep(900+Math.random()*1400);const k2=await adRun();if(k2)cnt()}}return k};
 function reward(n,fn,ic="🎉"){return new Promise(res=>{ov(`<div style="font-size:64px">${ic}</div><div style="font-size:22px;font-weight:800">Congratulations!</div><div class="big">+${n} coins</div><small>${money(n)}</small><button class="b w" style="margin-top:16px" id="cl">Claim Reward</button><small style="margin-top:8px">Coins are added instantly. A short ad follows.</small>`);ok();
- $("#cl").onclick=async()=>{$("#cl").disabled=true;ov();try{const f=Promise.resolve(fn());ok();toast("+"+n+" coins added ✓");await f;await ad()}catch(e){toast("Error, try again")}res()}})}
+ $("#cl").onclick=async()=>{$("#cl").disabled=true;ov();try{const f=Promise.resolve(fn());ok();toast("+"+n+" coins added ✓");await f;await ad2()}catch(e){toast("Error, try again")}res()}})}
 /* ===== money ===== */
 const CUR={NPR:["रु","Nepal (NPR)"],INR:["₹","India (INR)"],MYR:["RM","Malaysia (MYR)"],USD:["$","Other (USDT)"]};
 const cc=()=>U.cur||({ne:"NPR",hi:"INR",ms:"MYR"}[TU.language_code]||"USD");
@@ -174,8 +179,8 @@ function getRef(){const c=[];
  try{const h=new URLSearchParams((location.hash||"").replace(/^#/,""));c.push(h.get("tgWebAppStartParam"))}catch(e){}
  try{c.push(new URLSearchParams(tg.initData||"").get("start_param"))}catch(e){}
  try{c.push(localStorage.pref)}catch(e){}
- for(const x of c){const m=String(x||"").match(/^(?:ref_)?(\d{5,15})$/);if(m)return m[1]}return""}
-async function setRef(ref,silent){ref=String(ref||"").trim().replace(/^ref_/,"");const m=t=>{if(!silent)toast(t)};
+ for(const x of c){const m=String(x||"").match(/^(?:ref[_-]?|r_)?(\d{5,15})$/i);if(m)return m[1]}return""}
+async function setRef(ref,silent){{const mm=String(ref||"").match(/(\d{5,15})/);ref=mm?mm[1]:""}const m=t=>{if(!silent)toast(t)};
  if(!/^\d{5,15}$/.test(ref)||ref===uid){m("Invalid ID");return false}
  const[a,b,c]=await Promise.all([db.ref(`users/${ref}/name`).get(),db.ref(`users/${ref}/ref`).get(),db.ref(`users/${uid}/ref`).get()]);
  if(c.exists()){try{localStorage.removeItem("pref")}catch(e){}m("Referral already linked");return false}
@@ -194,7 +199,7 @@ async function init(){const T0=Date.now();document.documentElement.dataset.th=lo
  const d=s.val(),pr=getRef();
  db.ref("lb/"+uid).update({n:TU.first_name||"User",p:TU.photo_url||"",e:d.earned||0}).catch(()=>{});
  if(pr){try{localStorage.pref=pr}catch(e){}}
- if(pr&&!d.ref&&pr!==uid&&now()-(d.joined||now())<cfg.refDays*864e5){try{await setRef(pr,1)}catch(e){console.error("ref",e)}}
+ if(pr&&!d.ref&&pr!==uid&&now()-(d.joined||now())<cfg.refDays*864e5){for(let i=0;i<3;i++){try{await setRef(pr,1);break}catch(e){console.error("ref retry",i,e);await sleep(1200)}}}
  else if(d.ref){try{localStorage.removeItem("pref")}catch(e){}}
  try{const rr=(await db.ref(`users/${uid}/ref`).get()).val();if(rr){const q=db.ref(`users/${rr}/refs/${uid}`),qv=(await q.get()).val()||{},u={};
   if(!qv.n)u.n=TU.first_name||"User";if(!qv.ts)u.ts=d.joined||now();if((qv.ads||0)<(d.adc||0))u.ads=d.adc||0;if(Object.keys(u).length)await q.update(u)}}catch(e){console.error("ref repair",e)}
@@ -204,11 +209,11 @@ async function init(){const T0=Date.now();document.documentElement.dataset.th=lo
  db.ref("config").on("value",x=>{if(x.exists())setCfg(x.val());render()});
  if(isAdmin){db.ref("gifts").on("value",x=>{AG=x.val()||{};render()});db.ref("wd").limitToLast(100).on("value",x=>{AW=x.val()||{};render()});db.ref("users").on("value",x=>{AU=x.val()||{};render()});db.ref("cr").limitToLast(100).on("value",x=>{AC=x.val()||{};render()})}
  $("#nav").innerHTML=tabs().map(t=>`<a id="n_${t[0]}" onclick="go('${t[0]}')">${t[2]}${t[1]}</a>`).join("");
- setInterval(()=>{if(!lock&&tab=="earn"&&sub!="gift"&&(sub=="ads"||Object.keys(pend).length||Object.keys(bp).length))render()},1000);await sleep(Math.max(0,2200-(Date.now()-T0)));RDY=1;render(1);const sp=$("#spl");sp.style.opacity=0;setTimeout(()=>sp.style.display="none",500)}
+ startTick();await sleep(Math.max(0,2200-(Date.now()-T0)));RDY=1;render(1);setTimeout(askRef,1800);const sp=$("#spl");sp.style.opacity=0;setTimeout(()=>sp.style.display="none",500)}
 const IC={home:'<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3 2 12h3v8h5v-6h4v6h5v-8h3z"/></svg>',board:'<svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 20V10h4v10zm6 0V4h4v16zm6 0v-7h4v7z"/></svg>',refer:'<svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm8 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM9 13c-3 0-7 1.5-7 4.5V20h14v-2.5C16 14.5 12 13 9 13zm8 1c-.5 0-1 .1-1.5.2 1.5 1 2.5 2.4 2.5 4.3V20h5v-2c0-2.2-3.3-4-6-4z"/></svg>',profile:'<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4 0-9 2-9 5v3h18v-3c0-3-5-5-9-5z"/></svg>',admin:'<span class="e">🛠</span>'};
 const tabs=()=>[["home","Home",IC.home],["board","Leaderboard",IC.board],["refer","Refer",IC.refer],["profile","Profile",IC.profile],...(isAdmin?[["admin","Admin",IC.admin]]:[])];
 const NAVOF={earn:"home",games:"home",wallet:"home",creator:"refer"};
-function go(t){tab=t;beep(500,.05);if(cfg.autoAd&&now()-lastAd>cfg.autoAd*1e3&&!busy&&!lock)adRun();render(1);scrollTo(0,0)}
+function go(t){tab=t;beep(500,.05);render(1);scrollTo(0,0)}
 const goE=s=>{sub=s;go("earn")},goG=g=>{gm=g;go("games")};
 function bk(){if(tab=="games"&&(gm||mg||ms)){if((mg&&!mg.over)||(ms&&!ms.over))return toast("Finish the round first");gm=null;mg=null;ms=null;return render(1)}go(tab=="creator"?"refer":"home")}
 function render(f){if(lock||!U.name||!RDY)return;if(!f&&/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||""))return;
@@ -222,7 +227,7 @@ const PG=h=>`<div class="pg">${h}</div>`;
 const credit=()=>`<div class="credit">${FLAG}<div><b>MADE IN NEPAL</b><div style="display:flex;align-items:center;gap:5px">Developer · <img src="${BIBX}" style="width:20px;height:20px;border-radius:50%;object-fit:cover" onerror="this.style.display='none'"> Bibx</div></div></div>`;
 function bellz(){ov(`<div style="font-size:48px">🔔</div><h3>Notifications</h3><p style="color:var(--m);margin:6px 0 14px">${cfg.banner?esc(cfg.banner):"No new notifications"}</p><button class="b w" onclick="ov()">OK</button>`)}
 /* ===== HOME ===== */
-P.home=()=>{const[a,b,c,d]=st(),Wd=wl(),sm=s=>Wd.filter(x=>x.st==s).reduce((q,x)=>q+x.npr,0),S=U.st||{d:0,l:""},cl=S.l==day(),y=new Date(now()-864e5).toDateString(),cur=cl||S.l==y?S.d:0;
+P.home=()=>{const[a,b,c,d]=st(),Wd=wl(),sm=s=>Wd.filter(x=>x.st==s).reduce((q,x)=>q+x.npr,0),nc=s=>Wd.filter(x=>x.st==s).length,S=U.st||{d:0,l:""},cl=S.l==day(),y=new Date(now()-864e5).toDateString(),cur=cl||S.l==y?S.d:0;
  const bx=(n,v)=>`<div class="c"><small>${n}</small><b style="font-size:19px">${fmt(v)}</b><small>${money(v||0)}</small></div>`,mx=(n,v)=>`<div class="c"><small>${n}</small><b style="font-size:19px">${mny(v)}</b></div>`;
  const tk=Object.entries(cfg.tasks||{}).filter(([id])=>!(U.tasks||{})[id]).slice(0,4);
  return `<div class="top"><div class="hi">${av(U.name,TU.photo_url)}<div><b>Hi ${esc(U.name)}!</b><small>Welcome Back 👋</small></div><button class="bell" onclick="bellz()">🔔</button></div>
@@ -238,7 +243,7 @@ P.home=()=>{const[a,b,c,d]=st(),Wd=wl(),sm=s=>Wd.filter(x=>x.st==s).reduce((q,x)
  <div class="c"><div class="r"><b>🔥 Daily streak</b><button class="b" onclick="dc()" ${cl?"disabled":""}>${cl?"Claimed ✓":"Claim"}</button></div>
  <div class="days">${[1,2,3,4,5,6,7].map(i=>`<div class="${i<=cur?"on":""}">D${i}<br>${i<7?"+"+cfg.daily[i-1]:"🎁"}</div>`).join("")}</div><small style="margin-top:8px">Day 7 and after: gift box every day (+${cfg.gift})</small></div>
  <div class="sec">Your earnings</div>
- <div class="g2" style="margin-top:0">${bx("Today",a)}${bx("Last 7 days",b)}${bx("Last 30 days",c)}${bx("Lifetime",d)}${mx("Withdrawn (paid)",sm("approved"))}${mx("Pending",sm("pending"))}</div>${CA()}${credit()}</div>`};
+ <div class="g2" style="margin-top:0">${bx("Today",a)}${bx("This week",b)}${bx("This month",c)}${bx("Lifetime",d)}${mx("Total withdrawn (paid)",sm("approved"))}<div class="c"><small>Pending requests</small><b style="font-size:19px">${mny(sm("pending"))}</b><small>${nc("pending")} request${nc("pending")==1?"":"s"}</small></div><div class="c"><small>Approved requests</small><b style="font-size:19px">${nc("approved")}</b><small>paid out</small></div>${mx("Ready to withdraw",U.cash||0)}</div>${CA()}${credit()}</div>`};
 const dc=W(async()=>{const S=U.st||{d:0,l:""};if(S.l==day())return toast("Already claimed today");const y=new Date(now()-864e5).toDateString();let d=S.l==y?S.d+1:1;if(d>7)d=7;const a=d<7?cfg.daily[d-1]:cfg.gift;
  await reward(a,async()=>{add(uid,a,"daily");await db.ref(`users/${uid}/st`).set({d,l:day()})},d>=7?"🎁":"🔥")});
 /* ===== EARN ===== */
@@ -246,20 +251,20 @@ const adst=k=>{const a=(U.ads||{})[k]||{};let n=a.n||0,s=a.s||0;if(s&&now()-s>86
 const isTg=l=>/^https?:\/\/(t\.me|telegram\.me)\//i.test(l||"");
 function taskCard(id,t){const d=(U.tasks||{})[id],p=pend[id];let b;
  if(d)b='<button class="b g w" disabled>✓ Done</button>';else if(!p)b=`<button class="b w" onclick="jt('${id}')">Join</button>`;
- else{const l=Math.max(0,cfg.verifyWait-Math.floor((now()-p)/1e3));b=l?`<button class="b g w" disabled>Verify ${l}s</button>`:`<button class="b w" onclick="vt('${id}')">Verify</button>`}
+ else{const e=p+cfg.verifyWait*1e3,l=Math.ceil((e-now())/1e3);b=l>0?`<button class="b g w" disabled data-end="${e}" data-pre="Verify ">Verify ${l}s</button>`:`<button class="b w" onclick="vt('${id}')">Verify</button>`}
  return `<div class="tk"><div class="ic">${tic(t.link)}</div><b>${esc(t.t)}</b><div class="cn"><span class="coin s">N</span>${t.r}</div>${b}</div>`}
 P.earn=()=>SH("Earn")+PG(CA()+`<div class="seg">${[["tasks","✅ Tasks"],["bonus","⭐ Bonus"],["ads","▶ Watch"],["gift","🎁 Gift"]].map(s=>`<button class="b ${sub==s[0]?"":"g"}" onclick="sub='${s[0]}';render(1)">${s[1]}</button>`).join("")}</div>`+
  (sub=="tasks"?`<div class="tg">${Object.entries(cfg.tasks||{}).map(([id,t])=>taskCard(id,t)).join("")}</div>`
  :sub=="bonus"?`<div class="c"><b>⭐ Daily Bonus Links</b><small>Tap Open and stay on the website for the full ${cfg.linkWait}–${wmax()} seconds (the exact time is random). The timer counts only while you are on that page. If you come back earlier you must open it again. Then press Verify. Each link can be used once every 24 hours.</small></div>`+Object.values(cfg.links||[]).map((l,i)=>{const ts=(U.links||{})[i],left=ts?ts+864e5-now():0,p=bp[i];let b;
   if(left>0)b=`<button class="b g" disabled>${hm(left)}</button>`;else if(!p)b=`<button class="b" onclick="ol(${i})">Open</button>`;
   else if(p.ok)b=`<button class="b" onclick="vl(${i})">✓ Verify</button>`;
-  else if(!cfg.linkStrict){const w=Math.max(0,p.need-Math.floor((now()-p.t)/1e3));b=w?`<button class="b g" disabled>Wait ${w}s</button>`:`<button class="b" onclick="vl(${i})">Verify</button>`}
+  else if(!cfg.linkStrict){const e=p.t+p.need*1e3,w=Math.ceil((e-now())/1e3);b=w>0?`<button class="b g" disabled data-end="${e}" data-pre="Wait ">Wait ${w}s</button>`:`<button class="b" onclick="vl(${i})">Verify</button>`}
   else b=`<button class="b g" onclick="ol(${i})">Reopen</button>`;
   return `<div class="c r"><div><b>Bonus link #${i+1}</b><small>+${cfg.link} coins</small></div>${b}</div>`}).join("")
  :sub=="ads"?`<div class="c" style="padding:10px"><img class="ban" src="${WATCH}"><small style="text-align:center;margin-top:8px">Watch ads and earn +${cfg.ad} coins each. Up to ${cfg.adsPerDay} per server every 24h · ${cfg.adGap}s cooldown between ads</small></div>`+
   Object.keys(NETS).filter(k=>(cfg.nets||{})[k]!==0).map((k,i)=>{const{n,s}=adst(k),w=Math.ceil((cfg.adGap*1e3-(now()-(window.la||0)))/1e3);let t,dis=0;
    if(n>=cfg.adsPerDay){t="Next in "+hm(s+864e5-now());dis=1}else if(w>0){t="Wait "+w+"s";dis=1}else t="▶ Watch Ads";
-   return `<div class="c"><div class="r"><b>Ad Server ${i+1}</b><span>${n}/${cfg.adsPerDay} today</span></div><div class="bar"><i style="width:${n/cfg.adsPerDay*100}%"></i></div><button class="b w" ${dis?"disabled":""} onclick="wad('${k}')">${t}</button></div>`}).join("")
+   return `<div class="c"><div class="r"><b>Ad Server ${i+1}</b><span>${n}/${cfg.adsPerDay} today</span></div><div class="bar"><i style="width:${n/cfg.adsPerDay*100}%"></i></div><button class="b w" ${dis?"disabled":""} ${w>0&&n<cfg.adsPerDay?`data-end="${(window.la||0)+cfg.adGap*1e3}" data-pre="Wait "`:""} onclick="wad('${k}')">${t}</button></div>`}).join("")
  :`<div class="c" style="text-align:center"><div style="font-size:50px">🎁</div><h3>Gift Code</h3><small>Get codes in our official gift code channel (Dashain, Tihar &amp; special offers). One use per user.</small>
   <button class="b g w" style="margin:10px 0" onclick="tg.openTelegramLink('${GIFTCH}')">📣 Join New Gift Code Channel</button>
   <input id="gc" placeholder="ENTER CODE" style="text-transform:uppercase;text-align:center;letter-spacing:2px"><button class="b w" onclick="rc()">Redeem</button></div>`)+CA());
@@ -293,56 +298,94 @@ const rc=W(async()=>{const code=$("#gc").value.trim().toUpperCase().replace(/[^A
  if(!r.committed||res!="ok"){bad();return toast(res||"Invalid code")}
  const g=r.snapshot.val();await reward(g.coins,async()=>add(uid,g.coins,"gift "+code),"🎁")});
 /* ===== GAMES ===== */
-const GT={m:"Bomb & Flower",s:"Spin & Win",r:"Memory Master"};
-P.games=()=>SH(GT[gm]||"Games")+PG(gm=="m"?GM():gm=="s"?GS():gm=="r"?GR():`<div class="gc" onclick="gm='m';render(1)"><div class="ic">💣</div><div><b>Game 1 · Bomb &amp; Flower</b><small>Open every flower, avoid the bombs</small></div></div>
+const GT={m:"Bomb & Flower",s:"Spin & Win",r:"Memory Master",p:"Colour & High-Low"};
+P.games=()=>SH(GT[gm]||"Games")+PG(gm=="m"?GM():gm=="s"?GS():gm=="r"?GR():gm=="p"?GP():`<div class="gc" onclick="gm='m';render(1)"><div class="ic">💣</div><div><b>Game 1 · Bomb &amp; Flower</b><small>Open every flower, avoid the bombs</small></div></div>
  <div class="gc" onclick="gm='s';render(1)"><div class="ic">🎡</div><div><b>Game 2 · Spin &amp; Win</b><small>Free daily spin &amp; prizes</small></div></div>
- <div class="gc" onclick="gm='r';render(1)"><div class="ic">🧠</div><div><b>Game 3 · Memory Master</b><small>Very hard! Repeat the pattern to win ${cfg.mem.prize} coins</small></div></div>${CA()}`);
+ <div class="gc" onclick="gm='r';render(1)"><div class="ic">🧠</div><div><b>Game 3 · Memory Master</b><small>Very hard! Repeat the pattern to win ${cfg.mem.prize} coins</small></div></div>
+ <div class="gc" onclick="gm='p';render(1)"><div class="ic">🎨</div><div><b>Game 4 · Colour &amp; High-Low</b><small>Predict the card or colour. Very low odds!</small></div></div>${CA()}`);
 function GM(){const G=cfg.game,m=G.mines[gd];
  if(!mg)return `<div class="c"><h3>💣 Bomb &amp; Flower</h3><small>Open boxes one by one. Every flower is safe – but you must open ALL flowers to win. One bomb ends the game. This is a very hard game: the win chance is shown below.</small>
  <div class="seg" style="grid-template-columns:repeat(3,1fr)">${Object.keys(G.mines).map(k=>`<button class="b ${gd==k?"":"g"}" onclick="gd='${k}';render(1)">${k}</button>`).join("")}</div>
  <small>${m.r}×${m.c} boxes · ${m.b} bombs · ${m.r*m.c-m.b} flowers · win chance ${+(m.p*100).toFixed(1)}%</small>
  <div class="r" style="margin:12px 0"><button class="b g" onclick="gb=Math.max(${G.min},gb-${G.step});render(1)">−</button><div style="text-align:center"><b style="font-size:20px">Bet ${gb}</b><small>Win ${Math.round(gb*m.m)} coins</small></div><button class="b g" onclick="gb+=${G.step};render(1)">+</button></div>
- <button class="b w" onclick="gs()">▶ Play (ad plays first)</button></div>`;
+ ${FREE(gb)}<button class="b w" ${(U.coins||0)<gb&&!(U.fp>0)?"disabled":""} onclick="gs()">▶ Play (ad plays first)</button></div>`;
  const n=m.r*m.c;return `<div class="c"><div class="r"><b>${mg.d}</b><span>🌸 ${mg.n}/${mg.ns}</span><span>Win ${mg.pay}</span></div>
  <div class="grid" style="grid-template-columns:repeat(${m.c},1fr)">${[...Array(n)].map((_,i)=>{let t="❔",c="";if(mg.op[i]){t="🌸";c="o"}else if(mg.over){if(mg.res=="lose"&&i==mg.bomb){t="💣";c="x"}else if(mg.res=="win"){t="💣";c="x"}else c="d"}return `<button class="tile ${c}" onclick="mo(${i})">${t}</button>`}).join("")}</div>
- ${mg.over?`<div style="text-align:center"><b style="font-size:20px">${mg.res=="win"?"🎉 You found every flower!":"💥 Boom! You lost "+mg.bet+" coins"}</b><br><button class="b w" style="margin-top:10px" onclick="mg=null;render(1)">Play again</button></div>`:`<small style="text-align:center">Tap a box. Find all flowers!</small>`}</div>`}
-const gs=W(async()=>{const m=cfg.game.mines[gd];if((U.coins||0)<gb)return toast("Not enough coins");await ad();let k=false;
- await db.ref(`users/${uid}/coins`).transaction(v=>{if((v||0)<gb)return;k=true;return v-gb});if(!k)return toast("Not enough coins");
- db.ref(`users/${uid}/log`).push({a:-gb,t:now(),w:"game bet"});const ns=m.r*m.c-m.b,win=Math.random()<m.p;
- mg={d:gd,bet:gb,ns,loseAt:win?-1:Math.floor(Math.random()*ns),n:0,op:{},over:0,res:"",pay:Math.round(gb*m.m)};render(1)});
+ ${mg.over?`<div style="text-align:center"><b style="font-size:20px">${mg.res=="win"?"🎉 You found every flower!":(mg.free?"💥 Boom! Free play over":"💥 Boom! You lost "+mg.bet+" coins")}</b><br><button class="b w" style="margin-top:10px" onclick="mg=null;render(1)">Play again</button></div>`:`<small style="text-align:center">Tap a box. Find all flowers!</small>`}</div>`}
+const gs=W(async()=>{const m=cfg.game.mines[gd];if((U.coins||0)<gb&&!(U.fp>0))return toast("Not enough coins. Watch "+cfg.freeAds+" ads for a free play");await ad2();const pm_=await payBet(gb,"game bet");if(!pm_)return toast("Not enough coins");
+ const ns=m.r*m.c-m.b,win=Math.random()<m.p;
+ mg={d:gd,bet:gb,free:pm_==2,ns,loseAt:win?-1:Math.floor(Math.random()*ns),n:0,op:{},over:0,res:"",pay:Math.round(gb*m.m)};render(1)});
 function mo(i){if(!mg||mg.over||mg.op[i]||busy)return;
  if(mg.n==mg.loseAt){mg.over=1;mg.res="lose";mg.bomb=i;bad();render(1);return}
  mg.op[i]=1;mg.n++;beep(450+mg.n*40,.08);
  if(mg.n>=mg.ns){mg.over=1;mg.res="win";render(1);ok();const p=mg.pay;setTimeout(()=>W(async()=>{await reward(p,async()=>add(uid,p,"game win"),"🌸")})(),600)}else render(1)}
-function GS(){const sp=cfg.spin,n=sp.prizes.length,seg=360/n,fr=U.spinDay!==day(),mid=new Date().setHours(24,0,0,0)-now(),cols=["#f6822c","#d9361b"],gr=sp.prizes.map((_,i)=>`${cols[i%2]} ${i*seg}deg ${(i+1)*seg}deg`).join(",");
+function GS(){const SA=cfg.spinAds||3,sp=cfg.spin,n=sp.prizes.length,seg=360/n,fr=U.spinDay!==day(),mid=new Date().setHours(24,0,0,0)-now(),cols=["#f6822c","#d9361b"],gr=sp.prizes.map((_,i)=>`${cols[i%2]} ${i*seg}deg ${(i+1)*seg}deg`).join(",");
  return `<div class="whw"><div class="arr"><svg viewBox="0 0 46 54" width="48"><path d="M3 4h40L23 50z" fill="#2f8be8" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M9 9h28L23 34z" fill="#8fd0ff"/></svg></div>
  <div class="wh" id="wh" style="background:conic-gradient(${gr});transform:rotate(${ang}deg)">${sp.prizes.map((p,i)=>`<i style="transform:rotate(${i*seg+seg/2}deg) translateY(calc(var(--S) * -0.36))"><span>${p?p:"😅"}</span></i>`).join("")}<div class="hub"></div></div></div>
  <div style="text-align:center;margin-bottom:6px"><small>${fr?"✅ Your free spin is ready!":"Free spin used · next in "+hm(mid)}</small></div>
  <button class="b w" style="margin:6px 0" onclick="spin('free')" ${fr?"":"disabled"}>🎁 Free Spin</button>
  <button class="b w" style="margin:6px 0" onclick="spin('coin')">🪙 Spin for ${sp.cost} coins</button>
- <div class="c"><div class="r"><b>▶ Spin with ads</b><div class="dots"><span class="${sa>=1?"on":""}"></span><span class="${sa>=2?"on":""}"></span></div></div><small>Watch 2 ads to unlock one spin · ${sa}/2 watched</small>
- <button class="b w" style="margin-top:8px" onclick="${sa>=2?"spin('ads')":"sad()"}">${sa>=2?"🎡 Spin now!":"▶ Watch ad "+(sa+1)+" of 2"}</button></div>`}
+ <div class="c"><div class="r"><b>▶ Spin with ads</b><div class="dots">${[...Array(SA)].map((_,i)=>`<span class="${sa>i?"on":""}"></span>`).join("")}</div></div><small>Watch ${SA} ads to unlock one spin · ${sa}/${SA} watched</small>
+ <button class="b w" style="margin-top:8px" onclick="${sa>=SA?"spin('ads')":"sad()"}">${sa>=SA?"🎡 Spin now!":"▶ Watch ad "+(sa+1)+" of "+SA}</button></div>`}
 const sad=W(async()=>{await ad();sa++;ok();render(1)});
 async function spin(m){if(lock||busy)return;const sp=cfg.spin,seg=360/sp.prizes.length;
- if(m=="free"&&U.spinDay===day())return;if(m=="coin"&&(U.coins||0)<sp.cost)return toast("Not enough coins");if(m=="ads"&&sa<2)return;
- if(!$("#wh"))return;lock=1;if(m=="free")db.ref(`users/${uid}/spinDay`).set(day());if(m=="coin")add(uid,-sp.cost,"spin");if(m=="ads")sa-=2;
+ if(m=="free"&&U.spinDay===day())return;if(m=="coin"&&(U.coins||0)<sp.cost)return toast("Not enough coins");if(m=="ads"&&sa<(cfg.spinAds||3))return;
+ if(!$("#wh"))return;lock=1;if(m=="free")db.ref(`users/${uid}/spinDay`).set(day());if(m=="coin")add(uid,-sp.cost,"spin");if(m=="ads")sa-=(cfg.spinAds||3);
  const w=sp.w,tot=w.reduce((a,b)=>a+b,0);let r=Math.random()*tot,i=0;for(;i<w.length;i++)if((r-=w[i])<0)break;i=Math.min(i,w.length-1);
  ang=ang-ang%360+1800+(360-(i*seg+seg/2));$("#wh").style.transform=`rotate(${ang}deg)`;
  let k=0;const iv=setInterval(()=>{beep(300+k*9,.04,"triangle",.07);if(++k>42)clearInterval(iv)},100);
  setTimeout(async()=>{lock=0;const p=sp.prizes[i];render(1);if(p){W(async()=>{await reward(p,async()=>add(uid,p,"spin win"),"🎡")})()}else{bad();toast("Try again!")}},4400)}
 const COL=["#ef4444","#22c55e","#3b82f6","#eab308"],lit=(i,o)=>{const e=document.querySelectorAll(".pad")[i];e&&e.classList.toggle("lit",!!o)};
 function GR(){const M=cfg.mem;
- if(!ms)return `<div class="c"><h3>🧠 Memory Master</h3><small>Watch the colour pattern, then repeat it. It gets longer every round. Reach round ${M.target} to win ${M.prize} coins. Entry: ${M.cost} coins.</small><button class="b w" style="margin-top:10px" onclick="mstart()">▶ Play (ad plays first)</button></div>`;
+ if(!ms)return `<div class="c"><h3>🧠 Memory Master</h3><small>Watch the colour pattern, then repeat it. It gets longer every round. Reach round ${M.target} to win ${M.prize} coins. Entry: ${M.cost} coins.</small>${FREE(M.cost)}<button class="b w" style="margin-top:10px" ${(U.coins||0)<M.cost&&!(U.fp>0)?"disabled":""} onclick="mstart()">▶ Play (ad plays first)</button></div>`;
  return `<div class="c"><div class="r"><b>Round ${ms.seq.length}/${M.target}</b><span>${ms.over?(ms.res=="win"?"🎉 You win!":"❌ Wrong pad"):ms.show?"👀 Watch…":"👆 Your turn"}</span></div>
  <div class="pads">${COL.map((c,i)=>`<button class="pad" style="background:${c}" onclick="mp(${i})"></button>`).join("")}</div>${ms.over?`<button class="b w" onclick="ms=null;render(1)">Play again</button>`:""}</div>`}
-const mstart=W(async()=>{const M=cfg.mem;if((U.coins||0)<M.cost)return toast("Not enough coins");await ad();let k=false;
- await db.ref(`users/${uid}/coins`).transaction(v=>{if((v||0)<M.cost)return;k=true;return v-M.cost});if(!k)return toast("Not enough coins");
- db.ref(`users/${uid}/log`).push({a:-M.cost,t:now(),w:"memory entry"});ms={seq:[],i:0,show:1,over:0,res:""};await mnext()});
+const mstart=W(async()=>{const M=cfg.mem;if((U.coins||0)<M.cost&&!(U.fp>0))return toast("Not enough coins. Watch "+cfg.freeAds+" ads for a free play");await ad2();if(!await payBet(M.cost,"memory entry"))return toast("Not enough coins");
+ ms={seq:[],i:0,show:1,over:0,res:""};await mnext()});
 async function mnext(){ms.seq.push(Math.random()*4|0);ms.i=0;ms.show=1;render(1);lock=1;await sleep(700);
- for(const p of ms.seq){lit(p,1);beep(260+p*120,.25);await sleep(550);lit(p,0);await sleep(250)}lock=0;ms.show=0;render(1)}
+ const spd=Math.max(230,560-ms.seq.length*28);for(const p of ms.seq){lit(p,1);beep(260+p*120,.25);await sleep(spd);lit(p,0);await sleep(Math.max(120,spd*.45))}lock=0;ms.show=0;render(1)}
 function mp(i){if(!ms||ms.show||ms.over)return;lit(i,1);beep(260+i*120,.15);setTimeout(()=>lit(i,0),180);
  if(i!=ms.seq[ms.i]){ms.over=1;ms.res="lose";bad();setTimeout(()=>render(1),250);return}
  ms.i++;if(ms.i==ms.seq.length){if(ms.seq.length>=cfg.mem.target){ms.over=1;ms.res="win";ok();const p=cfg.mem.prize;setTimeout(()=>{render(1);W(async()=>{await reward(p,async()=>add(uid,p,"memory win"),"🧠")})()},400)}else{ms.show=1;setTimeout(mnext,700)}}}
+/* ===== countdown ticker (updates text in place, so taps are never lost) ===== */
+let lastTick=0;
+function tick(){const t=now();if(t-lastTick<350)return;lastTick=t;let re=0;document.querySelectorAll("[data-end]").forEach(e=>{const l=Math.ceil((+e.dataset.end-t)/1000);if(l<=0)re=1;else e.textContent=e.dataset.pre+l+"s"});if(re&&!lock&&!busy)render()}
+function startTick(){setInterval(tick,500);(function raf(){tick();requestAnimationFrame(raf)})();["visibilitychange","focus","pageshow","touchstart"].forEach(ev=>document.addEventListener(ev,()=>{lastTick=0;tick()},{passive:true,capture:true}));try{tg.onEvent("activated",()=>{lastTick=0;tick()})}catch(e){}}
+/* ===== free play: no coins -> watch ads ===== */
+const FREE=cost=>{const co=U.coins||0,fp=U.fp||0,fa=U.fa||0,N=cfg.freeAds||3;if(co>=cost)return"";if(fp>0)return`<div class="eta">🎟 You have ${fp} free play${fp>1?"s":""}. It is used automatically.</div>`;
+ return `<div class="note"><b>Not enough coins</b><br>Watch ${N} ads to unlock one free play.<div class="dots" style="margin:10px 0">${[...Array(N)].map((_,i)=>`<span class="${fa>i?"on":""}"></span>`).join("")}</div><button class="b w" onclick="fad()">▶ Watch ad ${fa+1} of ${N}</button></div>`};
+const fad=W(async()=>{const N=cfg.freeAds||3;await ad();const fa=(U.fa||0)+1;if(fa>=N){await db.ref(`users/${uid}/fp`).transaction(v=>(v||0)+1);await db.ref(`users/${uid}/fa`).set(0);ok();toast("🎟 Free play unlocked!")}else{await db.ref(`users/${uid}/fa`).set(fa);ok()}render(1)});
+async function payBet(cost,why){let k=false;await db.ref(`users/${uid}/coins`).transaction(v=>{if((v||0)<cost)return;k=true;return +((v||0)-cost).toFixed(2)});if(k){db.ref(`users/${uid}/log`).push({a:-cost,t:now(),w:why});return 1}
+ let f=false;await db.ref(`users/${uid}/fp`).transaction(v=>{if((v||0)<1)return;f=true;return v-1});return f?2:0}
+/* ===== GAME 4: Colour & High-Low ===== */
+let pmd="hl",pb=15,pr=null;
+const HLC=["A","2","3","4","5","6","7","8","9","10","J","Q","K"],COLS={R:["Red","#ef4444"],G:["Green","#22c55e"],V:["Violet","#8b5cf6"]};
+function GP(){const Q=cfg.pred,G=cfg.game,cant=(U.coins||0)<pb&&!(U.fp>0),dis=cant||busy?"disabled":"";
+ const win=pmd=="hl"?Math.round(pb*Q.hl.m):Math.round(pb*Q.col.rm),
+ info=pmd=="hl"?`High = 8–K · Low = A–6 · a 7 is a house card (you lose) · win chance ${+(Q.hl.p*100).toFixed(1)}%`:`Red / Green win chance ${+(Q.col.rg*100).toFixed(1)}% (×${Q.col.rm}) · Violet ${+(Q.col.v*100).toFixed(1)}% (×${Q.col.vm})`;
+ let area="";
+ if(pmd=="hl")area=`<div class="pcard ${pr&&pr.flip?"flip":""}"><div class="in"><div class="k">?</div><div class="f">${pr?HLC[pr.res-1]:""}</div></div></div>`;
+ else if(pr)area=`<div class="rball" style="background:${COLS[pr.res][1]}">${COLS[pr.res][0]}</div>`;
+ const out=pr&&pr.done?`<div style="text-align:center;margin:6px 0"><b style="font-size:20px">${pr.win?"🎉 You won +"+pr.pay+" coins":(pr.free?"❌ You lost (free play)":"❌ You lost "+pb+" coins")}</b></div>`:"";
+ const btns=pmd=="hl"?`<div class="g2" style="margin:8px 0"><button class="b" ${dis} onclick="pplay('H')">⬆️ High</button><button class="b" ${dis} onclick="pplay('L')">⬇️ Low</button></div>`
+  :`<div class="balls">${["R","G","V"].map(k=>`<button class="ball" ${dis} style="background:${COLS[k][1]}" onclick="pplay('${k}')">${COLS[k][0]}</button>`).join("")}</div>`;
+ return `<div class="c"><div class="seg" style="grid-template-columns:1fr 1fr"><button class="b ${pmd=="hl"?"":"g"}" onclick="pmd='hl';pr=null;render(1)">🃏 High / Low</button><button class="b ${pmd=="col"?"":"g"}" onclick="pmd='col';pr=null;render(1)">🎨 Colour</button></div>
+ <small>${info}. This is a very hard game – you will lose most rounds.</small>${area}${out}
+ <div class="r" style="margin:10px 0"><button class="b g" onclick="pb=Math.max(${G.min},pb-${G.step});render(1)">−</button><div style="text-align:center"><b style="font-size:20px">Bet ${pb}</b><small>Win ${win} coins${pmd=="col"?" (Violet "+Math.round(pb*Q.col.vm)+")":""}</small></div><button class="b g" onclick="pb+=${G.step};render(1)">+</button></div>
+ ${FREE(pb)}${btns}<small style="text-align:center">An ad plays before each round</small></div>`}
+const pplay=W(async pick=>{const Q=cfg.pred;if((U.coins||0)<pb&&!(U.fp>0))return toast("Not enough coins. Watch "+cfg.freeAds+" ads for a free play");
+ await ad2();const m=await payBet(pb,"predictor bet");if(!m)return toast("Not enough coins");
+ const r=a=>a[Math.random()*a.length|0];let win,res,pay;
+ if(pmd=="hl"){win=Math.random()<Q.hl.p;pay=Math.round(pb*Q.hl.m);const hi=[8,9,10,11,12,13],lo=[1,2,3,4,5,6];
+  res=win?(pick=="H"?r(hi):r(lo)):(Math.random()<.35?7:(pick=="H"?r(lo):r(hi)))}
+ else{const v=pick=="V";win=Math.random()<(v?Q.col.v:Q.col.rg);pay=Math.round(pb*(v?Q.col.vm:Q.col.rm));res=win?pick:r(["R","G","V"].filter(x=>x!=pick))}
+ pr={pick,res,win,pay,free:m==2,flip:1,done:0};render(1);await sleep(1300);pr.done=1;render(1);
+ if(win)await reward(pay,async()=>add(uid,pay,"predictor win"),pmd=="hl"?"🃏":"🎨");else bad()});
+/* ===== referral prompt + admin link ===== */
+function askRef(){if(!U.tos||U.ref||busy||ovOpen()||localStorage.askedRef||now()-(U.joined||0)>=cfg.refDays*864e5)return;
+ ov(`<div style="font-size:54px">👥</div><h3>Were you invited?</h3><small style="margin-bottom:8px">Enter your friend's Telegram ID or paste their invite link so they get credit.</small><input id="rq" placeholder="Friend's ID or invite link"><button class="b w" onclick="lkRef()">Link friend</button><button class="b g w" style="margin-top:8px" onclick="localStorage.askedRef=1;ov()">Skip</button>`)}
+async function lkRef(){const r=await setRef($("#rq").value);if(r){localStorage.askedRef=1;ov()}}
+async function arf(id){const r=($("#rf"+id).value||"").replace(/\D/g,"");if(!r||r===id)return toast("Invalid referrer ID");const u=AU[id]||{},up={[`users/${id}/ref`]:r,[`users/${r}/refs/${id}`]:{n:u.name||"User",ts:u.joined||now(),ads:u.adc||0}};if(u.ref&&u.ref!==r)up[`users/${u.ref}/refs/${id}`]=null;await db.ref().update(up);toast("Referral linked ✓")}
 /* ===== LEADERBOARD ===== */
 P.board=()=>{const L=LB.filter(x=>(x.e||0)>0),pos=[L[1],L[0],L[2]],cl=["","f",""],md=["🥈","🥇","🥉"];
  const pod=pos.map((x,i)=>x?`<div class="pc ${cl[i]}">${i==1?'<span class="crw">👑</span>':""}${av(x.n,x.p)}<span class="md">${md[i]}</span><div class="nm">${esc(x.n||"User")}</div><div class="pv"><span class="coin s">N</span>${fmt(x.e)}</div></div>`:`<div class="pc ${cl[i]}"><div class="nm" style="opacity:.5">—</div></div>`).join("");
@@ -425,14 +468,14 @@ const wsub=W(async()=>{const m=$("#wm").value,a=$("#wa").value.trim(),n=+$("#wn"
  if(!k){bad();return toast("Not enough money balance")}
  const id=db.ref("wd").push().key,w={id,uid,name:U.name,uname:U.uname||"",m,a,amt:n,cu,npr,st:"pending",ts:now()};
  await db.ref().update({[`wd/${id}`]:w,[`users/${uid}/wds/${id}`]:w});if(U.ref)db.ref(`users/${U.ref}/refs/${uid}/wr`).set(1);
- tgSend(CH,`🔔 <b>New Withdraw Request</b> (Pending)\n\n👤 Name: ${esc(U.name)}\n🔗 Username: ${U.uname?"@"+esc(U.uname):"-"}\n🆔 Chat ID: <code>${uid}</code>\n💳 Platform: ${m}\n📱 Number/Address: <code>${esc(a)}</code>\n💵 Amount: ${CUR[cu][0]} ${n} ${cu=="USD"?"(USDT)":""}\n🇳🇵 NPR value: ${npr.toFixed(2)}\n🕒 ${new Date().toLocaleString()}`,[KB_BOT,KB_CH]);
+ tgSend(CH,`🔔 <b>New Withdraw Request</b> (Pending)\n\n👤 Name: ${esc(U.name)}\n🔗 Username: ${U.uname?"@"+esc(U.uname):"-"}\n🆔 Chat ID: <code>${uid}</code>\n💳 Platform: ${m}\n📱 Number/Address: <code>${esc(a)}</code>\n💵 Amount: ${CUR[cu][0]} ${n} ${cu=="USD"?"(USDT)":""}\n🇳🇵 NPR value: ${npr.toFixed(2)}\n🕒 ${new Date().toLocaleString()}`,[KB_BOTC,KB_CH]);
  tgSend(uid,"⏳ Your withdrawal of "+CUR[cu][0]+n+" to "+esc(mask(a))+" is pending admin approval.\n\n"+ETA+" You will get a message here as soon as it is paid.",[KB_BOT,KB_CH]);tgSend(ADMIN,"🔔 New withdrawal request from "+esc(U.name)+": "+CUR[cu][0]+n+" via "+m+". Open the Admin tab to approve.");
  ok();toast("Withdrawal requested ✓");render(1)});
 /* ===== ADMIN ===== */
 P.admin=()=>{const US=Object.entries(AU),W_=Object.values(AW).sort((a,b)=>b.ts-a.ts);
  const nv=[["w","Withdraw"],["u","Users"],["t","Tasks"],["g","Gifts"],["a","Ads"],["b","Notify"],["r","Creators"],["c","Config"]].map(s=>`<button class="b ${as==s[0]?"":"g"}" style="padding:8px 12px;min-height:42px;font-size:14px" onclick="as='${s[0]}';render(1)">${s[1]}</button>`).join("");let b="";
  if(as=="w")b=`<small>Pending: ${W_.filter(x=>x.st=="pending").length}</small>`+W_.map(w=>`<div class="c"><b>${esc(w.name)}</b> @${esc(w.uname||"-")}<br>ID <code onclick="cp('${w.uid}')">${w.uid}</code><br>${w.m}: <code onclick="cp('${esc(w.a)}')">${esc(w.a)}</code> 📋<br>${CUR[w.cu][0]}${w.amt} · NPR ${(+w.npr).toFixed(2)} · <i>${w.st}</i>${w.st=="pending"?`<div class="r" style="margin-top:8px"><button class="b" onclick="wap('${w.id}',1)">Approve</button><button class="b x" onclick="wap('${w.id}',0)">Reject</button></div>`:""}</div>`).join("")||"<small>None</small>";
- if(as=="u")b=`<input placeholder="Search id / name" value="${esc(uq)}" oninput="uq=this.value" onchange="render(1)"><button class="b x w" style="margin:6px 0" onclick="purge()">🧹 Remove all test / fake users</button><small>Users: ${US.length} · Coins: ${US.reduce((a,[,u])=>a+(u.coins||0),0)}</small>`+US.filter(([id,u])=>!uq||id.includes(uq)||(u.name||"").toLowerCase().includes(uq.toLowerCase())).sort((a,b)=>(b[1].coins||0)-(a[1].coins||0)).slice(0,30).map(([id,u])=>`<div class="c"><b>${esc(u.name)}</b> @${esc(u.uname||"-")} · ${id}<br>${u.coins||0} coins · cash NPR ${(+u.cash||0).toFixed(2)}<div class="r"><input id="u${id}" type="number" placeholder="coins"><button class="b" onclick="ac2('${id}',1)">+</button><button class="b x" onclick="ac2('${id}',-1)">−</button></div><button class="b g" style="margin-top:6px;min-height:40px" onclick="if(confirm('Delete this user?')){db.ref('users/${id}').remove();db.ref('lb/${id}').remove()}">🗑 Delete user</button></div>`).join("");
+ if(as=="u")b=`<input placeholder="Search id / name" value="${esc(uq)}" oninput="uq=this.value" onchange="render(1)"><button class="b x w" style="margin:6px 0" onclick="purge()">🧹 Remove inactive test users (safe)</button><small>Users: ${US.length} · Coins: ${US.reduce((a,[,u])=>a+(u.coins||0),0)}</small>`+US.filter(([id,u])=>!uq||id.includes(uq)||(u.name||"").toLowerCase().includes(uq.toLowerCase())).sort((a,b)=>(b[1].coins||0)-(a[1].coins||0)).slice(0,30).map(([id,u])=>`<div class="c"><b>${esc(u.name)}</b> @${esc(u.uname||"-")} · ${id}<br>${u.coins||0} coins · cash NPR ${(+u.cash||0).toFixed(2)}<div class="r"><input id="u${id}" type="number" placeholder="coins"><button class="b" onclick="ac2('${id}',1)">+</button><button class="b x" onclick="ac2('${id}',-1)">−</button></div><button class="b g" style="margin-top:6px;min-height:40px" onclick="if(confirm('Delete this user?')){db.ref('users/${id}').remove();db.ref('lb/${id}').remove()}">🗑 Delete user</button><div class="r" style="margin-top:6px"><input id="rf${id}" inputmode="numeric" placeholder="Referrer ID"><button class="b g" style="min-height:44px" onclick="arf('${id}')">🔗 Link</button></div></div>`).join("");
  if(as=="t")b=`<div class="c"><input id="tt" placeholder="Task title"><input id="tl" placeholder="Link https://t.me/... or TikTok / WhatsApp / YouTube"><input id="tc2" placeholder="@channelusername (Telegram only, bot must be admin). Leave EMPTY for TikTok / WhatsApp / YouTube"><input id="tr" type="number" placeholder="Reward coins"><button class="b w" onclick="at()">Add task</button></div>`+Object.entries(cfg.tasks||{}).map(([id,t])=>`<div class="c r"><div>${esc(t.t)}<small>${esc(t.chat)} · +${t.r}</small></div><button class="b x" onclick="db.ref('config/tasks/${id}').remove()">Delete</button></div>`).join("");
  if(as=="g")b=`<div class="c"><b>Create gift code</b><small>It is broadcast to all users and auto-posted to the gift channel.</small><input id="gl" placeholder="Offer title – what is this gift for? e.g. Dashain Official Offer"><input id="gk" placeholder="CODE (blank = random)" style="text-transform:uppercase"><select id="gt"><option value="c">Reward in Coins</option><option value="m">Reward in NPR (money)</option></select><input id="ga" type="number" placeholder="Reward amount"><input id="gm2" type="number" placeholder="Max users (how many can redeem)"><input id="gx" type="number" placeholder="Expires in days (0 = never)"><button class="b w" onclick="ng()">Create &amp; broadcast</button></div>`+Object.entries(AG).sort((a,b)=>b[1].created-a[1].created).map(([k,g])=>`<div class="c r"><div><code>${esc(k)}</code><small>${esc(g.label||"")} · ${g.coins} coins · ${g.used||0}/${g.max} used · ${g.exp?"exp "+new Date(g.exp).toLocaleDateString():"no expiry"}</small></div><div><button class="b g" style="min-height:40px;padding:6px 10px" onclick="cp('${esc(k)}')">Copy</button> <button class="b x" style="min-height:40px;padding:6px 10px" onclick="db.ref('gifts/${esc(k)}').remove()">✕</button></div></div>`).join("");
  if(as=="a")b=`<div class="c"><small>2 networks: Monetag and AdsGalaxy. They alternate on every ad; if one fails the other plays. Use Test to check each one.</small></div>`+Object.entries(NETS).map(([k,n])=>`<div class="c r"><div><b>${n.n}</b><small>${(cfg.nets||{})[k]!==0?"ON":"OFF"} · ${n.ok()?"SDK loaded":"SDK not loaded"}</small></div><div><button class="b g" style="min-height:42px;padding:6px 10px" onclick="tadn('${k}')">Test</button> <button class="b ${(cfg.nets||{})[k]!==0?"":"g"}" style="min-height:42px;padding:6px 10px" onclick="db.ref('config/nets/${k}').set(${(cfg.nets||{})[k]!==0?0:1})">${(cfg.nets||{})[k]!==0?"ON":"OFF"}</button></div></div>`).join("");
@@ -443,7 +486,7 @@ P.admin=()=>{const US=Object.entries(AU),W_=Object.values(AW).sort((a,b)=>b.ts-a
 async function wap(id,y){const w=AW[id];if(!w||w.st!="pending")return;const s=y?"approved":"rejected";
  await db.ref().update({[`wd/${id}/st`]:s,[`users/${w.uid}/wds/${id}/st`]:s});
  if(y){const rf=(await db.ref(`users/${w.uid}/ref`).get()).val();if(rf)db.ref(`users/${rf}/refs/${w.uid}/wd`).set(w.npr);
-  tgSend(CH,`✅ <b>Payment Successful</b>\n\n👤 ${esc(w.name)} ${w.uname?"(@"+esc(w.uname)+")":""}\n💳 Platform: ${w.m}\n📱 To: <code>${esc(mask(w.a))}</code>\n💵 Amount: ${CUR[w.cu][0]} ${w.amt} ${w.cu=="USD"?"(USDT)":""}\n\nPaid successfully ✔️`,[KB_BOT,KB_PAY]);tgSend(ADMIN,"✅ Approved & paid: "+esc(w.name)+" "+CUR[w.cu][0]+w.amt,[KB_BOT,KB_PAY]);
+  tgSend(CH,`✅ <b>Payment Successful</b>\n\n👤 ${esc(w.name)} ${w.uname?"(@"+esc(w.uname)+")":""}\n💳 Platform: ${w.m}\n📱 To: <code>${esc(mask(w.a))}</code>\n💵 Amount: ${CUR[w.cu][0]} ${w.amt} ${w.cu=="USD"?"(USDT)":""}\n\nPaid successfully ✔️`,[KB_BOTC,KB_PAY]);tgSend(ADMIN,"✅ Approved & paid: "+esc(w.name)+" "+CUR[w.cu][0]+w.amt,[KB_BOT,KB_PAY]);
   tgSend(w.uid,`✅ Your withdrawal of ${CUR[w.cu][0]}${w.amt} to ${esc(mask(w.a))} was paid successfully!`,[KB_BOT,KB_PAY])}
  else{db.ref(`users/${w.uid}/cash`).transaction(v=>+((v||0)+w.npr).toFixed(4));tgSend(CH,`❌ <b>Rejected</b> – ${esc(w.name)} (<code>${w.uid}</code>) ${CUR[w.cu][0]}${w.amt}`);tgSend(w.uid,"❌ Your withdrawal was rejected. Your money was refunded to your balance.")}
  ok();toast(s)}
@@ -460,11 +503,11 @@ function ng(){const lb=$("#gl").value.trim(),a=+$("#ga").value,m=+$("#gm2").valu
  const coins=$("#gt").value=="m"?Math.round(a*cfg.rate):Math.round(a),exp=x>0?now()+x*864e5:0;
  db.ref("gifts/"+k).set({label:lb,coins,max:m,used:0,exp,created:now()}).then(()=>{toast("Created: "+k);
   const msg="✨🎁✨ <b>NEW GIFT CODE</b> ✨🎁✨\n━━━━━━━━━━━━━━\n🏷 <b>"+esc(lb)+"</b>\n\n🔑 Code: <code>"+k+"</code>\n💰 Reward: <b>"+coins+" coins</b>\n👥 First "+m+" users only"+(exp?"\n⏳ Valid until: "+new Date(exp).toISOString().slice(0,10):"")+"\n━━━━━━━━━━━━━━\n👉 Tap Copy Code, open the Mini App, go to <b>Earn → Gift</b> and redeem it now!\n\n🇳🇵 Made in Nepal · 👨‍💻 Creator Developer: <b>Bibx</b>",
-  cpy=[{text:"📋 Copy Code",copy_text:{text:k}}],direct=[{text:"🚀 Open Mini App",url:"https://t.me/"+BOT+"/"+APP_SHORT}],chn=[{text:"📣 Gift Code Channel",url:GIFTCH}];
+  cpy=[{text:"📋 Copy Code",copy_text:{text:k}}],direct=KB_BOTC,chn=[{text:"📣 Gift Code Channel",url:GIFTCH}];
   tgSend(GIFTCHAT,msg,[cpy,direct,chn]);notifyAll(msg,[cpy,APP_BTN,chn])}).catch(()=>toast("Save failed"))}
 async function tadn(k){try{if(!NETS[k].ok())return toast(NETS[k].n+": not ready (SDK not loaded)");await NETS[k].f();toast(NETS[k].n+": ✓ ad played")}catch(e){toast(NETS[k].n+": ✗ "+(e&&(e.code||e.message||e.description)||"failed"))}}
 async function bc(){const m=$("#bm").value;if(!m)return toast("Write a message");let n=0;for(const id of Object.keys(AU)){tgSend(id,"📢 "+esc(m));if(++n%25==0)await sleep(1000)}toast("Sent to "+n)}
-function purge(){if(!confirm("Delete ALL users except admin? This cannot be undone."))return;if(!confirm("Really sure? All coins, cash and history of every user will be removed."))return;Object.keys(AU).filter(id=>id!=String(ADMIN)).forEach(id=>{db.ref("users/"+id).remove();db.ref("lb/"+id).remove()});toast("Users removed")}
+function purge(){const L=Object.entries(AU).filter(([id,u])=>id!=String(ADMIN)&&!u.tos&&!(u.coins>0)&&!(u.earned>0)&&!(u.cash>0)&&!u.wds&&!u.refs).map(([id])=>id);if(!L.length)return toast("No inactive test users found");if(!confirm("Remove "+L.length+" inactive users (never accepted terms, no coins, no history)? Real users are not touched."))return;L.forEach(id=>{db.ref("users/"+id).remove();db.ref("lb/"+id).remove()});toast(L.length+" inactive users removed")}
 function th(){const h=document.documentElement,n=h.dataset.th=="dark"?"light":"dark";h.dataset.th=n;localStorage.th=n;try{tg.setHeaderColor(n=="dark"?"#1a0c08":"#d9381a");tg.setBackgroundColor(n=="dark"?"#1a0c08":"#fbeee3")}catch(e){}render(1)}
 /* ===== TERMS ===== */
 const TOS={en:["<b>About this app.</b> Nodix Earn is a small reward app. It is NOT a get-rich-quick scheme. You can earn some pocket money (think of it as tea money) over a long period by completing simple tasks. Please do not expect large income.",
@@ -489,6 +532,6 @@ ne:["<b>एपबारे।</b> Nodix Earn सानो रिवार्ड 
 "<b>परिवर्तन।</b> हामीले सर्त बदल्न, सुविधा रोक्न वा सेवा बन्द गर्न सक्छौं। जारी राख्नुको अर्थ तपाईं यी सर्त मान्नुहुन्छ।"]};
 P.tos=()=>`<div class="top" style="padding-bottom:26px"><div style="color:#fff;text-align:center"><div style="font-size:44px">📜</div><b style="font-size:24px;font-weight:800">Before you start</b><small style="color:#ffe9dc">Please read and accept the Terms &amp; Conditions</small></div></div>
 <div class="pg"><div class="c"><div class="r"><h3 style="margin:0">Terms &amp; Conditions</h3><button class="b g" style="min-height:42px;padding:6px 12px" onclick="tl=tl=='en'?'ne':'en';render(1)">${tl=="en"?"नेपाली":"English"}</button></div><ol style="padding-left:20px;margin-top:10px;line-height:1.5;font-size:15px">${TOS[tl].map(x=>`<li style="margin-bottom:8px">${x}</li>`).join("")}</ol></div>
-<div class="c"><label style="display:flex;gap:10px;align-items:center;font-size:15px"><input type="checkbox" id="tk" style="width:26px;height:26px;margin:0;accent-color:#f0502f"> I have read and agree to the Terms &amp; Conditions</label><button class="b w" style="margin-top:12px" onclick="if(!$('#tk').checked){bad();return toast('Please tick the box first')}db.ref('users/'+uid+'/tos').set(now()).then(()=>{ok();render(1)})">Agree &amp; Continue</button></div>${credit()}</div>`;
+<div class="c"><label style="display:flex;gap:10px;align-items:center;font-size:15px"><input type="checkbox" id="tk" style="width:26px;height:26px;margin:0;accent-color:#f0502f"> I have read and agree to the Terms &amp; Conditions</label><button class="b w" style="margin-top:12px" onclick="if(!$('#tk').checked){bad();return toast('Please tick the box first')}db.ref('users/'+uid+'/tos').set(now()).then(()=>{ok();render(1);setTimeout(askRef,900)})">Agree &amp; Continue</button></div>${credit()}</div>`;
 init().catch(e=>{console.error(e);$("#spl").innerHTML='<div style="font-size:50px">📡</div><h3 style="color:#fff">Connection problem</h3><small style="color:#ffe9dc">Check your internet and try again</small><button class="b" style="margin-top:16px;background:#fff;color:#d9481f" onclick="location.reload()">↻ Retry</button>'});
 </script></body></html>
