@@ -89,10 +89,13 @@ input,select,textarea{width:100%;background:var(--in);color:var(--t);border:1.5p
 #spl .dev b{letter-spacing:3px;font-size:14px;display:flex;gap:8px;align-items:center;justify-content:center}#spl .dev .nm{font-size:26px;font-weight:800;letter-spacing:1px;margin-top:4px}
 .pcard{width:120px;height:170px;margin:12px auto;perspective:600px}.pcard .in{width:100%;height:100%;position:relative;transform-style:preserve-3d}.pcard.flip .in{animation:fpf .8s forwards}@keyframes fpf{from{transform:rotateY(0)}to{transform:rotateY(180deg)}}.pcard .f,.pcard .k{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center;font-weight:800}.pcard .k{background:linear-gradient(135deg,#f7852c,#d9361b);font-size:56px;color:#fff;border:4px solid #ffd9a0}.pcard .f{background:#fff;color:#d9361b;font-size:54px;transform:rotateY(180deg);border:3px solid #f0d3c3}.balls{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.ball{aspect-ratio:1;border-radius:50%;border:4px solid #ffffff88;color:#fff;font:800 15px Urbanist,sans-serif;box-shadow:0 6px 14px #0003}.ball:disabled{opacity:.5}.rball{width:110px;height:110px;border-radius:50%;margin:10px auto;display:flex;align-items:center;justify-content:center;color:#fff;font:800 18px Urbanist,sans-serif;animation:pop .6s;box-shadow:0 0 30px #0004;border:5px solid #ffffff99}
 .bell.dot{position:relative}.bell.dot::after{content:"";position:absolute;top:9px;right:10px;width:11px;height:11px;border-radius:50%;background:#ffd54d;border:2px solid #e8502a}
+#spl{justify-content:flex-start;padding:max(30px,env(safe-area-inset-top)) 20px max(24px,env(safe-area-inset-bottom))}#spl .mid{margin:auto;text-align:center}
+.dchip{display:flex;align-items:center;gap:12px;padding:8px 16px 8px 8px;border-radius:40px;background:#ffffff26;border:1px solid #ffffff55;backdrop-filter:blur(6px);box-shadow:0 8px 22px #7b160855}
+.dchip .da{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #ffd54d;flex:none}.dchip .dt{text-align:left;line-height:1.25}.dchip .dt b{display:block;letter-spacing:2px;font-size:12px;color:#fff}.dchip .dt span{font-size:14px;color:#ffe9dc}.dchip .dt strong{color:#fff;font-weight:800}
 </style></head><body>
 <div id="off">⚠️ No connection. Reconnecting…</div>
-<div id="spl"><img class="lg" src="https://i.ibb.co/1Jfnktc7/1792211153103.jpg"><h2 style="margin-top:14px;font-size:30px;font-weight:800">Nodix Earn</h2><small style="color:#ffe9dc">Loading your rewards</small><div class="ld"><i></i></div>
-<div class="dev"><img class="dv" src="https://i.ibb.co/q3svpDDR/IMG-20260902-131729-642.jpg" onerror="this.style.display='none'"><b><svg class="flag" width="22" height="28" viewBox="0 0 34 42"><path d="M2 1 L32 19 H14 L32 41 H2 Z" fill="#dc143c" stroke="#003893" stroke-width="2.5" stroke-linejoin="round"/><circle cx="9" cy="12" r="3" fill="#fff"/><circle cx="9" cy="31" r="3.4" fill="#fff"/></svg>MADE IN NEPAL</b><div class="nm">Bibx</div><small style="color:#ffe9dc">Developer</small></div></div>
+<div id="spl"><div class="mid"><img class="lg" src="https://i.ibb.co/1Jfnktc7/1792211153103.jpg"><h2 style="margin-top:14px;font-size:30px;font-weight:800">Nodix Earn</h2><small style="color:#ffe9dc">Loading your rewards…</small><div class="ld"><i></i></div><button id="slow" class="b" style="display:none;margin-top:20px;background:#fff;color:#d9481f" onclick="location.reload()">↻ Taking long? Tap to retry</button></div>
+<div class="dchip"><img class="da" src="https://i.ibb.co/q3svpDDR/IMG-20260902-131729-642.jpg" onerror="this.style.display='none'"><div class="dt"><b>MADE IN NEPAL</b><span>Developed by <strong>Bibx</strong></span></div><svg class="flag" width="22" height="28" viewBox="0 0 34 42"><path d="M2 1 L32 19 H14 L32 41 H2 Z" fill="#dc143c" stroke="#003893" stroke-width="2.5" stroke-linejoin="round"/><circle cx="9" cy="12" r="3" fill="#fff"/><circle cx="9" cy="31" r="3.4" fill="#fff"/></svg></div></div>
 <div id="ts"></div><div id="ov"><div></div></div>
 <div id="v"></div>
 <button id="sup" onclick="tg.openTelegramLink('https://t.me/NodixChatt')"><svg width="20" height="20" viewBox="0 0 24 24"><path fill="#fff" d="M21.9 3.5 2.6 10.9c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 1.9 5.8c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.8-.8l3.2-15.2c.3-1.3-.5-1.9-1.3-1.5zM8.6 13.3l9.5-6c.4-.3.9-.1.5.2l-7.8 7-.3 3.2z"/></svg>Support Chat</button>
@@ -196,29 +199,36 @@ async function setRef(ref,silent){{const mm=String(ref||"").match(/(\d{5,15})/);
  try{localStorage.removeItem("pref")}catch(e){}
  tgSend(ref,"👥 New friend joined with your link: <b>"+esc(TU.first_name||"User")+"</b>\nWhen they watch "+cfg.refAds+" ads they become active and you earn "+cfg.refCom+"% of everything they earn, for life.",[KB_BOT]);
  m("Referral linked ✓");return true}
+const tmo=(p,ms,d)=>Promise.race([Promise.resolve(p),new Promise(r=>setTimeout(()=>r(d),ms))]);
+async function bg(d,pr){ /* background work: never blocks opening the app */
+ try{db.ref("lb/"+uid).update({n:TU.first_name||"User",p:TU.photo_url||"",e:d.earned||0}).catch(()=>{})}catch(e){}
+ try{if(pr){try{localStorage.pref=pr}catch(e){}}
+  if(pr&&!d.ref&&pr!==uid&&now()-(d.joined||now())<cfg.refDays*864e5){for(let i=0;i<3;i++){try{await setRef(pr,1);break}catch(e){console.error("ref retry",i,e);await sleep(1200)}}}
+  else if(d.ref){try{localStorage.removeItem("pref")}catch(e){}}}catch(e){console.error("ref",e)}
+ try{const rr=(await db.ref(`users/${uid}/ref`).get()).val();if(rr){const q=db.ref(`users/${rr}/refs/${uid}`),qv=(await q.get()).val()||{},u={};
+  if(!qv.n)u.n=TU.first_name||"User";if(!qv.ts)u.ts=d.joined||now();if((qv.ads||0)<(d.adc||0))u.ads=d.adc||0;if(Object.keys(u).length)await q.update(u)}}catch(e){console.error("ref repair",e)}}
 async function init(){const T0=Date.now();document.documentElement.dataset.th=localStorage.th||"light";
+ setTimeout(()=>{const b=$("#slow");if(b&&!RDY)b.style.display="inline-block"},7000);
  db.ref(".info/connected").on("value",s=>{$("#off").style.display=s.val()===false?"block":"none"});
- try{const cs=await db.ref("config").get();if(cs.exists())setCfg(cs.val())}catch(e){}
- const r=db.ref("users/"+uid);let s=await r.get();
+ try{const cs=await tmo(db.ref("config").get(),3500,null);if(cs&&cs.exists())setCfg(cs.val())}catch(e){}
+ const r=db.ref("users/"+uid);let s=await tmo(r.get(),9000,"T");if(s==="T")throw new Error("timeout");
  const nm={name:TU.first_name||"User",uname:TU.username||"",photo:TU.photo_url||""};
- if(!s.exists()){let sn=null;try{sn=(await db.ref("snap/"+uid).get()).val()}catch(e){}
+ if(!s.exists()){let sn=null;try{const q=await tmo(db.ref("snap/"+uid).get(),4000,null);sn=q?q.val():null}catch(e){}
   const base=sn?{...sn}:{coins:0,cash:0,joined:now()};delete base.t;delete base.name;delete base.uname;delete base.photo;if(!base.joined)base.joined=now();
   for(const [k,v] of Object.entries(base)){if(v==null)continue;await r.child(k).transaction(c=>c==null?v:c)}
   await r.update(nm);s=await r.get()}else r.update(nm);
- const d=s.val(),pr=getRef();
- db.ref("lb/"+uid).update({n:TU.first_name||"User",p:TU.photo_url||"",e:d.earned||0}).catch(()=>{});
- if(pr){try{localStorage.pref=pr}catch(e){}}
- if(pr&&!d.ref&&pr!==uid&&now()-(d.joined||now())<cfg.refDays*864e5){for(let i=0;i<3;i++){try{await setRef(pr,1);break}catch(e){console.error("ref retry",i,e);await sleep(1200)}}}
- else if(d.ref){try{localStorage.removeItem("pref")}catch(e){}}
- try{const rr=(await db.ref(`users/${uid}/ref`).get()).val();if(rr){const q=db.ref(`users/${rr}/refs/${uid}`),qv=(await q.get()).val()||{},u={};
-  if(!qv.n)u.n=TU.first_name||"User";if(!qv.ts)u.ts=d.joined||now();if((qv.ads||0)<(d.adc||0))u.ads=d.adc||0;if(Object.keys(u).length)await q.update(u)}}catch(e){console.error("ref repair",e)}
- r.on("value",x=>{U=x.val()||{};if(U.name&&now()-lastSnap>6e4){lastSnap=now();const sn={...U};delete sn.log;sn.t=now();db.ref("snap/"+uid).set(JSON.parse(JSON.stringify(sn))).catch(()=>{})}render()});
+ const d=s.val()||{},pr=getRef();
+ let first;const fv=new Promise(res=>first=res);
+ r.on("value",x=>{U=x.val()||{};if(U.name&&now()-lastSnap>6e4){try{lastSnap=now();const sn={...U};delete sn.log;sn.t=now();db.ref("snap/"+uid).set(JSON.parse(JSON.stringify(sn))).catch(()=>{})}catch(e){}}first();render()});
  r.child("log").limitToLast(300).on("value",x=>{LOG=x.val()||{};render()});
  subLB();db.ref("notices").limitToLast(10).on("value",x=>{const a=[];x.forEach(c=>{a.push(c.val())});NT=a;render()});
  db.ref("config").on("value",x=>{if(x.exists())setCfg(x.val());render()});
  if(isAdmin){db.ref("gifts").on("value",x=>{AG=x.val()||{};render()});db.ref("wd").limitToLast(100).on("value",x=>{AW=x.val()||{};render()});db.ref("users").on("value",x=>{AU=x.val()||{};render()});db.ref("cr").limitToLast(100).on("value",x=>{AC=x.val()||{};render()})}
  $("#nav").innerHTML=tabs().map(t=>`<a id="n_${t[0]}" onclick="go('${t[0]}')">${t[2]}${t[1]}</a>`).join("");
- startTick();await sleep(Math.max(0,2200-(Date.now()-T0)));RDY=1;render(1);setTimeout(askRef,1800);const sp=$("#spl");sp.style.opacity=0;setTimeout(()=>sp.style.display="none",500)}
+ startTick();bg(d,pr);
+ await tmo(fv,5000);await sleep(Math.max(0,1200-(Date.now()-T0)));
+ RDY=1;render(1);if(!U.name)$("#v").innerHTML='<div class="c" style="text-align:center;margin:40px 14px"><div style="font-size:44px">📡</div><h3>Could not load your data</h3><small>Check your internet and try again</small><button class="b" style="margin-top:12px" onclick="location.reload()">↻ Retry</button></div>';
+ setTimeout(askRef,1800);const sp=$("#spl");sp.style.opacity=0;setTimeout(()=>sp.style.display="none",500)}
 const IC={home:'<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3 2 12h3v8h5v-6h4v6h5v-8h3z"/></svg>',board:'<svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 20V10h4v10zm6 0V4h4v16zm6 0v-7h4v7z"/></svg>',refer:'<svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm8 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM9 13c-3 0-7 1.5-7 4.5V20h14v-2.5C16 14.5 12 13 9 13zm8 1c-.5 0-1 .1-1.5.2 1.5 1 2.5 2.4 2.5 4.3V20h5v-2c0-2.2-3.3-4-6-4z"/></svg>',profile:'<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4 0-9 2-9 5v3h18v-3c0-3-5-5-9-5z"/></svg>',admin:'<span class="e">🛠</span>'};
 const tabs=()=>[["home","Home",IC.home],["board","Leaderboard",IC.board],["refer","Refer",IC.refer],["profile","Profile",IC.profile],...(isAdmin?[["admin","Admin",IC.admin]]:[])];
 const NAVOF={earn:"home",games:"home",wallet:"home",creator:"refer"};
@@ -550,10 +560,4 @@ ne:["<b>एपबारे।</b> Nodix Earn सानो रिवार्ड 
 "<b>विज्ञापन।</b> रिवार्डका लागि एपले विज्ञापन र स्पोन्सर लिङ्क देखाउँछ। पूरा हेरेमा मात्र रिवार्ड मिल्छ। तेस्रो पक्षको विज्ञापनको जिम्मेवारी हामीले लिँदैनौं।",
 "<b>गेम र स्पिन।</b> गेम र स्पिनमा भाग्यको खेल हुन्छ। जित्ने सम्भावना कम छ र एपमा देखाइएको हुन्छ। लगाएको कोइन गुम्न सक्छ। गुमाउन मन मान्ने कोइनले मात्र खेल्नुहोस्। नाबालकका लागि होइन।",
 "<b>विथड्रो।</b> न्यूनतम रु. १०० (वा सो बराबर)। भुक्तानी एडमिनले म्यानुअली eSewa, Khalti, PayPal वा Binance USDT (BEP20) मा पठाउँछ। एप्रुभ भएपछि १–२ कार्य दिनभित्र पैसा आइपुग्छ। गलत नम्बर/ठेगाना दिए पैसा गुम्न सक्छ, पठाउनु अघि जाँच गर्नुहोस्। नियम तोडे रिक्वेस्ट रिजेक्ट हुन सक्छ।",
-"<b>रेफर र गिफ्ट कोड।</b> रेफर र गिफ्ट कोडका सुविधा एपमा देखाइएको सर्त अनुसार हुन्छन्। एउटा कोड एक युजरले एकपटक मात्र प्रयोग गर्न सक्छ, सीमित युजर र म्याद हुन्छ।",
-"<b>गोपनीयता।</b> एप चलाउन र ठगी रोक्न मात्र तपाईंको टेलिग्राम ID, नाम, युजरनेम, गतिविधि र विथड्रो विवरण राखिन्छ।",
-"<b>परिवर्तन।</b> हामीले सर्त बदल्न, सुविधा रोक्न वा सेवा बन्द गर्न सक्छौं। जारी राख्नुको अर्थ तपाईं यी सर्त मान्नुहुन्छ।"]};
-P.tos=()=>`<div class="top" style="padding-bottom:26px"><div style="color:#fff;text-align:center"><div style="font-size:44px">📜</div><b style="font-size:24px;font-weight:800">Before you start</b><small style="color:#ffe9dc">Please read and accept the Terms &amp; Conditions</small></div></div>
-<div class="pg"><div class="c"><div class="r"><h3 style="margin:0">Terms &amp; Conditions</h3><button class="b g" style="min-height:42px;padding:6px 12px" onclick="tl=tl=='en'?'ne':'en';render(1)">${tl=="en"?"नेपाली":"English"}</button></div><ol style="padding-left:20px;margin-top:10px;line-height:1.5;font-size:15px">${TOS[tl].map(x=>`<li style="margin-bottom:8px">${x}</li>`).join("")}</ol></div>
-<div class="c"><label style="display:flex;gap:10px;align-items:center;font-size:15px"><input type="checkbox" id="tk" style="width:26px;height:26px;margin:0;accent-color:#f0502f"> I have read and agree to the Terms &amp; Conditions</label><button class="b w" style="margin-top:12px" onclick="if(!$('#tk').checked){bad();return toast('Please tick the box first')}db.ref('users/'+uid+'/tos').set(now()).then(()=>{ok();render(1);setTimeout(askRef,900)})">Agree &amp; Continue</button></div>${credit()}</div>`;
-init().catch(e=>{console.error(e);$("#spl").innerHTML='<div style="font-size:50px">📡</div><h3 style="color:#fff">Connection problem</h3><small style="color:#ffe9dc">Check your internet and t
+"<b>रेफर र गिफ्ट कोड।</b> रेफर र गिफ्ट कोडका सुविधा एपमा देखाइएको सर्त अनुसार हुन्छन्। एउटा कोड एक युजरले एकपटक मात्र प्रयोग
