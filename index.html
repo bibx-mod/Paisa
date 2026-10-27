@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <title>Nodix Earn</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800&display=swap" rel="stylesheet"></noscript>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
@@ -96,6 +96,8 @@ input,select,textarea{width:100%;background:var(--in);color:var(--t);border:1.5p
 <div id="off">⚠️ No connection. Reconnecting…</div>
 <div id="spl"><div class="mid"><img class="lg" src="https://i.ibb.co/1Jfnktc7/1792211153103.jpg"><h2 style="margin-top:14px;font-size:30px;font-weight:800">Nodix Earn</h2><small style="color:#ffe9dc">Loading your rewards…</small><div class="ld"><i></i></div><button id="slow" class="b" style="display:none;margin-top:20px;background:#fff;color:#d9481f" onclick="location.reload()">↻ Taking long? Tap to retry</button></div>
 <div class="dchip"><img class="da" src="https://i.ibb.co/q3svpDDR/IMG-20260902-131729-642.jpg" onerror="this.style.display='none'"><div class="dt"><b>MADE IN NEPAL</b><span>Developed by <strong>Bibx</strong></span></div><svg class="flag" width="22" height="28" viewBox="0 0 34 42"><path d="M2 1 L32 19 H14 L32 41 H2 Z" fill="#dc143c" stroke="#003893" stroke-width="2.5" stroke-linejoin="round"/><circle cx="9" cy="12" r="3" fill="#fff"/><circle cx="9" cy="31" r="3.4" fill="#fff"/></svg></div></div>
+<script>(function(){function show(){var b=document.getElementById("slow"),sp=document.getElementById("spl");if(b&&sp&&sp.style.display!=="none")b.style.display="inline-block"}
+addEventListener("error",function(e){var t=e&&e.target;if(!t||t===window||t.tagName==="SCRIPT")show()},true);setTimeout(show,7000)})()</script>
 <div id="ts"></div><div id="ov"><div></div></div>
 <div id="v"></div>
 <button id="sup" onclick="tg.openTelegramLink('https://t.me/NodixChatt')"><svg width="20" height="20" viewBox="0 0 24 24"><path fill="#fff" d="M21.9 3.5 2.6 10.9c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 1.9 5.8c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.8-.8l3.2-15.2c.3-1.3-.5-1.9-1.3-1.5zM8.6 13.3l9.5-6c.4-.3.9-.1.5.2l-7.8 7-.3 3.2z"/></svg>Support Chat</button>
@@ -215,8 +217,8 @@ async function init(){const T0=Date.now();document.documentElement.dataset.th=lo
  const nm={name:TU.first_name||"User",uname:TU.username||"",photo:TU.photo_url||""};
  if(!s.exists()){let sn=null;try{const q=await tmo(db.ref("snap/"+uid).get(),4000,null);sn=q?q.val():null}catch(e){}
   const base=sn?{...sn}:{coins:0,cash:0,joined:now()};delete base.t;delete base.name;delete base.uname;delete base.photo;if(!base.joined)base.joined=now();
-  for(const [k,v] of Object.entries(base)){if(v==null)continue;await r.child(k).transaction(c=>c==null?v:c)}
-  await r.update(nm);s=await r.get()}else r.update(nm);
+  await tmo(Promise.all(Object.entries(base).filter(([,v])=>v!=null).map(([k,v])=>r.child(k).transaction(c=>c==null?v:c))),7000,0);
+  await tmo(r.update(nm),4000,0);const s2=await tmo(r.get(),5000,"T");if(s2!=="T")s=s2}else r.update(nm);
  const d=s.val()||{},pr=getRef();
  let first;const fv=new Promise(res=>first=res);
  r.on("value",x=>{U=x.val()||{};if(U.name&&now()-lastSnap>6e4){try{lastSnap=now();const sn={...U};delete sn.log;sn.t=now();db.ref("snap/"+uid).set(JSON.parse(JSON.stringify(sn))).catch(()=>{})}catch(e){}}first();render()});
@@ -560,4 +562,11 @@ ne:["<b>एपबारे।</b> Nodix Earn सानो रिवार्ड 
 "<b>विज्ञापन।</b> रिवार्डका लागि एपले विज्ञापन र स्पोन्सर लिङ्क देखाउँछ। पूरा हेरेमा मात्र रिवार्ड मिल्छ। तेस्रो पक्षको विज्ञापनको जिम्मेवारी हामीले लिँदैनौं।",
 "<b>गेम र स्पिन।</b> गेम र स्पिनमा भाग्यको खेल हुन्छ। जित्ने सम्भावना कम छ र एपमा देखाइएको हुन्छ। लगाएको कोइन गुम्न सक्छ। गुमाउन मन मान्ने कोइनले मात्र खेल्नुहोस्। नाबालकका लागि होइन।",
 "<b>विथड्रो।</b> न्यूनतम रु. १०० (वा सो बराबर)। भुक्तानी एडमिनले म्यानुअली eSewa, Khalti, PayPal वा Binance USDT (BEP20) मा पठाउँछ। एप्रुभ भएपछि १–२ कार्य दिनभित्र पैसा आइपुग्छ। गलत नम्बर/ठेगाना दिए पैसा गुम्न सक्छ, पठाउनु अघि जाँच गर्नुहोस्। नियम तोडे रिक्वेस्ट रिजेक्ट हुन सक्छ।",
-"<b>रेफर र गिफ्ट कोड।</b> रेफर र गिफ्ट कोडका सुविधा एपमा देखाइएको सर्त अनुसार हुन्छन्। एउटा कोड एक युजरले एकपटक मात्र प्रयोग
+"<b>रेफर र गिफ्ट कोड।</b> रेफर र गिफ्ट कोडका सुविधा एपमा देखाइएको सर्त अनुसार हुन्छन्। एउटा कोड एक युजरले एकपटक मात्र प्रयोग गर्न सक्छ, सीमित युजर र म्याद हुन्छ।",
+"<b>गोपनीयता।</b> एप चलाउन र ठगी रोक्न मात्र तपाईंको टेलिग्राम ID, नाम, युजरनेम, गतिविधि र विथड्रो विवरण राखिन्छ।",
+"<b>परिवर्तन।</b> हामीले सर्त बदल्न, सुविधा रोक्न वा सेवा बन्द गर्न सक्छौं। जारी राख्नुको अर्थ तपाईं यी सर्त मान्नुहुन्छ।"]};
+P.tos=()=>`<div class="top" style="padding-bottom:26px"><div style="color:#fff;text-align:center"><div style="font-size:44px">📜</div><b style="font-size:24px;font-weight:800">Before you start</b><small style="color:#ffe9dc">Please read and accept the Terms &amp; Conditions</small></div></div>
+<div class="pg"><div class="c"><div class="r"><h3 style="margin:0">Terms &amp; Conditions</h3><button class="b g" style="min-height:42px;padding:6px 12px" onclick="tl=tl=='en'?'ne':'en';render(1)">${tl=="en"?"नेपाली":"English"}</button></div><ol style="padding-left:20px;margin-top:10px;line-height:1.5;font-size:15px">${TOS[tl].map(x=>`<li style="margin-bottom:8px">${x}</li>`).join("")}</ol></div>
+<div class="c"><label style="display:flex;gap:10px;align-items:center;font-size:15px"><input type="checkbox" id="tk" style="width:26px;height:26px;margin:0;accent-color:#f0502f"> I have read and agree to the Terms &amp; Conditions</label><button class="b w" style="margin-top:12px" onclick="if(!$('#tk').checked){bad();return toast('Please tick the box first')}db.ref('users/'+uid+'/tos').set(now()).then(()=>{ok();render(1);setTimeout(askRef,900)})">Agree &amp; Continue</button></div>${credit()}</div>`;
+init().catch(e=>{console.error(e);$("#spl").innerHTML='<div style="font-size:50px">📡</div><h3 style="color:#fff">Connection problem</h3><small style="color:#ffe9dc">Check your internet and try again</small><button class="b" style="margin-top:16px;background:#fff;color:#d9481f" onclick="location.reload()">↻ Retry</button>'});
+</script></body></html>
