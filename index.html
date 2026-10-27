@@ -92,6 +92,7 @@ input,select,textarea{width:100%;background:var(--in);color:var(--t);border:1.5p
 #spl{justify-content:flex-start;padding:max(30px,env(safe-area-inset-top)) 20px max(24px,env(safe-area-inset-bottom))}#spl .mid{margin:auto;text-align:center}
 .dchip{display:flex;align-items:center;gap:12px;padding:8px 16px 8px 8px;border-radius:40px;background:#ffffff26;border:1px solid #ffffff55;backdrop-filter:blur(6px);box-shadow:0 8px 22px #7b160855}
 .dchip .da{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #ffd54d;flex:none}.dchip .dt{text-align:left;line-height:1.25}.dchip .dt b{display:block;letter-spacing:2px;font-size:12px;color:#fff}.dchip .dt span{font-size:14px;color:#ffe9dc}.dchip .dt strong{color:#fff;font-weight:800}
+#pv pre{background:var(--pe);border-radius:10px;padding:8px;font:13px/1.35 ui-monospace,Menlo,monospace;white-space:pre-wrap;margin:4px 0}#pv blockquote{border-left:3px solid #e8502a;padding-left:8px;margin:4px 0;color:var(--m)}
 </style></head><body>
 <div id="off">⚠️ No connection. Reconnecting…</div>
 <div id="spl"><div class="mid"><img class="lg" src="https://i.ibb.co/1Jfnktc7/1792211153103.jpg"><h2 style="margin-top:14px;font-size:30px;font-weight:800">Nodix Earn</h2><small style="color:#ffe9dc">Loading your rewards…</small><div class="ld"><i></i></div><button id="slow" class="b" style="display:none;margin-top:20px;background:#fff;color:#d9481f" onclick="location.reload()">↻ Taking long? Tap to retry</button></div>
@@ -105,6 +106,7 @@ addEventListener("error",function(e){var t=e&&e.target;if(!t||t===window||t.tagN
 <script>
 /* ===== CONFIG ===== */
 const ADMIN=8970065762, CH="-1004441628740", BOT="NodixEarnBot", ADMIN_BOT="Nodixadminbot";
+const OFFCH="-1004430765799",CHATLINK="https://t.me/NodixChatt"; // official channel (bot must be admin) + support chat group
 const GIFTCHAT="-1004234724151"; // channel where new gift codes are auto-posted (bot must be admin there)
 const APP_SHORT="app"; // short name of your Mini App in BotFather (/newapp). Needed for referral links + direct-open links: t.me/NodixEarnBot/app
 const BOT_TOKEN="8254405543:AAE6S6v5klfIww_oPUQecp7KDkPNg5tMUBc"; // TEST token – replace with the real one later
@@ -507,7 +509,7 @@ const wsub=W(async()=>{const m=$("#wm").value,a=$("#wa").value.trim(),n=+$("#wn"
  ok();toast("Withdrawal requested ✓");render(1)});
 /* ===== ADMIN ===== */
 P.admin=()=>{const US=Object.entries(AU),W_=Object.values(AW).sort((a,b)=>b.ts-a.ts);
- const nv=[["w","Withdraw"],["u","Users"],["t","Tasks"],["g","Gifts"],["a","Ads"],["b","Notify"],["r","Creators"],["c","Config"]].map(s=>`<button class="b ${as==s[0]?"":"g"}" style="padding:8px 12px;min-height:42px;font-size:14px" onclick="as='${s[0]}';render(1)">${s[1]}</button>`).join("");let b="";
+ const nv=[["w","Withdraw"],["u","Users"],["t","Tasks"],["g","Gifts"],["a","Ads"],["b","Notify"],["r","Creators"],["o","📣 Post"],["c","Config"]].map(s=>`<button class="b ${as==s[0]?"":"g"}" style="padding:8px 12px;min-height:42px;font-size:14px" onclick="as='${s[0]}';render(1)">${s[1]}</button>`).join("");let b="";
  if(as=="w")b=`<small>Pending: ${W_.filter(x=>x.st=="pending").length}</small>`+W_.map(w=>`<div class="c"><b>${esc(w.name)}</b> @${esc(w.uname||"-")}<br>ID <code onclick="cp('${w.uid}')">${w.uid}</code><br>${w.m}: <code onclick="cp('${esc(w.a)}')">${esc(w.a)}</code> 📋<br>${CUR[w.cu][0]}${w.amt} · NPR ${(+w.npr).toFixed(2)} · <i>${w.st}</i>${w.st=="pending"?`<div class="r" style="margin-top:8px"><button class="b" onclick="wap('${w.id}',1)">Approve</button><button class="b x" onclick="wap('${w.id}',0)">Reject</button></div>`:""}</div>`).join("")||"<small>None</small>";
  if(as=="u")b=`<input placeholder="Search id / name" value="${esc(uq)}" oninput="uq=this.value" onchange="render(1)"><button class="b x w" style="margin:6px 0" onclick="purge()">🧹 Remove inactive test users (safe)</button><button class="b g w" style="margin:0 0 8px" onclick="rebuildLB()">🔁 Rebuild leaderboard (all users)</button><small>Users: ${US.length} · Coins: ${US.reduce((a,[,u])=>a+(u.coins||0),0)}</small>`+US.filter(([id,u])=>!uq||id.includes(uq)||(u.name||"").toLowerCase().includes(uq.toLowerCase())).sort((a,b)=>(b[1].coins||0)-(a[1].coins||0)).slice(0,30).map(([id,u])=>`<div class="c"><b>${esc(u.name)}</b> @${esc(u.uname||"-")} · ${id}<br>${u.coins||0} coins · cash NPR ${(+u.cash||0).toFixed(2)}<div class="r"><input id="u${id}" type="number" placeholder="coins"><button class="b" onclick="ac2('${id}',1)">+</button><button class="b x" onclick="ac2('${id}',-1)">−</button></div><button class="b g" style="margin-top:6px;min-height:40px" onclick="if(confirm('Delete this user?')){db.ref('users/${id}').remove();db.ref('lb/${id}').remove();db.ref('snap/${id}').remove()}">🗑 Delete user</button><div class="r" style="margin-top:6px"><input id="rf${id}" inputmode="numeric" placeholder="Referrer ID"><button class="b g" style="min-height:44px" onclick="arf('${id}')">🔗 Link</button></div></div>`).join("");
  if(as=="t")b=`<div class="c"><input id="tt" placeholder="Task title"><input id="tl" placeholder="Link https://t.me/... or TikTok / WhatsApp / YouTube"><input id="tc2" placeholder="@channelusername (Telegram only, bot must be admin). Leave EMPTY for TikTok / WhatsApp / YouTube"><input id="tr" type="number" placeholder="Reward coins"><button class="b w" onclick="at()">Add task</button></div>`+Object.entries(cfg.tasks||{}).map(([id,t])=>`<div class="c r"><div>${esc(t.t)}<small>${esc(t.chat)} · +${t.r}</small></div><button class="b x" onclick="db.ref('config/tasks/${id}').remove()">Delete</button></div>`).join("");
@@ -515,6 +517,7 @@ P.admin=()=>{const US=Object.entries(AU),W_=Object.values(AW).sort((a,b)=>b.ts-a
  if(as=="a")b=`<div class="c"><small>2 networks: Monetag and AdsGalaxy. They alternate on every ad; if one fails the other plays. Use Test to check each one.</small></div>`+Object.entries(NETS).map(([k,n])=>`<div class="c r"><div><b>${n.n}</b><small>${(cfg.nets||{})[k]!==0?"ON":"OFF"} · ${n.ok()?"SDK loaded":"SDK not loaded"}</small></div><div><button class="b g" style="min-height:42px;padding:6px 10px" onclick="tadn('${k}')">Test</button> <button class="b ${(cfg.nets||{})[k]!==0?"":"g"}" style="min-height:42px;padding:6px 10px" onclick="db.ref('config/nets/${k}').set(${(cfg.nets||{})[k]!==0?0:1})">${(cfg.nets||{})[k]!==0?"ON":"OFF"}</button></div></div>`).join("");
  if(as=="b")b=`<div class="c"><b>Offer / banner (Dashain, Tihar…)</b><input id="bt" value="${esc(cfg.banner)}" placeholder="Banner text"><button class="b w" onclick="db.ref('config/banner').set($('#bt').value);toast('Saved')">Save banner</button></div><div class="c"><b>Broadcast (via bot)</b><small>A 🚀 Open Mini App button (opens the app directly) is attached automatically.</small><textarea id="bm" rows="3" placeholder="Message"></textarea><input id="bl" placeholder="Optional extra button link (https://…)"><button class="b w" onclick="bc()">Send to all users</button></div>`;
  if(as=="r")b=`<small>Pending: ${Object.values(AC).filter(x=>x.st=="pending").length} · Rate: ${cfg.creator.per} views = ${cfg.creator.rate} coins</small>`+Object.values(AC).sort((a,b)=>b.ts-a.ts).map(x=>`<div class="c"><b>${esc(x.name)}</b> @${esc(x.uname||"-")} · ${CP[x.plat]?CP[x.plat][0]:esc(x.plat)}<br><code onclick="cpc('${x.id}')">${esc(x.url)}</code> 📋<br><i>${x.st}${x.st!="pending"?" · "+x.coins+" coins":""}</i>${x.st=="pending"?`<button class="b g w" style="margin:6px 0" onclick="tg.openLink(AC['${x.id}'].url)">▶ Open video</button><div class="r"><input id="v${x.id}" type="number" placeholder="Views (24h)" oninput="cvv('${x.id}')"><input id="k${x.id}" type="number" placeholder="Coins"></div><div class="r" style="margin-top:6px"><button class="b" onclick="car('${x.id}',1)">Approve</button><button class="b x" onclick="car('${x.id}',0)">Reject</button></div>`:""}</div>`).join("")||"<small>None</small>";
+ if(as=="o")b=PostUI();
  if(as=="c")b=`<div class="c"><small>Rates, rewards, spin, game odds, links – all JSON. Careful with syntax.</small><textarea id="cj" rows="16">${esc(JSON.stringify(cfg,null,1))}</textarea><button class="b w" onclick="savecfg()">Save config</button></div>`;
  return SH("Admin")+PG(`<div style="display:flex;flex-wrap:wrap;gap:6px;margin:10px 0">${nv}</div>${b}`)};
 async function wap(id,y){const w=AW[id];if(!w||w.st!="pending")return;const s=y?"approved":"rejected";
@@ -544,6 +547,59 @@ async function bc(){const m=$("#bm").value.trim();if(!m)return toast("Write a me
  db.ref("notices").push({txt:m,ts:now()});let n=0;for(const id of Object.keys(AU)){tgSend(id,"📢 <b>Nodix Earn</b>\n\n"+esc(m),kb);if(++n%25==0)await sleep(1000)}toast("Sent to "+n+" users ✓")}
 function purge(){const L=Object.entries(AU).filter(([id,u])=>id!=String(ADMIN)&&!u.tos&&!(u.coins>0)&&!(u.earned>0)&&!(u.cash>0)&&!u.wds&&!u.refs).map(([id])=>id);if(!L.length)return toast("No inactive test users found");if(!confirm("Remove "+L.length+" inactive users (never accepted terms, no coins, no history)? Real users are not touched."))return;L.forEach(id=>{db.ref("users/"+id).remove();db.ref("lb/"+id).remove();db.ref("snap/"+id).remove()});toast(L.length+" inactive users removed")}
 function th(){const h=document.documentElement,n=h.dataset.th=="dark"?"light":"dark";h.dataset.th=n;localStorage.th=n;try{tg.setHeaderColor(n=="dark"?"#1a0c08":"#d9381a");tg.setBackgroundColor(n=="dark"?"#1a0c08":"#fbeee3")}catch(e){}render(1)}
+/* ===== OFFICIAL CHANNEL POST (admin only). Posts straight to the channel through the bot; nothing is broadcast to users and nothing is stored in Firebase ===== */
+let PD={st:"classic",t:"",s:"",b:"",c:"",q:"",cta:"",ft:1,bt:"",bu:""},PF=null,PU="";
+const wrapL=(t,n)=>{const o=[];String(t).split("\n").forEach(l=>{l=l.trim();if(!l)return;let c="";l.split(/\s+/).forEach(w=>{if([...c].length+[...w].length+1>n&&c){o.push(c);c=w}else c=c?c+" "+w:w});if(c)o.push(c)});return o};
+function postHtml(){const D=PD,E=esc,T=D.t.trim(),S=D.s.trim(),C=D.c.trim(),Q=D.q.trim(),A=D.cta.trim(),bar="━━━━━━━━━━━━━━━━━━━━━━",raw=D.b.split("\n").map(x=>x.trim()).filter(Boolean);let h="";
+ if(D.st=="classic"){
+  if(T){const w=Math.min(32,Math.max(22,[...T].length+6)),pad=Math.max(1,Math.floor((w-[...T].length)/2));h+="<pre>╔"+"═".repeat(w)+"╗\n"+" ".repeat(pad)+E(T)+"\n╚"+"═".repeat(w)+"╝</pre>\n"}
+  if(S)h+="<b>"+E(S)+"</b>\n\n";
+  const B=wrapL(D.b,30);if(B.length)h+="<pre>┌─────────────────────\n"+B.map(x=>"│ "+E(x)).join("\n")+"\n└─────────────────────</pre>\n";
+  if(C)h+="<pre>"+E(C)+"</pre>\n";
+  if(Q)h+="<blockquote>"+E(Q)+"</blockquote>\n";
+  if(A)h+="\n"+bar+"\n⭐ 👉 <b>"+E(A)+"</b> ⭐\n"+bar+"\n"}
+ else if(D.st=="offer"){
+  if(T)h+="✨🎁✨ <b>"+E(T.toUpperCase())+"</b> ✨🎁✨\n"+bar+"\n";
+  if(S)h+="🏷 <b>"+E(S)+"</b>\n\n";
+  if(raw.length)h+=raw.map(x=>"▫️ "+E(x)).join("\n")+"\n\n";
+  if(C)h+="🔑 <code>"+E(C)+"</code>\n\n";
+  if(Q)h+="<blockquote>"+E(Q)+"</blockquote>\n";
+  if(A)h+=bar+"\n⭐ 👉 <b>"+E(A)+"</b> ⭐\n"+bar+"\n"}
+ else{
+  if(T)h+="📢 <b>"+E(T)+"</b>\n";
+  if(S)h+="<i>"+E(S)+"</i>\n";
+  if(T||S)h+="\n";
+  if(raw.length)h+=raw.map(x=>"• "+E(x)).join("\n")+"\n\n";
+  if(C)h+="<pre>"+E(C)+"</pre>\n";
+  if(Q)h+="<blockquote>"+E(Q)+"</blockquote>\n";
+  if(A)h+="\n👉 <b>"+E(A)+"</b>\n"}
+ if(h.trim()&&D.ft)h+="\n🇳🇵 Made in Nepal · 👨‍💻 <b>Bibx</b>";
+ return h}
+const PI=(k,ph,rows)=>rows?`<textarea rows="${rows}" placeholder="${ph}" oninput="PD.${k}=this.value;pvu()">${esc(PD[k])}</textarea>`:`<input placeholder="${ph}" value="${esc(PD[k])}" oninput="PD.${k}=this.value;pvu()">`;
+function pvu(){const e=$("#pv");if(e)e.innerHTML=postHtml()||"<small>Start typing…</small>"}
+function pfile(el){const f=el.files[0];if(!f)return;if(f.size>48*1048576){el.value="";return toast("File too large (max 48 MB)")}if(f.type.startsWith("image/")&&f.size>10*1048576){el.value="";return toast("Photo too large (max 10 MB)")}if(PU)URL.revokeObjectURL(PU);PF=f;PU=URL.createObjectURL(f);render(1)}
+function PostUI(){return `<div class="c"><b>📣 Post to Official Channel</b><small>Goes only to the official channel through the bot. It is NOT broadcast to users. The 🚀 Mini App and 💬 Chat Group buttons are attached automatically.</small>
+ <div class="seg" style="grid-template-columns:repeat(3,1fr)">${[["classic","Classic"],["offer","Offer"],["clean","Clean"]].map(([k,n])=>`<button class="b ${PD.st==k?"":"g"}" onclick="PD.st='${k}';render(1)">${n}</button>`).join("")}</div>
+ ${PI("t","Title (header)")}${PI("s","Sub-title / label (optional)")}${PI("b","Message lines – one point per line",5)}${PI("c","Code / link / gift-code box (optional, tap to copy)",2)}${PI("q","Quote (optional)",2)}${PI("cta","Call to action, e.g. Open the app and claim now")}
+ <div class="r" style="margin:6px 0"><b>Footer 🇳🇵 Made in Nepal · Bibx</b><button class="b ${PD.ft?"":"g"}" style="min-height:42px;padding:6px 14px" onclick="PD.ft=PD.ft?0:1;render(1)">${PD.ft?"ON":"OFF"}</button></div>
+ <b>Photo / video (optional)</b><input type="file" id="pf" accept="image/*,video/*" onchange="pfile(this)">
+ ${PF?(PF.type.startsWith("video")?`<video src="${PU}" controls playsinline style="width:100%;border-radius:14px;margin:6px 0"></video>`:`<img src="${PU}" class="ban" style="margin:6px 0">`)+`<button class="b g w" onclick="PF=null;PU='';render(1)">✕ Remove media</button>`:""}
+ ${PI("bt","Optional extra button text")}${PI("bu","Optional extra button link https://…")}
+ <button class="b w" style="margin-top:8px" onclick="postCh()">📤 Post to channel</button></div>
+ <div class="c"><b>Preview</b><div id="pv" style="white-space:pre-wrap;font-size:14px;margin-top:8px;overflow-wrap:anywhere">${postHtml()||"<small>Start typing…</small>"}</div></div>`}
+const postCh=W(async()=>{const h=postHtml();if(!h.trim()&&!PF)return toast("Write something or choose a photo / video");
+ const plain=h.replace(/<[^>]+>/g,""),kb=[KB_BOTC,[{text:"💬 Join Chat Group",url:CHATLINK}]];
+ if(PD.bt.trim()&&/^https?:\/\//i.test(PD.bu.trim()))kb.push([{text:PD.bt.trim(),url:PD.bu.trim()}]);
+ const api=async(m,body,isF)=>{const r=await(await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/${m}`,isF?{method:"POST",body}:{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})).json();if(!r.ok)throw new Error(r.description||"failed");return r};
+ const txt={chat_id:OFFCH,text:h,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:kb}};
+ try{
+  if(PF){const t=PF.type,isV=t.startsWith("video"),isG=t=="image/gif",m=isG?"sendAnimation":isV?"sendVideo":"sendPhoto",fd=new FormData(),fit=plain.length<=1000;
+   fd.append("chat_id",OFFCH);fd.append(isG?"animation":isV?"video":"photo",PF);if(isV)fd.append("supports_streaming","true");
+   if(fit&&h.trim()){fd.append("caption",h);fd.append("parse_mode","HTML")}if(fit)fd.append("reply_markup",JSON.stringify({inline_keyboard:kb}));
+   await api(m,fd,1);if(!fit&&h.trim())await api("sendMessage",txt)}
+  else await api("sendMessage",txt);
+  ok();toast("✓ Posted to the official channel");PD.t=PD.s=PD.b=PD.c=PD.q=PD.cta="";PF=null;PU="";render(1)}
+ catch(e){bad();toast("Post failed: "+(e.message||"error")+". Is the bot an admin of the channel?")}});
 /* ===== TERMS ===== */
 const TOS={en:["<b>About this app.</b> Nodix Earn is a small reward app. It is NOT a get-rich-quick scheme. You can earn some pocket money (think of it as tea money) over a long period by completing simple tasks. Please do not expect large income.",
 "<b>Coins &amp; money.</b> Coins are in-app reward points. The default rate is 100 coins = NPR 1. You must first convert coins to money (swipe) before withdrawing. Rates, rewards and offers may be changed by the admin at any time.",
