@@ -87,7 +87,12 @@ input,select,textarea{width:100%;background:var(--in);color:var(--t);border:1.5p
 #spl .ld{width:170px;height:6px;margin:22px auto 0;border-radius:6px;background:#ffffff40;overflow:hidden}#spl .ld i{display:block;width:40%;height:100%;background:#fff;animation:ls 1.1s infinite}@keyframes ls{from{margin-left:-40%}to{margin-left:100%}}
 #spl .dev{margin-top:34px;background:#00000026;border:1px solid #ffffff40;border-radius:26px;padding:18px 26px;backdrop-filter:blur(6px)}#spl .dev img.dv{width:84px;height:84px;border-radius:50%;object-fit:cover;border:4px solid #ffd54d;box-shadow:0 0 26px #ffd54d99;display:block;margin:0 auto 10px}
 #spl .dev b{letter-spacing:3px;font-size:14px;display:flex;gap:8px;align-items:center;justify-content:center}#spl .dev .nm{font-size:26px;font-weight:800;letter-spacing:1px;margin-top:4px}
-.pcard{width:120px;height:170px;margin:12px auto;perspective:600px}.pcard .in{width:100%;height:100%;position:relative;transform-style:preserve-3d}.pcard.flip .in{animation:fpf .8s forwards}@keyframes fpf{from{transform:rotateY(0)}to{transform:rotateY(180deg)}}.pcard .f,.pcard .k{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center;font-weight:800}.pcard .k{background:linear-gradient(135deg,#f7852c,#d9361b);font-size:56px;color:#fff;border:4px solid #ffd9a0}.pcard .f{background:#fff;color:#d9361b;font-size:54px;transform:rotateY(180deg);border:3px solid #f0d3c3}.balls{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.ball{aspect-ratio:1;border-radius:50%;border:4px solid #ffffff88;color:#fff;font:800 15px Urbanist,sans-serif;box-shadow:0 6px 14px #0003}.ball:disabled{opacity:.5}.rball{width:110px;height:110px;border-radius:50%;margin:10px auto;display:flex;align-items:center;justify-content:center;color:#fff;font:800 18px Urbanist,sans-serif;animation:pop .6s;box-shadow:0 0 30px #0004;border:5px solid #ffffff99}
+.pcard{width:120px;height:170px;margin:12px auto;perspective:600px}.pcard .in{width:100%;height:100%;position:relative;transform-style:preserve-3d}.pcard.flip .in{animation:fpf .8s forwards}@keyframes fpf{from{transform:rotateY(0)}to{transform:rotateY(180deg)}}.pcard .f,.pcard .k{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center;font-weight:800}.pcard .k{background:linear-gradient(135deg,#f7852c,#d9361b);font-size:56px;color:#fff;border:4px solid #ffd9a0}.pcard .f{background:#fff;color:#d9361b;font-size:54px;transform:rotateY(180deg);border:3px solid #f0d3c3}.cups{position:relative;height:230px;margin:14px 0;border-radius:18px;background:linear-gradient(180deg,#8a5a2e,#5c3418);box-shadow:inset 0 -16px 26px #0007,inset 0 6px 16px #ffffff2a}.cups::after{content:"";position:absolute;left:0;right:0;bottom:0;height:50px;background:repeating-linear-gradient(90deg,#00000016 0 3px,transparent 3px 12px);border-radius:0 0 18px 18px;pointer-events:none}
+.slotw{position:absolute;bottom:16px;width:33.333%;height:64%;transition:left .2s,transform .2s;display:flex;justify-content:center;align-items:flex-end}.slotw::before{content:"";position:absolute;bottom:-7px;width:76%;height:16px;border-radius:50%;background:#0009;filter:blur(6px)}
+.slotw .bl2{position:absolute;bottom:3px;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff6b0,#f6c21c 45%,#c98a06 85%);border:3px solid #ffd54d;box-shadow:0 5px 9px #0008,inset 0 -3px 5px #a3650055;display:flex;align-items:center;justify-content:center;font:900 20px Urbanist,sans-serif;color:#a35a00}
+.slotw .cb{position:absolute;bottom:0;width:88%;height:100%;background:linear-gradient(90deg,#7d0d09,#d92a1c 22%,#ff7d63 40%,#e0301f 58%,#a3120d 82%,#6e0a07);clip-path:polygon(16% 0,84% 0,100% 100%,0 100%);transition:transform .45s}
+.slotw .cb::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,#00000022 0 2px,transparent 2px 24px)}.slotw .cb::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10%;background:linear-gradient(#fafafa,#c9c9c9)}
+.slotw .cb.up{transform:translateY(-54%)}.balls{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.ball{aspect-ratio:1;border-radius:50%;border:4px solid #ffffff88;color:#fff;font:800 15px Urbanist,sans-serif;box-shadow:0 6px 14px #0003}.ball:disabled{opacity:.5}.rball{width:110px;height:110px;border-radius:50%;margin:10px auto;display:flex;align-items:center;justify-content:center;color:#fff;font:800 18px Urbanist,sans-serif;animation:pop .6s;box-shadow:0 0 30px #0004;border:5px solid #ffffff99}
 .bell.dot{position:relative}.bell.dot::after{content:"";position:absolute;top:9px;right:10px;width:11px;height:11px;border-radius:50%;background:#ffd54d;border:2px solid #e8502a}
 #spl{justify-content:flex-start;padding:max(30px,env(safe-area-inset-top)) 20px max(24px,env(safe-area-inset-bottom))}#spl .mid{margin:auto;text-align:center}
 .dchip{display:flex;align-items:center;gap:12px;padding:8px 16px 8px 8px;border-radius:40px;background:#ffffff26;border:1px solid #ffffff55;backdrop-filter:blur(6px);box-shadow:0 8px 22px #7b160855}
@@ -120,7 +125,7 @@ firebase.initializeApp({apiKey:"AIzaSyCPKDFVw5i3Da8JPUU8GhEZssdY79qLKNA",authDom
 const DEF={rate:100,rates:{NPR:1,INR:.625,MYR:.032,USD:.0075},daily:[10,15,20,25,30,35],gift:5,link:2,ad:6,adsPerDay:5,adGap:8,linkWait:30,linkWaitMax:35,linkStrict:1,verifyWait:8,preAd:10,minNPR:100,minConvert:100,refCom:10,refAds:5,refDays:7,creator:{rate:500,per:1000,daily:3},autoAd:75,idleAd:150,minAuto:45,bonusHrs:2,spinAds:3,freeAds:3,dbl:1,nets:{m:1,g:1},
 spin:{cost:10,prizes:[0,1,0,2,0,3,0,5,0,2,10,1],w:[14.4,7,14.4,4.5,14.4,4,14.4,1,14.4,4.5,0,7]},
 game:{min:15,step:5,mines:{Easy:{r:3,c:3,b:6,p:.025,m:1.5},Hard:{r:4,c:4,b:11,p:.01,m:3},Ultra:{r:4,c:5,b:16,p:.002,m:6}}},
-mem:{cost:10,target:12,prize:40},pred:{hl:{p:.07,m:2},col:{rg:.05,rm:2,v:.015,vm:4.5}},
+cups:{min:10,step:5,max:50,bonus:15,sec:20,d0:340,d1:70},channels:{c1:{n:"Official Channel",id:OFFCH}},mem:{cost:10,target:12,prize:40},pred:{hl:{p:.07,m:2},col:{rg:.05,rm:2,v:.015,vm:4.5}},
 tasks:{t1:{t:"Join Nodixno",link:"https://t.me/Nodixno",chat:"@Nodixno",r:10},t2:{t:"Join Nodixnp",link:"https://t.me/Nodixnp",chat:"@Nodixnp",r:10},t3:{t:"Join hellolado",link:"https://t.me/hellolado",chat:"@hellolado",r:10},t4:{t:"Join Nodix Earn Official",link:"https://t.me/NodixEarn",chat:"@NodixEarn",r:10},t5:{t:"Join Payment Proof Channel",link:"https://t.me/NodixEarnpayment",chat:"@NodixEarnpayment",r:10}},links:LINKS,banner:""};
 /* ===== core ===== */
 const $=s=>document.querySelector(s),now=()=>Date.now(),day=()=>new Date().toDateString(),sleep=ms=>new Promise(r=>setTimeout(r,ms)),esc=s=>String(s??"").replace(/[&<>"']/g,c=>"&#"+c.charCodeAt(0)+";"),fmt=n=>(+n||0).toLocaleString(undefined,{maximumFractionDigits:2});
@@ -129,7 +134,7 @@ const TU=(tg.initDataUnsafe||{}).user;
 if(!TU){document.body.innerHTML='<div style="padding:60px 20px;text-align:center;color:#3b2720;font:18px sans-serif">Please open this app inside Telegram.<br><br>@'+BOT+'</div>';throw new Error("Not in Telegram")}
 const uid=String(TU.id),isAdmin=TU.id===ADMIN,db=firebase.database();
 let RDY=0,CPL="tiktok",cfg=JSON.parse(JSON.stringify(DEF)),U={},LOG={},LB=[],AW={},AU={},AG={},AC={},tab="home",sub="tasks",lock=0,busy=0,snd=localStorage.snd!=="0",pend={},bp={},gd="Easy",gb=15,gm=null,mg=null,ms=null,ang=0,sa=0,as="w",uq="",tl="en",lastAd=now(),rot=Math.floor(Math.random()*2);
-const setCfg=v=>{cfg={...DEF,...v};if(!cfg.game||!cfg.game.mines)cfg.game=DEF.game;if(!cfg.mem)cfg.mem=DEF.mem;if(!cfg.nets)cfg.nets=DEF.nets;if(!cfg.spin||!cfg.spin.prizes)cfg.spin=DEF.spin;if(!cfg.pred||!cfg.pred.hl)cfg.pred=DEF.pred};
+const setCfg=v=>{cfg={...DEF,...v};if(!cfg.game||!cfg.game.mines)cfg.game=DEF.game;if(!cfg.mem)cfg.mem=DEF.mem;if(!cfg.nets)cfg.nets=DEF.nets;if(!cfg.spin||!cfg.spin.prizes)cfg.spin=DEF.spin;if(!cfg.pred||!cfg.pred.hl)cfg.pred=DEF.pred;if(!cfg.cups)cfg.cups=DEF.cups;if(!cfg.channels||!Object.keys(cfg.channels).length)cfg.channels=DEF.channels};
 window.addEventListener("unhandledrejection",e=>console.error("unhandled",e.reason));
 /* sounds */
 let ac;function beep(f=600,d=.1,t="sine",v=.09){if(!snd)return;try{ac=ac||new AudioContext();const o=ac.createOscillator(),g=ac.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(v,ac.currentTime);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+d);o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+d)}catch(e){}}
@@ -152,12 +157,22 @@ const GIFTCH="https://t.me/+MO_aC9V0JG1iNTRl",APP_BTN=[{text:"🚀 Open Mini App
 const ticon=l=>/youtu/i.test(l)?"🎬":/whatsapp|wa\.me/i.test(l)?"💬":/tiktok/i.test(l)?"🎵":/instagram/i.test(l)?"📸":/facebook|fb\./i.test(l)?"👍":"📢";
 const tic=l=>/youtu/i.test(l)?'<span class="ci" style="background:#f00">▶</span>':/whatsapp|wa\.me/i.test(l)?'<span class="ci" style="background:#25d366">✆</span>':/tiktok/i.test(l)?'<span class="ci" style="background:#111">♪</span>':/instagram/i.test(l)?'<span class="ci" style="background:linear-gradient(45deg,#f9a03c,#dd2a7b,#8134af)">◎</span>':/facebook|fb\./i.test(l)?'<span class="ci" style="background:#1877f2;font-size:34px">f</span>':/t\.me|telegram/i.test(l)?'<span class="ci" style="background:#2aa3e6"><svg width="30" height="30" viewBox="0 0 24 24"><path fill="#fff" d="M21.9 3.5 2.6 10.9c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 1.9 5.8c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.8-.8l3.2-15.2c.3-1.3-.5-1.9-1.3-1.5z"/></svg></span>':'<span class="ci" style="background:#f0502f">📢</span>';
 const taskLine=t=>ticon(t.link)+" <b>"+esc(t.t)+"</b>  ·  💰 +"+t.r+" coins";
-const taskMsg=a=>"🆕 <b>"+(a.length>1?a.length+" New Tasks Added!":"New Task Added!")+"</b>\n\n"+a.map(taskLine).join("\n")+"\n\n👉 Open the app, go to <b>Earn → Tasks</b> and complete "+(a.length>1?"them":"it")+" to get your coins.";
-async function notifyAll(text,kb){try{db.ref("notices").push({txt:text.replace(/<[^>]+>/g,"").slice(0,200),ts:Date.now()})}catch(e){}const ids=Object.keys(AU);if(!ids.length)return toast("User list not loaded yet");toast("Notifying "+ids.length+" users…");let n=0;for(const id of ids){tgSend(id,text,kb||[APP_BTN]);if(++n%20==0)await sleep(1000)}toast("Notification sent to "+n+" users ✓")}
+const taskMsg=a=>boxT(a.length>1?"🆕 "+a.length+" NEW TASKS":"🆕 NEW TASK")+"\n"+frm(a.map(t=>ticon(t.link)+" "+esc(t.t)+" · +"+t.r+" coins"))+"\n👉 Open the app → <b>Earn → Tasks</b> and complete "+(a.length>1?"them":"it")+" to get your coins.\n\n"+ctaL("COMPLETE NOW & EARN")+FOOT();
+async function notifyAll(text,kb){try{db.ref("notices").push({txt:text.replace(/<[^>]+>/g,"").replace(/[╔╗╚╝═┌└│─━⭐]/g,"").replace(/[ \t]+/g," ").replace(/\n\s*\n+/g,"\n").trim().slice(0,200),ts:Date.now()})}catch(e){}const ids=Object.keys(AU);if(!ids.length)return toast("User list not loaded yet");toast("Notifying "+ids.length+" users…");let n=0;for(const id of ids){tgSend(id,text,kb||[APP_BTN]);if(++n%20==0)await sleep(1000)}toast("Notification sent to "+n+" users ✓")}
 function savecfg(){let n;try{n=JSON.parse($("#cj").value)}catch(e){return toast("Invalid JSON")}
  const old=cfg.tasks||{},nw=Object.entries(n.tasks||{}).filter(([k])=>!old[k]).map(([,t])=>t);
  db.ref("configBackup").set(JSON.parse(JSON.stringify(cfg)));db.ref("config").set(n).then(()=>{toast("Saved ✓");if(nw.length)notifyAll(taskMsg(nw))}).catch(()=>toast("Save failed, check connection"))}
 const mask=s=>{s=String(s);return s.length>6?s.slice(0,3)+"*".repeat(s.length-5)+s.slice(-2):s[0]+"***"};
+/* ===== lined message design used by every bot message ===== */
+const BAR="━━━━━━━━━━━━━━━━━━━━━━",FOOT=()=>cfg.sysFooter===0?"":"\n\n🇳🇵 Made in Nepal · 👨‍💻 <b>Bibx</b>";
+const boxT=t=>{const w=Math.min(32,Math.max(24,[...t].length+6)),pad=Math.max(1,Math.floor((w-[...t].length)/2));return "<pre>╔"+"═".repeat(w)+"╗\n"+" ".repeat(pad)+t+"\n╚"+"═".repeat(w)+"╝</pre>"};
+const frm=a=>"<pre>┌─────────────────────\n"+a.map(x=>"│ "+x).join("\n")+"\n└─────────────────────</pre>";
+const ctaL=t=>BAR+"\n⭐ 👉 <b>"+t+"</b> ⭐\n"+BAR;
+const cur2=w=>CUR[w.cu][0]+" "+w.amt+(w.cu=="USD"?" (USDT)":"");
+const msgPending=(w,full)=>boxT("🔔 NEW WITHDRAW REQUEST")+"\n"+frm(["👤 Name  : "+esc(w.name),"🔗 User  : "+(w.uname?"@"+esc(w.uname):"-"),"🆔 ID    : "+w.uid,"💳 Via   : "+esc(w.m)])+"\n"+(full?"📱 <b>Number / Address</b> (tap to copy)\n<pre>"+esc(w.a)+"</pre>\n":"")+frm(["💵 Amount : "+cur2(w),"🇳🇵 NPR    : "+(+w.npr).toFixed(2),"🕒 Time   : "+new Date(w.ts).toLocaleString()])+"\n"+ctaL("STATUS: ⏳ PENDING")+FOOT();
+const msgPendU=w=>boxT("⏳ WITHDRAWAL RECEIVED")+"\n"+frm(["💳 Via    : "+esc(w.m),"📱 To     : "+esc(mask(w.a)),"💵 Amount : "+cur2(w),"📌 Status : Pending approval"])+"\n"+ETA+"\n\n"+ctaL("You will be notified when it is paid")+FOOT();
+const msgPaid=(w,u)=>boxT(u?"✅ YOUR PAYMENT IS SENT":"✅ PAYMENT SUCCESSFUL")+"\n"+frm(["👤 User   : "+esc(w.name)+(w.uname?" (@"+esc(w.uname)+")":""),"💳 Via    : "+esc(w.m),"📱 To     : "+esc(mask(w.a)),"💵 Amount : "+cur2(w)])+"\n"+ctaL(u?"Your money has been sent 🎉":"PAID SUCCESSFULLY ✔️")+FOOT();
+const msgRej=(w,u)=>boxT("❌ WITHDRAWAL REJECTED")+"\n"+frm(["👤 User   : "+esc(w.name),"💳 Via    : "+esc(w.m),"💵 Amount : "+cur2(w)])+"\n"+(u?"Your money was refunded to your balance. Please follow the rules and try again.\n\n":"")+ctaL(u?"Refunded to your balance":"REJECTED")+FOOT();
 /* ===== ads: Monetag + AdsGalaxy, alternating, auto-fallback ===== */
 const NETS={
  m:{n:"Monetag",ok:()=>!!window.show_12052211,f:()=>window.show_12052211&&show_12052211()},
@@ -238,7 +253,7 @@ const tabs=()=>[["home","Home",IC.home],["board","Leaderboard",IC.board],["refer
 const NAVOF={earn:"home",games:"home",wallet:"home",creator:"refer"};
 function go(t){tab=t;beep(500,.05);render(1);scrollTo(0,0)}
 const goE=s=>{sub=s;go("earn")},goG=g=>{gm=g;go("games")};
-function bk(){if(tab=="games"&&(gm||mg||ms)){if((mg&&!mg.over)||(ms&&!ms.over))return toast("Finish the round first");gm=null;mg=null;ms=null;return render(1)}go(tab=="creator"?"refer":"home")}
+function bk(){if(tab=="games"&&(gm||mg||ms||sg)){if((mg&&!mg.over)||(ms&&!ms.over)||(sg&&sg.phase!="done"))return toast("Finish the round first");gm=null;mg=null;ms=null;sg=null;return render(1)}go(tab=="creator"?"refer":"home")}
 function render(f){if(lock||!U.name||!RDY)return;if(!f&&/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||""))return;
  const t=!U.tos;$("#nav").style.display=t?"none":"flex";$("#sup").style.display=t?"none":"flex";
  try{$("#v").innerHTML=t?P.tos():P[tab]()}catch(e){console.error(e);$("#v").innerHTML='<div class="c" style="text-align:center;margin:30px 14px">Something went wrong.<br><button class="b" style="margin-top:10px" onclick="location.reload()">↻ Reload</button></div>'}
@@ -324,11 +339,12 @@ const rc=W(async()=>{const code=$("#gc").value.trim().toUpperCase().replace(/[^A
  if(!r.committed||res!="ok"){bad();return toast(res||"Invalid code")}
  const g=r.snapshot.val();db.ref(`users/${uid}/rg/${code}`).set({c:g.coins,t:now()});await reward(g.coins,async()=>add(uid,g.coins,"gift "+code),"🎁")});
 /* ===== GAMES ===== */
-const GT={m:"Bomb & Flower",s:"Spin & Win",r:"Memory Master",p:"Colour & High-Low"};
-P.games=()=>SH(GT[gm]||"Games")+PG(gm=="m"?GM():gm=="s"?GS():gm=="r"?GR():gm=="p"?GP():`<div class="gc" onclick="gm='m';render(1)"><div class="ic">💣</div><div><b>Game 1 · Bomb &amp; Flower</b><small>Open every flower, avoid the bombs</small></div></div>
+const GT={m:"Bomb & Flower",s:"Spin & Win",r:"Memory Master",p:"Colour & High-Low",c:"Three-Cup Shuffle"};
+P.games=()=>SH(GT[gm]||"Games")+PG(gm=="m"?GM():gm=="s"?GS():gm=="r"?GR():gm=="p"?GP():gm=="c"?GC():`<div class="gc" onclick="gm='m';render(1)"><div class="ic">💣</div><div><b>Game 1 · Bomb &amp; Flower</b><small>Open every flower, avoid the bombs</small></div></div>
  <div class="gc" onclick="gm='s';render(1)"><div class="ic">🎡</div><div><b>Game 2 · Spin &amp; Win</b><small>Free daily spin &amp; prizes</small></div></div>
  <div class="gc" onclick="gm='r';render(1)"><div class="ic">🧠</div><div><b>Game 3 · Memory Master</b><small>Very hard! Repeat the pattern to win ${cfg.mem.prize} coins</small></div></div>
- <div class="gc" onclick="gm='p';render(1)"><div class="ic">🎨</div><div><b>Game 4 · Colour &amp; High-Low</b><small>Predict the card or colour. Very low odds!</small></div></div>${CA()}`);
+ <div class="gc" onclick="gm='p';render(1)"><div class="ic">🎨</div><div><b>Game 4 · Colour &amp; High-Low</b><small>Predict the card or colour. Very low odds!</small></div></div>
+ <div class="gc" onclick="gm='c';render(1)"><div class="ic">🥤</div><div><b>Game 5 · Three-Cup Shuffle</b><small>Follow the ball through an ultra-fast shuffle</small></div></div>${CA()}`);
 function GM(){const G=cfg.game,m=G.mines[gd];
  if(!mg)return `<div class="c"><h3>💣 Bomb &amp; Flower</h3><small>Open boxes one by one. Every flower is safe – but you must open ALL flowers to win. One bomb ends the game. This is a very hard game: the win chance is shown below.</small>
  <div class="seg" style="grid-template-columns:repeat(3,1fr)">${Object.keys(G.mines).map(k=>`<button class="b ${gd==k?"":"g"}" onclick="gd='${k}';render(1)">${k}</button>`).join("")}</div>
@@ -421,6 +437,32 @@ const lvl=e=>{let i=0;LV.forEach((l,j)=>{if((e||0)>=l[0])i=j});return i};
 const lvHtml=e=>{const i=lvl(e),c=LV[i],n=LV[i+1];return `<div style="margin-top:10px"><b style="font-size:18px">${c[1]} ${c[2]} level</b>${n?`<div class="bar"><i style="width:${Math.min(100,(e-c[0])/(n[0]-c[0])*100)}%"></i></div><small>${fmt(n[0]-e)} more coins to reach ${n[1]} ${n[2]}</small>`:`<small>Top level reached 🎉</small>`}</div>`};
 async function pcode(){try{const t=await navigator.clipboard.readText();$("#gc").value=(t||"").trim().toUpperCase().slice(0,30)}catch(e){toast("Long-press the box to paste")}}
 function rebuildLB(){let n=0;Object.entries(AU).forEach(([id,u])=>{if((u.earned||0)>0){db.ref("lb/"+id).update({n:u.name||"User",e:u.earned||0,...(u.photo?{p:u.photo}:{})});n++}});toast("Leaderboard rebuilt: "+n+" users")}
+/* ===== GAME 5: Three-Cup Shuffle (the ball is really tracked: no hidden outcome, difficulty comes from the ultra-fast shuffle) ===== */
+let sg=null,cbet=10;
+const lift=(c,v)=>{const e=document.querySelectorAll(".slotw .cb")[c];if(e)e.classList.toggle("up",!!v)};
+const cupsHtml=()=>`<div class="cups" id="cups">${[0,1,2].map(c=>`<div class="slotw" style="left:${sg.slot[c]*33.333}%" onclick="cpick(${c})">${sg.ball==c?'<div class="bl2">N</div>':""}<div class="cb ${sg.up[c]?"up":""}"></div></div>`).join("")}</div>`;
+function GC(){const C=cfg.cups,cant=(U.coins||0)<cbet&&!(U.fp>0);
+ if(!sg)return `<div class="c"><h3>🥤 Three-Cup Shuffle</h3><small>Watch where the ball is. The cups then shuffle ultra fast for ${C.sec} seconds – follow the ball and tap the right cup. Win = your bet + ${C.bonus} coins. The ball really is under one cup (no tricks): just guessing wins about 1 in 3, so keep your eyes on it!</small>
+ <div class="cups" style="height:130px;pointer-events:none">${[0,1,2].map(c=>`<div class="slotw" style="left:${c*33.333}%"><div class="cb"></div></div>`).join("")}</div>
+ <div class="r" style="margin:12px 0"><button class="b g" onclick="cbet=Math.max(${C.min},cbet-${C.step});render(1)">−</button><div style="text-align:center"><b style="font-size:20px">Bet ${cbet}</b><small>Win ${cbet+C.bonus} coins</small></div><button class="b g" onclick="cbet=Math.min(${C.max},cbet+${C.step});render(1)">+</button></div>
+ ${FREE(cbet)}<button class="b w" ${cant?"disabled":""} onclick="cstart()">▶ Roll (ad plays first)</button></div>`;
+ const t={show:"👀 Remember the ball…",shuffle:"🔀 Follow the ball!",pick:"👆 Tap the cup with the ball",done:sg.pick==sg.ball?"🎉 You found it!":"❌ Wrong cup"}[sg.phase];
+ return `<div class="c"><div class="r"><b>${t}</b><span>Win ${sg.pay}</span></div>${cupsHtml()}${sg.phase=="shuffle"?`<div class="bar"><i id="cpt" style="width:0%"></i></div>`:""}${sg.phase=="done"?`<div style="text-align:center"><b style="font-size:19px">${sg.pick==sg.ball?"+"+sg.pay+" coins":(sg.free?"Free play over":"You lost "+sg.bet+" coins")}</b><button class="b w" style="margin-top:10px" onclick="sg=null;render(1)">Play again</button></div>`:""}</div>`}
+const cstart=W(async()=>{const C=cfg.cups;if((U.coins||0)<cbet&&!(U.fp>0))return toast("Not enough coins. Watch "+cfg.freeAds+" ads for a free play");
+ await ad2();const m=await payBet(cbet,"cups bet");if(!m)return toast("Not enough coins");
+ sg={bet:cbet,pay:cbet+C.bonus,free:m==2,slot:[0,1,2],up:[0,0,0],ball:Math.random()*3|0,phase:"show"};render(1);
+ await sleep(400);sg.up[sg.ball]=1;lift(sg.ball,1);await sleep(1400);sg.up[sg.ball]=0;lift(sg.ball,0);await sleep(600);
+ sg.phase="shuffle";render(1);lock=1;try{await cshuffle()}finally{lock=0}sg.phase="pick";render(1)});
+async function cshuffle(){const C=cfg.cups,els=[...document.querySelectorAll(".slotw")],t0=now(),T=C.sec*1000,pt=$("#cpt");let last="";
+ const mv=async(d,moves)=>{moves.forEach(([c,sl],i)=>{sg.slot[c]=sl;const e=els[c];e.style.transitionDuration=d+"ms";e.style.left=(sl*33.333)+"%";e.style.transform="translateY("+(i%2?16:-16)+"px)"});await sleep(d);moves.forEach(([c])=>{els[c].style.transform="translateY(0)"});await sleep(Math.max(0,d*.2))};
+ while(now()-t0<T){const pr=(now()-t0)/T,d=Math.round(C.d0-(C.d0-C.d1)*Math.min(1,pr*4)),r=Math.random();
+  if(r<.22){const dir=Math.random()<.5?1:2;await mv(Math.round(d*1.25),[0,1,2].map(c=>[c,(sg.slot[c]+dir)%3]))}
+  else if(r<.3){const e=els[Math.random()*3|0];e.style.transitionDuration=d+"ms";e.style.transform="translateY(-22px)";await sleep(d);e.style.transform="translateY(0)";await sleep(d*.3)}
+  else{let a=Math.random()*3|0,b;do{b=Math.random()*3|0}while(b==a);const key=Math.min(a,b)+""+Math.max(a,b);if(key==last&&Math.random()<.7)continue;last=key;const ca=sg.slot.indexOf(a),cb2=sg.slot.indexOf(b);await mv(d,[[ca,b],[cb2,a]])}
+  if(pt)pt.style.width=Math.min(100,(now()-t0)/T*100)+"%"}
+ els.forEach(e=>{e.style.transitionDuration="";e.style.transform=""})}
+function cpick(c){if(!sg||sg.phase!="pick")return;sg.phase="done";sg.pick=c;sg.up[c]=1;lift(c,1);beep(520,.1);const win=c==sg.ball;
+ setTimeout(()=>{[0,1,2].forEach(i=>{sg.up[i]=1});render(1);if(win){ok();const pay=sg.pay;W(async()=>{await reward(pay,async()=>add(uid,pay,"cups win"),"🥤")})()}else bad()},900)}
 /* ===== LEADERBOARD ===== */
 P.board=()=>{const L=LB.filter(x=>(x.e||0)>0),pos=[L[1],L[0],L[2]],cl=["","f",""],md=["🥈","🥇","🥉"],me=L.findIndex(x=>x.id==uid);
  const pod=pos.map((x,i)=>x?`<div class="pc ${cl[i]}">${i==1?'<span class="crw">👑</span>':""}${av(x.n,x.p)}<span class="md">${md[i]}</span><div class="nm">${esc(x.n||"User")}</div><div class="pv"><span class="coin s">N</span>${fmt(x.e)}</div></div>`:`<div class="pc ${cl[i]}"><div class="nm" style="opacity:.5">—</div></div>`).join("");
@@ -504,8 +546,8 @@ const wsub=W(async()=>{const m=$("#wm").value,a=$("#wa").value.trim(),n=+$("#wn"
  if(!k){bad();return toast("Not enough money balance")}
  const id=db.ref("wd").push().key,w={id,uid,name:U.name,uname:U.uname||"",m,a,amt:n,cu,npr,st:"pending",ts:now()};
  await db.ref().update({[`wd/${id}`]:w,[`users/${uid}/wds/${id}`]:w});if(U.ref)db.ref(`users/${U.ref}/refs/${uid}/wr`).set(1);
- tgSend(CH,`🔔 <b>New Withdraw Request</b> (Pending)\n\n👤 Name: ${esc(U.name)}\n🔗 Username: ${U.uname?"@"+esc(U.uname):"-"}\n🆔 Chat ID: <code>${uid}</code>\n💳 Platform: ${m}\n📱 Number/Address: <code>${esc(a)}</code>\n💵 Amount: ${CUR[cu][0]} ${n} ${cu=="USD"?"(USDT)":""}\n🇳🇵 NPR value: ${npr.toFixed(2)}\n🕒 ${new Date().toLocaleString()}`,[KB_BOTC,KB_CH]);
- tgSend(uid,"⏳ Your withdrawal of "+CUR[cu][0]+n+" to "+esc(mask(a))+" is pending admin approval.\n\n"+ETA+" You will get a message here as soon as it is paid.",[KB_BOT,KB_CH]);tgSend(ADMIN,"🔔 New withdrawal request from "+esc(U.name)+": "+CUR[cu][0]+n+" via "+m+". Open the Admin tab to approve.");
+ tgSend(CH,msgPending(w,1),[KB_BOTC,KB_CH]);
+ tgSend(uid,msgPendU(w),[KB_BOT,KB_CH]);tgSend(ADMIN,msgPending(w,1)+"\n\n👉 Open the <b>Admin</b> tab to approve.",[KB_BOT]);
  ok();toast("Withdrawal requested ✓");render(1)});
 /* ===== ADMIN ===== */
 P.admin=()=>{const US=Object.entries(AU),W_=Object.values(AW).sort((a,b)=>b.ts-a.ts);
@@ -515,7 +557,7 @@ P.admin=()=>{const US=Object.entries(AU),W_=Object.values(AW).sort((a,b)=>b.ts-a
  if(as=="t")b=`<div class="c"><input id="tt" placeholder="Task title"><input id="tl" placeholder="Link https://t.me/... or TikTok / WhatsApp / YouTube"><input id="tc2" placeholder="@channelusername (Telegram only, bot must be admin). Leave EMPTY for TikTok / WhatsApp / YouTube"><input id="tr" type="number" placeholder="Reward coins"><button class="b w" onclick="at()">Add task</button></div>`+Object.entries(cfg.tasks||{}).map(([id,t])=>`<div class="c r"><div>${esc(t.t)}<small>${esc(t.chat)} · +${t.r}</small></div><button class="b x" onclick="db.ref('config/tasks/${id}').remove()">Delete</button></div>`).join("");
  if(as=="g")b=`<div class="c"><b>Create gift code</b><small>It is broadcast to all users and auto-posted to the gift channel.</small><input id="gl" placeholder="Offer title – what is this gift for? e.g. Dashain Official Offer"><input id="gk" placeholder="CODE (blank = random)" style="text-transform:uppercase"><select id="gt"><option value="c">Reward in Coins</option><option value="m">Reward in NPR (money)</option></select><input id="ga" type="number" placeholder="Reward amount"><input id="gm2" type="number" placeholder="Max users (how many can redeem)"><input id="gx" type="number" placeholder="Expires in days (0 = never)"><button class="b w" onclick="ng()">Create &amp; broadcast</button></div>`+Object.entries(AG).sort((a,b)=>b[1].created-a[1].created).map(([k,g])=>`<div class="c r"><div><code>${esc(k)}</code><small>${esc(g.label||"")} · ${g.coins} coins · ${g.used||0}/${g.max} used · ${g.exp?"exp "+new Date(g.exp).toLocaleDateString():"no expiry"}</small></div><div><button class="b g" style="min-height:40px;padding:6px 10px" onclick="cp('${esc(k)}')">Copy</button> <button class="b x" style="min-height:40px;padding:6px 10px" onclick="db.ref('gifts/${esc(k)}').remove()">✕</button></div></div>`).join("");
  if(as=="a")b=`<div class="c"><small>2 networks: Monetag and AdsGalaxy. They alternate on every ad; if one fails the other plays. Use Test to check each one.</small></div>`+Object.entries(NETS).map(([k,n])=>`<div class="c r"><div><b>${n.n}</b><small>${(cfg.nets||{})[k]!==0?"ON":"OFF"} · ${n.ok()?"SDK loaded":"SDK not loaded"}</small></div><div><button class="b g" style="min-height:42px;padding:6px 10px" onclick="tadn('${k}')">Test</button> <button class="b ${(cfg.nets||{})[k]!==0?"":"g"}" style="min-height:42px;padding:6px 10px" onclick="db.ref('config/nets/${k}').set(${(cfg.nets||{})[k]!==0?0:1})">${(cfg.nets||{})[k]!==0?"ON":"OFF"}</button></div></div>`).join("");
- if(as=="b")b=`<div class="c"><b>Offer / banner (Dashain, Tihar…)</b><input id="bt" value="${esc(cfg.banner)}" placeholder="Banner text"><button class="b w" onclick="db.ref('config/banner').set($('#bt').value);toast('Saved')">Save banner</button></div><div class="c"><b>Broadcast (via bot)</b><small>A 🚀 Open Mini App button (opens the app directly) is attached automatically.</small><textarea id="bm" rows="3" placeholder="Message"></textarea><input id="bl" placeholder="Optional extra button link (https://…)"><button class="b w" onclick="bc()">Send to all users</button></div>`;
+ if(as=="b")b=`<div class="c"><b>Offer / banner (Dashain, Tihar…)</b><input id="bt" value="${esc(cfg.banner)}" placeholder="Banner text"><button class="b w" onclick="db.ref('config/banner').set($('#bt').value);toast('Saved')">Save banner</button></div><div class="c"><b>Broadcast to all bot users</b><small>Broadcast now uses the same styled post designs (Classic / Offer / Clean), photo or video, and the 🚀 Mini App button is attached automatically.</small><button class="b w" style="margin-top:8px" onclick="as='o';setTarget('users')">📣 Open broadcast composer</button></div>`;
  if(as=="r")b=`<small>Pending: ${Object.values(AC).filter(x=>x.st=="pending").length} · Rate: ${cfg.creator.per} views = ${cfg.creator.rate} coins</small>`+Object.values(AC).sort((a,b)=>b.ts-a.ts).map(x=>`<div class="c"><b>${esc(x.name)}</b> @${esc(x.uname||"-")} · ${CP[x.plat]?CP[x.plat][0]:esc(x.plat)}<br><code onclick="cpc('${x.id}')">${esc(x.url)}</code> 📋<br><i>${x.st}${x.st!="pending"?" · "+x.coins+" coins":""}</i>${x.st=="pending"?`<button class="b g w" style="margin:6px 0" onclick="tg.openLink(AC['${x.id}'].url)">▶ Open video</button><div class="r"><input id="v${x.id}" type="number" placeholder="Views (24h)" oninput="cvv('${x.id}')"><input id="k${x.id}" type="number" placeholder="Coins"></div><div class="r" style="margin-top:6px"><button class="b" onclick="car('${x.id}',1)">Approve</button><button class="b x" onclick="car('${x.id}',0)">Reject</button></div>`:""}</div>`).join("")||"<small>None</small>";
  if(as=="o")b=PostUI();
  if(as=="c")b=`<div class="c"><small>Rates, rewards, spin, game odds, links – all JSON. Careful with syntax.</small><textarea id="cj" rows="16">${esc(JSON.stringify(cfg,null,1))}</textarea><button class="b w" onclick="savecfg()">Save config</button></div>`;
@@ -523,15 +565,15 @@ P.admin=()=>{const US=Object.entries(AU),W_=Object.values(AW).sort((a,b)=>b.ts-a
 async function wap(id,y){const w=AW[id];if(!w||w.st!="pending")return;const s=y?"approved":"rejected";
  await db.ref().update({[`wd/${id}/st`]:s,[`users/${w.uid}/wds/${id}/st`]:s});
  if(y){const rf=(await db.ref(`users/${w.uid}/ref`).get()).val();if(rf)db.ref(`users/${rf}/refs/${w.uid}/wd`).set(w.npr);
-  tgSend(CH,`✅ <b>Payment Successful</b>\n\n👤 ${esc(w.name)} ${w.uname?"(@"+esc(w.uname)+")":""}\n💳 Platform: ${w.m}\n📱 To: <code>${esc(mask(w.a))}</code>\n💵 Amount: ${CUR[w.cu][0]} ${w.amt} ${w.cu=="USD"?"(USDT)":""}\n\nPaid successfully ✔️`,[KB_BOTC,KB_PAY]);tgSend(ADMIN,"✅ Approved & paid: "+esc(w.name)+" "+CUR[w.cu][0]+w.amt,[KB_BOT,KB_PAY]);
-  tgSend(w.uid,`✅ Your withdrawal of ${CUR[w.cu][0]}${w.amt} to ${esc(mask(w.a))} was paid successfully!`,[KB_BOT,KB_PAY])}
- else{db.ref(`users/${w.uid}/cash`).transaction(v=>+((v||0)+w.npr).toFixed(4));tgSend(CH,`❌ <b>Rejected</b> – ${esc(w.name)} (<code>${w.uid}</code>) ${CUR[w.cu][0]}${w.amt}`);tgSend(w.uid,"❌ Your withdrawal was rejected. Your money was refunded to your balance.")}
+  tgSend(CH,msgPaid(w),[KB_BOTC,KB_PAY]);tgSend(ADMIN,msgPaid(w),[KB_BOT,KB_PAY]);
+  tgSend(w.uid,msgPaid(w,1),[KB_BOT,KB_PAY])}
+ else{db.ref(`users/${w.uid}/cash`).transaction(v=>+((v||0)+w.npr).toFixed(4));tgSend(CH,msgRej(w),[KB_BOTC]);tgSend(w.uid,msgRej(w,1),[KB_BOT])}
  ok();toast(s)}
 const cpc=id=>cp(AC[id].url);
 function cvv(id){const v=+$("#v"+id).value||0;$("#k"+id).value=Math.floor(v/cfg.creator.per*cfg.creator.rate)}
 async function car(id,y){const x=AC[id];if(!x||x.st!="pending")return;const c=Math.floor(+$("#k"+id).value||0);if(y&&c<=0)return toast("Enter views or coins first");const st=y?"approved":"rejected";
  await db.ref().update({[`cr/${id}/st`]:st,[`cr/${id}/coins`]:y?c:0,[`users/${x.uid}/crs/${id}/st`]:st,[`users/${x.uid}/crs/${id}/coins`]:y?c:0});
- tgSend(x.uid,y?"🎬 <b>Your Creator Hub video was approved!</b>\n\n💰 Reward: <b>"+c+" coins</b>\n\n👉 Open the app → Creator Hub and press Claim.":"❌ Your Creator Hub video was not approved. Please follow the rules (honest content, real app, no fake income claims) and try again.",[APP_BTN]);
+ tgSend(x.uid,y?boxT("🎬 VIDEO APPROVED")+"\n"+frm(["💰 Reward : "+c+" coins"])+"\n"+ctaL("Open Creator Hub & Claim")+FOOT():boxT("🎬 VIDEO NOT APPROVED")+"\nPlease follow the rules (honest content, real app, no fake income claims) and try again.\n\n"+ctaL("Try again")+FOOT(),[APP_BTN]);
  ok();toast(st)}
 function ac2(id,s){const v=+$("#u"+id).value;if(!v)return;add(id,s*v,"admin");toast("Done")}
 function at(){const t=$("#tt").value,l=$("#tl").value,c=$("#tc2").value,r=+$("#tr").value;if(!t||!l||!r)return toast("Fill title, link and reward");db.ref("config/tasks").set({...cfg.tasks,["t"+now()]:{t,link:l,chat:c,r}}).then(()=>{toast("Task added ✓");notifyAll(taskMsg([{t,link:l,r}]),[APP_BTN,[{text:"🔗 Open task link",url:l}]])}).catch(()=>toast("Save failed"))}
@@ -548,7 +590,10 @@ async function bc(){const m=$("#bm").value.trim();if(!m)return toast("Write a me
 function purge(){const L=Object.entries(AU).filter(([id,u])=>id!=String(ADMIN)&&!u.tos&&!(u.coins>0)&&!(u.earned>0)&&!(u.cash>0)&&!u.wds&&!u.refs).map(([id])=>id);if(!L.length)return toast("No inactive test users found");if(!confirm("Remove "+L.length+" inactive users (never accepted terms, no coins, no history)? Real users are not touched."))return;L.forEach(id=>{db.ref("users/"+id).remove();db.ref("lb/"+id).remove();db.ref("snap/"+id).remove()});toast(L.length+" inactive users removed")}
 function th(){const h=document.documentElement,n=h.dataset.th=="dark"?"light":"dark";h.dataset.th=n;localStorage.th=n;try{tg.setHeaderColor(n=="dark"?"#1a0c08":"#d9381a");tg.setBackgroundColor(n=="dark"?"#1a0c08":"#fbeee3")}catch(e){}render(1)}
 /* ===== OFFICIAL CHANNEL POST (admin only). Posts straight to the channel through the bot; nothing is broadcast to users and nothing is stored in Firebase ===== */
-let PD={st:"classic",t:"",s:"",b:"",c:"",q:"",cta:"",ft:1,bt:"",bu:""},PF=null,PU="";
+function newPD(){return{st:"classic",t:"",s:"",b:"",c:"",q:"",cta:"",ft:1,bt:"",bu:""}}
+let PD=newPD(),PF=null,PU="",PT="c1",PDS={};
+function setTarget(k){PDS[PT]={d:PD,f:PF,u:PU};PT=k;const x=PDS[k];PD=x?x.d:newPD();PF=x?x.f:null;PU=x?x.u:"";render(1)}
+const askC=m=>new Promise(r=>{try{tg.showConfirm(m,r)}catch(e){r(confirm(m))}});
 const wrapL=(t,n)=>{const o=[];String(t).split("\n").forEach(l=>{l=l.trim();if(!l)return;let c="";l.split(/\s+/).forEach(w=>{if([...c].length+[...w].length+1>n&&c){o.push(c);c=w}else c=c?c+" "+w:w});if(c)o.push(c)});return o};
 function postHtml(){const D=PD,E=esc,T=D.t.trim(),S=D.s.trim(),C=D.c.trim(),Q=D.q.trim(),A=D.cta.trim(),bar="━━━━━━━━━━━━━━━━━━━━━━",raw=D.b.split("\n").map(x=>x.trim()).filter(Boolean);let h="";
  if(D.st=="classic"){
@@ -578,28 +623,48 @@ function postHtml(){const D=PD,E=esc,T=D.t.trim(),S=D.s.trim(),C=D.c.trim(),Q=D.
 const PI=(k,ph,rows)=>rows?`<textarea rows="${rows}" placeholder="${ph}" oninput="PD.${k}=this.value;pvu()">${esc(PD[k])}</textarea>`:`<input placeholder="${ph}" value="${esc(PD[k])}" oninput="PD.${k}=this.value;pvu()">`;
 function pvu(){const e=$("#pv");if(e)e.innerHTML=postHtml()||"<small>Start typing…</small>"}
 function pfile(el){const f=el.files[0];if(!f)return;if(f.size>48*1048576){el.value="";return toast("File too large (max 48 MB)")}if(f.type.startsWith("image/")&&f.size>10*1048576){el.value="";return toast("Photo too large (max 10 MB)")}if(PU)URL.revokeObjectURL(PU);PF=f;PU=URL.createObjectURL(f);render(1)}
-function PostUI(){return `<div class="c"><b>📣 Post to Official Channel</b><small>Goes only to the official channel through the bot. It is NOT broadcast to users. The 🚀 Mini App and 💬 Chat Group buttons are attached automatically.</small>
+const chp=on=>on?"background:linear-gradient(90deg,#f7852c,#e8502a);color:#fff":"background:var(--pe);color:#d9481f";
+function PostUI(){const CHS=Object.entries(cfg.channels||{}),nC=CHS.length,isU=PT=="users",cur=isU?"All bot users":((cfg.channels||{})[PT]||{}).n||"channel";
+ return `<div class="c"><b>📣 Where to post?</b><small>Each target keeps its own draft. A channel post goes only to that channel. "All bot users" is a broadcast.</small>
+ <div class="chips" style="justify-content:flex-start;margin-top:8px">${CHS.map(([k,c])=>`<button class="chip" style="${chp(PT==k)}" onclick="setTarget('${k}')">📢 ${esc(c.n)}</button>`).join("")}<button class="chip" style="${chp(isU)}" onclick="setTarget('users')">👥 All bot users</button></div></div>
+ <div class="c"><b>✍️ Post to: ${esc(cur)}</b><small>${isU?"Sent to every user through the bot with a 🚀 Open Mini App button.":"The 🚀 Mini App and 💬 Chat Group buttons are attached automatically."}</small>
  <div class="seg" style="grid-template-columns:repeat(3,1fr)">${[["classic","Classic"],["offer","Offer"],["clean","Clean"]].map(([k,n])=>`<button class="b ${PD.st==k?"":"g"}" onclick="PD.st='${k}';render(1)">${n}</button>`).join("")}</div>
  ${PI("t","Title (header)")}${PI("s","Sub-title / label (optional)")}${PI("b","Message lines – one point per line",5)}${PI("c","Code / link / gift-code box (optional, tap to copy)",2)}${PI("q","Quote (optional)",2)}${PI("cta","Call to action, e.g. Open the app and claim now")}
  <div class="r" style="margin:6px 0"><b>Footer 🇳🇵 Made in Nepal · Bibx</b><button class="b ${PD.ft?"":"g"}" style="min-height:42px;padding:6px 14px" onclick="PD.ft=PD.ft?0:1;render(1)">${PD.ft?"ON":"OFF"}</button></div>
  <b>Photo / video (optional)</b><input type="file" id="pf" accept="image/*,video/*" onchange="pfile(this)">
  ${PF?(PF.type.startsWith("video")?`<video src="${PU}" controls playsinline style="width:100%;border-radius:14px;margin:6px 0"></video>`:`<img src="${PU}" class="ban" style="margin:6px 0">`)+`<button class="b g w" onclick="PF=null;PU='';render(1)">✕ Remove media</button>`:""}
  ${PI("bt","Optional extra button text")}${PI("bu","Optional extra button link https://…")}
- <button class="b w" style="margin-top:8px" onclick="postCh()">📤 Post to channel</button></div>
- <div class="c"><b>Preview</b><div id="pv" style="white-space:pre-wrap;font-size:14px;margin-top:8px;overflow-wrap:anywhere">${postHtml()||"<small>Start typing…</small>"}</div></div>`}
+ <button class="b w" style="margin-top:8px" onclick="postCh()">${isU?"📤 Send broadcast to all users":"📤 Post to "+esc(cur)}</button></div>
+ <div class="c"><b>Preview</b><div id="pv" style="white-space:pre-wrap;font-size:14px;margin-top:8px;overflow-wrap:anywhere">${postHtml()||"<small>Start typing…</small>"}</div></div>
+ <div class="c"><b>📡 Channels (${nC}/10)</b><small>Add another channel to post different things there. The bot must be an admin of the channel.</small>
+ ${CHS.map(([k,c])=>`<div class="lr"><div style="flex:1;min-width:0"><b>${esc(c.n)}</b><small>${esc(c.id)}</small></div><button class="b x" style="min-height:40px;padding:6px 12px" onclick="delCh('${k}')">✕</button></div>`).join("")}
+ ${nC<10?`<input id="chn" placeholder="Channel name (optional)"><input id="chi" placeholder="Channel ID e.g. -1001234567890 or @username"><button class="b w" onclick="addCh()">➕ Add channel</button>`:`<small>Maximum 10 channels reached.</small>`}</div>`}
+const addCh=W(async()=>{const n=$("#chn").value.trim(),id=$("#chi").value.trim();if(Object.keys(cfg.channels||{}).length>=10)return toast("Maximum 10 channels");
+ if(!/^(-100\d{5,}|@[A-Za-z0-9_]{4,})$/.test(id))return toast("Enter the channel ID like -1001234567890 or @username");
+ if(Object.values(cfg.channels||{}).some(c=>String(c.id)==id))return toast("This channel is already added");
+ let title=n;try{const r=await(await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChat?chat_id=${encodeURIComponent(id)}`)).json();if(!r.ok){bad();return toast("Bot cannot access that channel. Make the bot an admin first ("+(r.description||"")+")")}title=title||r.result.title||id}catch(e){return toast("Could not check the channel. Try again")}
+ const k="c"+now();await db.ref("config/channels").set({...cfg.channels,[k]:{n:title,id}});ok();toast("✓ Channel added: "+title);setTarget(k)});
+function delCh(k){if(Object.keys(cfg.channels||{}).length<=1)return toast("Keep at least one channel");db.ref("config/channels/"+k).remove().then(()=>{if(PT==k)setTarget(Object.keys(cfg.channels).filter(x=>x!=k)[0]||"users");toast("Channel removed")})}
 const postCh=W(async()=>{const h=postHtml();if(!h.trim()&&!PF)return toast("Write something or choose a photo / video");
- const plain=h.replace(/<[^>]+>/g,""),kb=[KB_BOTC,[{text:"💬 Join Chat Group",url:CHATLINK}]];
- if(PD.bt.trim()&&/^https?:\/\//i.test(PD.bu.trim()))kb.push([{text:PD.bt.trim(),url:PD.bu.trim()}]);
+ const plain=h.replace(/<[^>]+>/g,""),isU=PT=="users",chat=isU?null:((cfg.channels||{})[PT]||{}).id,fit=plain.length<=1000;
+ if(!isU&&!chat)return toast("Choose a channel first");
+ const ex=(PD.bt.trim()&&/^https?:\/\//i.test(PD.bu.trim()))?[[{text:PD.bt.trim(),url:PD.bu.trim()}]]:[],kb=[isU?APP_BTN:KB_BOTC,[{text:"💬 Join Chat Group",url:CHATLINK}],...ex];
  const api=async(m,body,isF)=>{const r=await(await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/${m}`,isF?{method:"POST",body}:{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})).json();if(!r.ok)throw new Error(r.description||"failed");return r};
- const txt={chat_id:OFFCH,text:h,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:kb}};
- try{
-  if(PF){const t=PF.type,isV=t.startsWith("video"),isG=t=="image/gif",m=isG?"sendAnimation":isV?"sendVideo":"sendPhoto",fd=new FormData(),fit=plain.length<=1000;
-   fd.append("chat_id",OFFCH);fd.append(isG?"animation":isV?"video":"photo",PF);if(isV)fd.append("supports_streaming","true");
+ const txt=c=>({chat_id:c,text:h,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:kb}});
+ const m=PF?(PF.type=="image/gif"?"sendAnimation":PF.type.startsWith("video")?"sendVideo":"sendPhoto"):null,fld=m=="sendAnimation"?"animation":m=="sendVideo"?"video":"photo";
+ const mk=(c,v)=>{const o={chat_id:c,[fld]:v};if(fit&&h.trim()){o.caption=h;o.parse_mode="HTML"}if(fit)o.reply_markup={inline_keyboard:kb};return o};
+ let list=[];if(isU){list=Object.keys(AU).filter(i=>String(i)!=String(ADMIN));if(!Object.keys(AU).length)return toast("User list not loaded yet");if(!await askC("Send this post to "+(list.length+1)+" users?"))return}
+ try{let fid=null;
+  if(PF){const c0=isU?ADMIN:chat,fd=new FormData();fd.append("chat_id",c0);fd.append(fld,PF);if(m=="sendVideo")fd.append("supports_streaming","true");
    if(fit&&h.trim()){fd.append("caption",h);fd.append("parse_mode","HTML")}if(fit)fd.append("reply_markup",JSON.stringify({inline_keyboard:kb}));
-   await api(m,fd,1);if(!fit&&h.trim())await api("sendMessage",txt)}
-  else await api("sendMessage",txt);
-  ok();toast("✓ Posted to the official channel");PD.t=PD.s=PD.b=PD.c=PD.q=PD.cta="";PF=null;PU="";render(1)}
- catch(e){bad();toast("Post failed: "+(e.message||"error")+". Is the bot an admin of the channel?")}});
+   const r=await api(m,fd,1),res=r.result;fid=fld=="photo"?res.photo[res.photo.length-1].file_id:res[fld].file_id;if(!fit&&h.trim())await api("sendMessage",txt(c0))}
+  else if(!isU)await api("sendMessage",txt(chat));
+  else await api("sendMessage",txt(ADMIN));
+  if(isU){let n=1;for(let i=0;i<list.length;i+=20){await Promise.all(list.slice(i,i+20).map(async id=>{try{if(PF){await api(m,mk(id,fid));if(!fit&&h.trim())await api("sendMessage",txt(id))}else await api("sendMessage",txt(id));n++}catch(e){}}));toast("Sending… "+Math.min(i+20,list.length)+"/"+list.length);await sleep(1100)}
+   db.ref("notices").push({txt:plain.replace(/[╔╗╚╝═┌└│─━⭐]/g,"").replace(/[ \t]+/g," ").replace(/\n\s*\n+/g,"\n").trim().slice(0,200),ts:now()});ok();toast("✓ Sent to "+n+" users")}
+  else{ok();toast("✓ Posted to "+((cfg.channels||{})[PT]||{}).n)}
+  PD.t=PD.s=PD.b=PD.c=PD.q=PD.cta="";PF=null;PU="";render(1)}
+ catch(e){bad();toast("Post failed: "+(e.message||"error")+(isU?"":". Is the bot an admin of the channel?"))}});
 /* ===== TERMS ===== */
 const TOS={en:["<b>About this app.</b> Nodix Earn is a small reward app. It is NOT a get-rich-quick scheme. You can earn some pocket money (think of it as tea money) over a long period by completing simple tasks. Please do not expect large income.",
 "<b>Coins &amp; money.</b> Coins are in-app reward points. The default rate is 100 coins = NPR 1. You must first convert coins to money (swipe) before withdrawing. Rates, rewards and offers may be changed by the admin at any time.",
